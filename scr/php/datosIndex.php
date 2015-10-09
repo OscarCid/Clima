@@ -20,7 +20,7 @@ while($row = mysqli_fetch_array($result)) {
     echo "<div class='row'>
         <div class='col-md-8 col-md-offset-2'>
                             <!-- Primer Panel Temperatura-->
-                                        <div class='panel panel-success'>
+                                        <div class='panel panel-primary'>
                                             <div class='panel-heading'>
                                                 <h3 class='panel-title'>Temperatura y Humedad</h3>
                                             </div>
@@ -66,7 +66,7 @@ while($row = mysqli_fetch_array($result)) {
     <div class='row'>
         <div class='col-md-8 col-md-offset-2'>
                             <!-- Panel Viento-->
-                                        <div class='panel panel-success'>
+                                        <div class='panel panel-primary'>
                                             <div class='panel-heading'>
                                                 <h3 class='panel-title'>Informacion sobre el viento</h3>
                                             </div>
