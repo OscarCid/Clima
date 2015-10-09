@@ -12,6 +12,7 @@
     window.onload = function() {
 
     }  </script>
+<!-- Div que muestra los datos de scr/php/datosIndex.php -->
 <div id="txtHint"></div>
 <script src="bootstrap/js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
