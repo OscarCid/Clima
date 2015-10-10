@@ -22,7 +22,7 @@
                 exporting: {
                     buttons: {
                         contextButton: {
-                            symbol: 'url(scr/img/diskette.png)'
+                            symbol: 'url(scr/img/save.gif)'
                         }
                     }
                 },
@@ -98,7 +98,7 @@
                 exporting: {
                     buttons: {
                         contextButton: {
-                            symbol: 'url(scr/img/diskette.png)'
+                            symbol: 'url(scr/img/save.gif)'
                         }
                     }
                 },
@@ -173,7 +173,7 @@
                 exporting: {
                     buttons: {
                         contextButton: {
-                            symbol: 'url(scr/img/diskette.png)'
+                            symbol: 'url(scr/img/save.gif)'
                         }
                     }
                 },
@@ -229,7 +229,7 @@
                 exporting: {
                     buttons: {
                         contextButton: {
-                            symbol: 'url(scr/img/diskette.png)'
+                            symbol: 'url(scr/img/save.gif)'
                         }
                     }
                 },
@@ -289,7 +289,7 @@
                 exporting: {
                     buttons: {
                         contextButton: {
-                            symbol: 'url(scr/img/diskette.png)'
+                            symbol: 'url(scr/img/save.gif)'
                         }
                     }
                 },
