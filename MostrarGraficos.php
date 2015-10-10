@@ -19,6 +19,13 @@
                 subtitle: {
                     text: 'Tendencia de las ultimas 12 horas'
                 },
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            symbol: 'url(scr/img/diskette.png)'
+                        }
+                    }
+                },
                 xAxis: {
                     title: {
                         enabled: true,
@@ -88,6 +95,13 @@
                 subtitle: {
                     text: 'Tendencia de las ultimas 12 horas'
                 },
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            symbol: 'url(scr/img/diskette.png)'
+                        }
+                    }
+                },
                 xAxis: {
                     title: {
                         enabled: true,
@@ -156,6 +170,13 @@
                 subtitle: {
                     text: 'Tendencia de las ultimas 12 horas'
                 },
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            symbol: 'url(scr/img/diskette.png)'
+                        }
+                    }
+                },
                 xAxis: {
                     title: {
                         enabled: true,
@@ -204,6 +225,13 @@
                 },
                 subtitle: {
                     text: 'Tendencia de las ultimas 12 horas'
+                },
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            symbol: 'url(scr/img/diskette.png)'
+                        }
+                    }
                 },
                 xAxis: {
                     title: {
@@ -257,6 +285,13 @@
                 },
                 subtitle: {
                     text: 'Tendencia de las ultimas 12 horas'
+                },
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            symbol: 'url(scr/img/diskette.png)'
+                        }
+                    }
                 },
                 xAxis: {
                     title: {
@@ -433,6 +468,5 @@
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <script src="highcharts/js/highcharts.js"></script>
 <script src="highcharts/js/modules/exporting.js"></script>
-<script src="bootstrap/reponsive-bootstrap-tabs/js/index.js"></script>
 
 </html>

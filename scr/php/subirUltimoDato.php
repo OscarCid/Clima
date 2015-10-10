@@ -19,9 +19,7 @@ else
 $filas = file($fichero);
 $ultima_linea = $filas[count($filas)-1];
 
-
 $dato=split("[.,]+",$ultima_linea);
-
 
 $link = mysqli_connect("localhost", "root", "", "clima");
 
