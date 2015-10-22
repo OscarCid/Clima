@@ -68,7 +68,7 @@ while($row = mysqli_fetch_array($result)) {
                             <!-- Panel Viento-->
                                         <div class='panel panel-primary'>
                                             <div class='panel-heading'>
-                                                <h3 class='panel-title'>Informacion sobre el viento</h3>
+                                                <h3 class='panel-title'>Viento y Fuerza</h3>
                                             </div>
                                             <div class='panel-body'>
                                             <div class='row'>
@@ -90,6 +90,87 @@ while($row = mysqli_fetch_array($result)) {
                                                             <td>Direccion del Viento</td>
                                                             <td>$row[direcViento]</td>
                                                         </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                </div>
+    </div>
+
+    <div class='row'>
+        <div class='col-md-8 col-md-offset-2'>
+                            <!-- Panel Precipitaciones-->
+                                        <div class='panel panel-primary'>
+                                            <div class='panel-heading'>
+                                                <h3 class='panel-title'>Precipitacion</h3>
+                                            </div>
+                                            <div class='panel-body'>
+                                            <div class='row'>
+                                            <div class='col-md-12'>
+                                                <div class='bs-example' data-example-id='bordered-table'>
+                                                    <table class='table table-bordered'>
+                                                        <thead>
+                                                        <tr>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>Precipitacion hoy</td>
+                                                            <td>?</td>
+                                                            <td>Ritmo</td>
+                                                            <td>$row[ritmoLLuvia].$row[ritmoLLuviaDec] mm/hr</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Precipitacion este mes</td>
+                                                            <td>?</td>
+                                                            <td>Precipitaciones este año</td>
+                                                            <td>?</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Precipitacion esta hora</td>
+                                                            <td>$row[precipHoy].$row[precipHoyDec] mm</td>
+                                                            <td>Ultima precipitacion</td>
+                                                            <td>?</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                </div>
+    </div>
+
+    <div class='row'>
+        <div class='col-md-8 col-md-offset-2'>
+                            <!-- Panel Presion-->
+                                        <div class='panel panel-primary'>
+                                            <div class='panel-heading'>
+                                                <h3 class='panel-title'>Presion atmosferica y tendencia</h3>
+                                            </div>
+                                            <div class='panel-body'>
+                                            <div class='row'>
+                                            <div class='col-md-12'>
+                                                <div class='bs-example' data-example-id='bordered-table'>
+                                                    <table class='table table-bordered'>
+                                                        <thead>
+                                                        <tr>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>Presion</td>
+                                                            <td>$row[presion].$row[presionDec] hPa</td>
+                                                            <td>Steady</td>
+                                                            <td>?</td>
+                                                        </tr>
+
                                                         </tbody>
                                                     </table>
                                                 </div>
