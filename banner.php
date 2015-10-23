@@ -19,7 +19,7 @@ $civil_twilight_end = date("H:i",$sun_info['civil_twilight_end']);
 
 ?>
 <div class="row"><div class="col-md-12">
-        <div class="col-md-7 col-md-offset-2 ">
+        <div class="col-md-9 col-md-offset-1 ">
             <div class="row">
                 <div class="row">
                     <div class="col-sm-3"><p class="text-justify"><strong>Amanecer:</strong><?php echo ' '.$civil_twilight_begin;?></p></div>
@@ -102,7 +102,7 @@ $civil_twilight_end = date("H:i",$sun_info['civil_twilight_end']);
             <img src="scr\img\11986926_10207675732917222_8238076877955775449_n.jpg" height="90px" />
         </div>
     </div>
-    <div class='col-md-10 col-md-offset-1 col-xs-offset-0 col-xs-12'>
+    <div class='col-md-12  col-xs-offset-0 col-xs-12'>
         <div class='col-md-10 col-md-offset-1 col-xs-offset-0 col-xs-12'><p class="text-justify">
                 <br> La facultad de Ingeniería de la Universidad de Playa Ancha en colaboración con la Dirección de Meteorologia de la Armada de Chile y la Corporación Nacional Forestal (CONAF) se encuentra habilitando estaciones meteorológicas Davis en diferentes áreas protegidas de la Región de Valparaiso. </br>
                 La estación meteorológica en uso es el Davis Vantage Pro2, y estas paginas se actualizan cada 5 minutos. El dia meteorológico utilizado en esta estación termina a la medianoche.

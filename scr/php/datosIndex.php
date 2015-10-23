@@ -18,7 +18,7 @@ $result = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
 
 while($row = mysqli_fetch_array($result)) {
     echo "<div class='row'>
-        <div class='col-md-8 col-md-offset-2'>
+        <div class='col-md-10 col-md-offset-1'>
                             <!-- Primer Panel Temperatura-->
                                         <div class='panel panel-primary'>
                                             <div class='panel-heading'>
@@ -64,7 +64,7 @@ while($row = mysqli_fetch_array($result)) {
     </div>
 
     <div class='row'>
-        <div class='col-md-8 col-md-offset-2'>
+        <div class='col-md-10 col-md-offset-1'>
                             <!-- Panel Viento-->
                                         <div class='panel panel-primary'>
                                             <div class='panel-heading'>
@@ -102,7 +102,7 @@ while($row = mysqli_fetch_array($result)) {
     </div>
 
     <div class='row'>
-        <div class='col-md-8 col-md-offset-2'>
+        <div class='col-md-10 col-md-offset-1'>
                             <!-- Panel Precipitaciones-->
                                         <div class='panel panel-primary'>
                                             <div class='panel-heading'>
@@ -127,7 +127,7 @@ while($row = mysqli_fetch_array($result)) {
                                                         <tr>
                                                             <td>Precipitacion este mes</td>
                                                             <td>?</td>
-                                                            <td>Precipitaciones este año</td>
+                                                            <td>Precipitaciones este a&nacute;o</td>
                                                             <td>?</td>
                                                         </tr>
                                                         <tr>
@@ -148,7 +148,7 @@ while($row = mysqli_fetch_array($result)) {
     </div>
 
     <div class='row'>
-        <div class='col-md-8 col-md-offset-2'>
+        <div class='col-md-10 col-md-offset-1'>
                             <!-- Panel Presion-->
                                         <div class='panel panel-primary'>
                                             <div class='panel-heading'>
