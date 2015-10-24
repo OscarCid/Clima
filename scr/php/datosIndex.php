@@ -17,55 +17,102 @@ $result = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
 
 
 while($row = mysqli_fetch_array($result)) {
-    echo "<div class='row'>
-        <div class='col-md-10 col-md-offset-1'>
-                            <!-- Primer Panel Temperatura-->
-                                        <div class='panel panel-primary'>
-                                            <div class='panel-heading'>
-                                                <h3 class='panel-title'>Temperatura y Humedad</h3>
-                                            </div>
-                                            <div class='panel-body'>
-                                            <div class='row'>
-                                            <div class='col-md-12'>
-                                                <div class='bs-example' data-example-id='bordered-table'>
-                                                    <table class='table table-bordered'>
-                                                        <thead>
-                                                        <tr>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>Fecha</td>
-                                                            <td>$row[fecha]</td>
-                                                            <td>Hora</td>
-                                                            <td>$row[hora]</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Temperatura</td>
-                                                            <td>$row[temp].$row[tempDec] C</td>
-                                                            <td>Humedad</td>
-                                                            <td>$row[humedad] %</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Punto de Rocio</td>
-                                                            <td>$row[pRocio].$row[pRocioDec] C</td>
-                                                            <td>Indice de Calor</td>
-                                                            <td>$row[indCalor].$row[indCalorDec] C</td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
+    echo "
+<div class='row'>
+    <div class='cold-md-12'>
+    <!-- Primer Panel Temperatura-->
+            <div class='col-md-5 col-md-offset-1'>
+                                            <div class='panel panel-primary'>
+                                                <div class='panel-heading'>
+                                                    <h3 class='panel-title'>Temperatura y Humedad</h3>
+                                                </div>
+                                                <div class='panel-body'>
+                                                <div class='row'>
+                                                <div class='col-md-12'>
+                                                    <div class='bs-example' data-example-id='bordered-table'>
+                                                        <table class='table table-bordered'>
+                                                            <thead>
+                                                            <tr>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>Fecha</td>
+                                                                <td>$row[fecha]</td>
+                                                                <td>Hora</td>
+                                                                <td>$row[hora]</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Temperatura</td>
+                                                                <td>$row[temp].$row[tempDec] C</td>
+                                                                <td>Humedad</td>
+                                                                <td>$row[humedad] %</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Punto de Rocio</td>
+                                                                <td>$row[pRocio].$row[pRocioDec] C</td>
+                                                                <td>Indice de Calor</td>
+                                                                <td>$row[indCalor].$row[indCalorDec] C</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>
                                                 </div>
                                             </div>
-                                            </div>
-                                            </div>
+            </div>
+    <!-- Panel Precipitaciones-->
+            <div class='col-md-5'>
+                                            <div class='panel panel-primary'>
+                                                <div class='panel-heading'>
+                                                    <h3 class='panel-title'>Precipitacion</h3>
+                                                </div>
+                                                <div class='panel-body'>
+                                                <div class='row'>
+                                                <div class='col-md-12'>
+                                                    <div class='bs-example' data-example-id='bordered-table'>
+                                                        <table class='table table-bordered'>
+                                                            <thead>
+                                                            <tr>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>Precipitacion hoy</td>
+                                                                <td>?</td>
+                                                                <td>Ritmo</td>
+                                                                <td>$row[ritmoLLuvia].$row[ritmoLLuviaDec] mm/hr</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Precipitacion este mes</td>
+                                                                <td>?</td>
+                                                                <td>Precipitaciones este a&nacute;o</td>
+                                                                <td>?</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Precipitacion esta hora</td>
+                                                                <td>$row[precipHoy].$row[precipHoyDec] mm</td>
+                                                                <td>Ultima precipitacion</td>
+                                                                <td>?</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                        </div>
                                     </div>
-                                </div>
-                                </div>
+            </div>
     </div>
+</div>
 
-    <div class='row'>
-        <div class='col-md-10 col-md-offset-1'>
-                            <!-- Panel Viento-->
+<div class='row'>
+    <div class='cold-md-12'>
+<!-- Panel Viento-->
+        <div class='col-md-5 col-md-offset-1'>
                                         <div class='panel panel-primary'>
                                             <div class='panel-heading'>
                                                 <h3 class='panel-title'>Viento y Fuerza</h3>
@@ -98,57 +145,9 @@ while($row = mysqli_fetch_array($result)) {
                                             </div>
                                     </div>
                                 </div>
-                                </div>
-    </div>
-
-    <div class='row'>
-        <div class='col-md-10 col-md-offset-1'>
-                            <!-- Panel Precipitaciones-->
-                                        <div class='panel panel-primary'>
-                                            <div class='panel-heading'>
-                                                <h3 class='panel-title'>Precipitacion</h3>
-                                            </div>
-                                            <div class='panel-body'>
-                                            <div class='row'>
-                                            <div class='col-md-12'>
-                                                <div class='bs-example' data-example-id='bordered-table'>
-                                                    <table class='table table-bordered'>
-                                                        <thead>
-                                                        <tr>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>Precipitacion hoy</td>
-                                                            <td>?</td>
-                                                            <td>Ritmo</td>
-                                                            <td>$row[ritmoLLuvia].$row[ritmoLLuviaDec] mm/hr</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Precipitacion este mes</td>
-                                                            <td>?</td>
-                                                            <td>Precipitaciones este a&nacute;o</td>
-                                                            <td>?</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Precipitacion esta hora</td>
-                                                            <td>$row[precipHoy].$row[precipHoyDec] mm</td>
-                                                            <td>Ultima precipitacion</td>
-                                                            <td>?</td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                    </div>
-                                </div>
-                                </div>
-    </div>
-
-    <div class='row'>
-        <div class='col-md-10 col-md-offset-1'>
+        </div>
+<!-- Panel Presion-->
+        <div class='col-md-5'>
                             <!-- Panel Presion-->
                                         <div class='panel panel-primary'>
                                             <div class='panel-heading'>
@@ -179,8 +178,10 @@ while($row = mysqli_fetch_array($result)) {
                                             </div>
                                     </div>
                                 </div>
-                                </div>
-    </div>";
+        </div>
+    </div>
+</div>
+";
     mysqli_close($con);
 }
 ?>
