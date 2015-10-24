@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html"; charset= UTF-8>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="scr/js/actualizarIndex.js"></script>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
@@ -33,7 +33,7 @@ $civil_twilight_end = date("H:i",$sun_info['civil_twilight_end']);
                 </div>
                 <div class="row">
                     <div class="col-sm-3"><p class="text-justify"><strong>Luz del dia:</strong></p></div>
-                    <div class="col-sm-3"><p class="text-justify"><strong>Duraci髇 del dia:</strong></p></div>
+                    <div class="col-sm-3"><p class="text-justify"><strong>Duraci贸n del dia:</strong></p></div>
                     <div class="col-sm-5"><strong>Fase de la luna:</strong>
                         <?php
                         function moon_phase($year, $month, $day)
@@ -104,8 +104,8 @@ $civil_twilight_end = date("H:i",$sun_info['civil_twilight_end']);
     </div>
     <div class='col-md-12  col-xs-offset-0 col-xs-12'>
         <div class='col-md-10 col-md-offset-1 col-xs-offset-0 col-xs-12'><p class="text-justify">
-                <br> La facultad de Ingenier韆 de la Universidad de Playa Ancha en colaboraci髇 con la Direcci髇 de Meteorologia de la Armada de Chile y la Corporaci髇 Nacional Forestal (CONAF) se encuentra habilitando estaciones meteorol骻icas Davis en diferentes 醨eas protegidas de la Regi髇 de Valparaiso. </br>
-                La estaci髇 meteorol骻ica en uso es el Davis Vantage Pro2, y estas paginas se actualizan cada 5 minutos. El dia meteorol骻ico utilizado en esta estaci髇 termina a la medianoche.
+                <br> La facultad de Ingenier铆a de la Universidad de Playa Ancha en colaboraci贸n con la Direcci贸n de Meteorologia de la Armada de Chile y la Corporaci贸n Nacional Forestal (CONAF) se encuentra habilitando estaciones meteorol贸gicas Davis en diferentes 谩reas protegidas de la Regi贸n de Valparaiso. </br>
+                La estaci贸n meteorol贸gica en uso es el Davis Vantage Pro2, y estas paginas se actualizan cada 5 minutos. El dia meteorol贸gico utilizado en esta estaci贸n termina a la medianoche.
             </p></div>
     </div>
 </div>
