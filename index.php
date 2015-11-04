@@ -13,7 +13,7 @@
     window.onload = function() {
 
     }  </script>
-<?php include "banner.php" ?>
+<?php include ("scr/php/banner.php") ?>
 <!-- Div que muestra los datos de scr/php/datosIndex.php -->
 <!-- Tu no tienes alma -->
 <div id="txtHint"></div>
