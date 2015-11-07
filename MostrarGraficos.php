@@ -440,12 +440,7 @@
                             iframe width="100%" height="500px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  style="border:0" allowfullscreen></iframe>
                     <br>
 
-                    <?php
-                    /*
-                    echo date("d M Y"). ', hora de la salida del sol : ' .date_sunrise(time(), SUNFUNCS_RET_STRING, -33.788613451581696, -71.68733505, 90, -3);
-                    echo ("<br>");
-                    echo date("d M Y"). ', hora de la puesta de sol : ' .date_sunset(time(), SUNFUNCS_RET_STRING, -33.788613451581696, -71.68733505, 90, -3);
-                    */?>
+
                 </div>
             </div>
         </div>

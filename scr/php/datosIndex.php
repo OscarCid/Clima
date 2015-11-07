@@ -22,7 +22,7 @@ while($row = mysqli_fetch_array($result)) {
 <div class='row'>
     <div class='cold-md-12'>
     <!-- Primer Panel Temperatura-->
-            <div class='col-md-5 col-md-offset-1'>
+            <div class='col-md-5 col-md-offset-1 col-xs-12'>
                                             <div class='panel panel-primary'>
                                                 <div class='panel-heading'>
                                                     <h3 class='panel-title'>Temperatura y Humedad</h3>
@@ -31,7 +31,7 @@ while($row = mysqli_fetch_array($result)) {
                                                 <div class='row'>
                                                 <div class='col-md-12'>
                                                     <div class='bs-example' data-example-id='bordered-table'>
-                                                        <table class='table table-bordered'>
+                                                        <table class='table table-bordered table-condensed table-responsive'>
                                                             <thead>
                                                             <tr>
                                                             </tr>
@@ -65,7 +65,7 @@ while($row = mysqli_fetch_array($result)) {
                                             </div>
             </div>
     <!-- Panel Precipitaciones-->
-            <div class='col-md-5'>
+            <div class='col-md-5 col-xs-12'>
                                             <div class='panel panel-primary'>
                                                 <div class='panel-heading'>
                                                     <h3 class='panel-title'>Precipitacion</h3>
@@ -74,7 +74,7 @@ while($row = mysqli_fetch_array($result)) {
                                                 <div class='row'>
                                                 <div class='col-md-12'>
                                                     <div class='bs-example' data-example-id='bordered-table'>
-                                                        <table class='table table-bordered'>
+                                                        <table class='table table-bordered table-condensed table-responsive'>
                                                             <thead>
                                                             <tr>
                                                             </tr>
@@ -89,7 +89,7 @@ while($row = mysqli_fetch_array($result)) {
                                                             <tr>
                                                                 <td>Precipitacion este mes</td>
                                                                 <td>?</td>
-                                                                <td>Precipitaciones este a&nacute;o</td>
+                                                                <td>Precipitaciones este año</td>
                                                                 <td>?</td>
                                                             </tr>
                                                             <tr>
@@ -113,7 +113,7 @@ while($row = mysqli_fetch_array($result)) {
 <div class='row'>
     <div class='cold-md-12'>
 <!-- Panel Viento-->
-        <div class='col-md-5 col-md-offset-1'>
+        <div class='col-md-5 col-md-offset-1 col-xs-12'>
                                         <div class='panel panel-primary'>
                                             <div class='panel-heading'>
                                                 <h3 class='panel-title'>Viento y Fuerza</h3>
@@ -122,7 +122,7 @@ while($row = mysqli_fetch_array($result)) {
                                             <div class='row'>
                                             <div class='col-md-12'>
                                                 <div class='bs-example' data-example-id='bordered-table'>
-                                                    <table class='table table-bordered'>
+                                                    <table class='table table-bordered table-condensed table-responsive'>
                                                         <thead>
                                                         <tr>
                                                         </tr>
@@ -148,7 +148,7 @@ while($row = mysqli_fetch_array($result)) {
                                 </div>
         </div>
 <!-- Panel Presion-->
-        <div class='col-md-5'>
+        <div class='col-md-5 col-xs-12'>
                             <!-- Panel Presion-->
                                         <div class='panel panel-primary'>
                                             <div class='panel-heading'>
@@ -158,7 +158,7 @@ while($row = mysqli_fetch_array($result)) {
                                             <div class='row'>
                                             <div class='col-md-12'>
                                                 <div class='bs-example' data-example-id='bordered-table'>
-                                                    <table class='table table-bordered'>
+                                                    <table class='table table-bordered table-condensed table-responsive'>
                                                         <thead>
                                                         <tr>
                                                         </tr>

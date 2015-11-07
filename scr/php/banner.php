@@ -7,74 +7,74 @@
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.min.css">
 </head>
 <body>
-<style>body { padding-top: 60px}</style>
-<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="http://www.upla.cl"><img alt="" src="scr/img/logo_upla_color_fondo_negro.png" height="25px"></a>
+<div class="row hidden-xs" style="padding-bottom: 10px;">
+    <div class="col-md-10 col-md-offset-1 " style=" padding-bottom: 7px; border-bottom: 1px solid ">
+        <div class="col-md-4">
+            <img src="scr\img\uplafi.png"/>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="#">Inicio</a></li>
-                <li class="active"><a href="#">Estación El Yali <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Estación La Campana</a></li>
-                <li><a href="#">Estación El Peral</a></li>
-                <li><a href="#">Estación El Peral</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+        <div class="col-md-4">
+            <img src="scr\img\armada.png"/>
+        </div>
+        <div class="col-md-4">
+            <img src="scr\img\conaf.png"/>
+        </div>
+    </div>
+</div>
 
 <?php
+$lat='-33.7886';
+$lon='-71.6873';
 
-$sun_info = date_sun_info(strtotime("now"), -33.7886, -71.6873);
-date_default_timezone_set('America/Argentina/Buenos_Aires');
+$sun_info = date_sun_info(strtotime("now"),$lat ,$lon );
+date_default_timezone_set('America/Santiago');
+include "moon.php";
+
 $sunrise = date("H:i",$sun_info['sunrise']);
 $sunset = date("H:i",$sun_info['sunset']);
 $civil_twilight_begin = date("H:i",$sun_info['civil_twilight_begin']);
 $civil_twilight_end = date("H:i",$sun_info['civil_twilight_end']);
 
+$m=date('m');
+$d=date('d');
+$y=date('Y');
+
+$moon=Moon::calculateMoonTimes($m,$d,$y,  $lat, $lon);
+
+$moonrise1 = date("H:i",$moon->moonrise );
+$moonrise = date("H:i", strtotime("$moonrise1 + 1 hours"));
+
+$moonset1 = date("H:i",$moon->moonset);
+$moonset = date("H:i", strtotime("$moonset1 + 1 hours"));
+
+//Calculo de intervalo de horas
+function resta($inicio, $fin)
+{
+    $dif=date("H:i", strtotime("00:00") + strtotime($fin) - strtotime($inicio) );
+    return $dif;
+}
+
+$dur_de_dia=resta($sunrise,$sunset);
+$luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
+
 ?>
-<div class="row"><div class="col-md-12">
+
+<div class="row" style="padding-top: 5px"><div class="col-md-12">
         <div class="col-md-9 col-md-offset-1 ">
             <div class="row">
                 <div class="row">
-                    <div class="col-sm-3"><p class="text-justify"><strong>Amanecer:</strong><?php echo ' '.$civil_twilight_begin;?></p></div>
-                    <div class="col-sm-3"><p class="text-justify"><strong>Salida del sol:</strong><?php echo ' '.$sunrise;?> </p></div>
-                    <div class="col-sm-5"><p class="text-justify"><strong>Salida de la luna:</strong></p></div>
+                    <div class="col-md-3 col-xs-4 "><p class="text-justify"><strong>Amanecer:</strong><?php echo ' '.$civil_twilight_begin;?></p></div>
+                    <div class="col-md-3 col-xs-4 "><p class="text-justify"><strong>Salida del sol:</strong><?php echo ' '.$sunrise;?> </p></div>
+                    <div class="col-md-5 col-xs-4 "><p class="text-left"><strong>Salida de la luna:</strong><?php echo ' '.$moonrise;?></p></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3"><p class="text-justify"><strong>Anochecer:</strong><?php echo ' '.$civil_twilight_end;?></p></div>
-                    <div class="col-sm-3"><p class="text-justify"><strong>Puesta del sol:</strong><?php echo ' '.$sunset;?></p></div>
-                    <div class="col-sm-5"><p class="text-justify"><strong>Puesta de la luna:</strong></p></div>
+                    <div class="col-md-3 col-xs-4"><p class="text-justify"><strong>Anochecer:</strong><?php echo ' '.$civil_twilight_end;?></p></div>
+                    <div class="col-md-3 col-xs-4"><p class="text-justify"><strong>Puesta del sol:</strong><?php echo ' '.$sunset;?></p></div>
+                    <div class="col-md-5 col-xs-4"><p class="text-left"><strong>Puesta de la luna:</strong><?php echo ' '.$moonset;?></p></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3"><p class="text-justify"><strong>Luz del dia:</strong></p></div>
-                    <div class="col-sm-3"><p class="text-justify"><strong>Duración del dia:</strong></p></div>
-                    <div class="col-sm-5"><strong>Fase de la luna:</strong>
+                    <div class="col-md-3 col-xs-4"><p class="text-justify"><strong>Luz del dia:</strong><?php echo ' '.$luz_de_dia;?></p></div>
+                    <div class="col-md-3 col-xs-4"><p class="text-justify"><strong>Duración del dia:</strong><?php echo ' '.$dur_de_dia;?></p></div>
+                    <div class="col-md-5 col-xs-4"><strong>Fase de la luna:</strong>
                         <?php
                         function moon_phase($year, $month, $day)
                         {
@@ -103,35 +103,80 @@ $civil_twilight_end = date("H:i",$sun_info['civil_twilight_end']);
                             {
                                 case 0:
                                     return 'Luna Nueva';
+
                                     break;
                                 case 1:
-                                    return 'Luna Creciente';
+                                    return 'Luna Nueva Visible';
+
                                     break;
                                 case 2:
                                     return 'Luna Cuarto Creciente';
+
                                     break;
                                 case 3:
                                     return 'Luna Gibosa Creciente';
+
                                     break;
                                 case 4:
                                     return 'Luna Llena';
+
                                     break;
                                 case 5:
                                     return 'Luna Gibosa Menguante';
+
                                     break;
                                 case 6:
                                     return 'Luna Cuarto Menguante';
+
                                     break;
                                 case 7:
                                     return 'Luna Menguante';
+
                                     break;
                                 default:
                                     return 'Error';
                             }
                         }
                         $timestamp = time();
-                        echo moon_phase(date('Y', $timestamp), date('n', $timestamp), date('j', $timestamp));
+                        $fase = moon_phase(date('Y', $timestamp), date('n', $timestamp), date('j', $timestamp));
+                        echo $fase;
+                        switch ($fase)
+                        {
+                            case 'Luna Nueva':
+                                $luna='n'                                ;
 
+                                break;
+                            case 'Luna Nueva Visible':
+                                $luna='n_v'                                ;
+
+                                break;
+                            case 'Luna Cuarto Creciente':
+                                $luna='c_c'                                ;
+
+                                break;
+                            case 'Luna Gibosa Creciente':
+                                $luna='g_c'                                ;
+
+                                break;
+                            case 'Luna Llena':
+                                $luna='ll'                                ;
+
+                                break;
+                            case 'Luna Gibosa Menguante':
+                                $luna='g_m'                                ;
+
+                                break;
+                            case 'Luna Cuarto Menguante':
+                                $luna='c_m'                                ;
+
+                                break;
+                            case 'Luna Menguante':
+                                $luna='m'                                ;
+
+                                break;
+                            default:
+                                return 'Error';
+                        }
                         ?>
 
                     </div>
@@ -139,7 +184,7 @@ $civil_twilight_end = date("H:i",$sun_info['civil_twilight_end']);
             </div>
         </div>
         <div class="col-md-1">
-            <img src="scr\img\11986926_10207675732917222_8238076877955775449_n.jpg" height="90px" class="center-block"/>
+            <img src="scr\img\fase\<?php echo $luna ?>.png" height="90px" class="center-block"/>
         </div>
     </div>
 

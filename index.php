@@ -5,6 +5,7 @@
     <script src="scr/js/actualizarIndex.js"></script>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 
 <body onload="actualizarIndex(); setInterval('actualizarIndex()',2000)">
@@ -13,7 +14,9 @@
     window.onload = function() {
 
     }  </script>
-<?php include ("scr/php/banner.php") ?>
+<?php
+include ("scr/php/menu.php");
+include ("scr/php/banner.php"); ?>
 <!-- Div que muestra los datos de scr/php/datosIndex.php -->
 <!-- Tu no tienes alma -->
 <div id="txtHint"></div>
