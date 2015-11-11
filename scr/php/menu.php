@@ -15,10 +15,45 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#">Inicio</a></li>
-                <li class="active"><a href="#">Estación El Yali <span class="sr-only">(current)</span></a></li>
+
+<?php
+                switch ($pag)
+                {
+                case 'inicio':
+                echo  '<li class="active"><a href="index.php"><span class="sr-only">(current)</span>Inicio</a></li>
+                <li><a href="yali.php">Estación El Yali </a></li>
                 <li><a href="#">Estación La Campana</a></li>
-                <li><a href="#">Estación El Peral</a></li>
+                <li><a href="#">Estación El Peral</a></li>'                              ;
+
+                break;
+                case 'yali':
+                echo '<li><a href="index.php">Inicio</a></li>
+                <li class="active"><a href="yali.php"><span class="sr-only">(current)</span>Estación El Yali </a></li>
+                <li><a href="#">Estación La Campana</a></li>
+                <li><a href="#">Estación El Peral</a></li>'                               ;
+
+                break;
+                case 'campana':
+                echo '<li><a href="index.php">Inicio</a></li>
+                <li><a href="yali.php">Estación El Yali </a></li>
+                <li class="active"><a href="#"><span class="sr-only">(current)</span>Estación La Campana</a></li>
+                <li><a href="#">Estación El Peral</a></li>'                                ;
+
+                break;
+                case 'peral':
+                    echo '<li><a href="index.php">Inicio</a></li>
+                <li><a href="yali.php">Estación El Yali </a></li>
+                <li><a href="#">Estación La Campana</a></li>
+                <li class="active"><a href="#"><span class="sr-only">(current)</span>Estación El Peral</a></li>'                                ;
+
+                break;
+
+                default:
+                return 'Error';
+                }
+
+?>
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Afiliados<span class="caret"></span></a>
                     <ul class="dropdown-menu">
