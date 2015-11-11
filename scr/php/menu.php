@@ -4,7 +4,6 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -20,7 +19,7 @@
                 switch ($pag)
                 {
                 case 'inicio':
-                echo  '<li class="active"><a href="index.php"><span class="sr-only">(current)</span>Inicio</a></li>
+                echo  '<li class="active"><a href="index.php">Inicio</a></li>
                 <li><a href="yali.php">Estación El Yali </a></li>
                 <li><a href="#">Estación La Campana</a></li>
                 <li><a href="#">Estación El Peral</a></li>'                              ;
@@ -28,7 +27,7 @@
                 break;
                 case 'yali':
                 echo '<li><a href="index.php">Inicio</a></li>
-                <li class="active"><a href="yali.php"><span class="sr-only">(current)</span>Estación El Yali </a></li>
+                <li class="active"><a href="yali.php">Estación El Yali</a></li>
                 <li><a href="#">Estación La Campana</a></li>
                 <li><a href="#">Estación El Peral</a></li>'                               ;
 
@@ -36,7 +35,7 @@
                 case 'campana':
                 echo '<li><a href="index.php">Inicio</a></li>
                 <li><a href="yali.php">Estación El Yali </a></li>
-                <li class="active"><a href="#"><span class="sr-only">(current)</span>Estación La Campana</a></li>
+                <li class="active"><a href="#">Estación La Campana</a></li>
                 <li><a href="#">Estación El Peral</a></li>'                                ;
 
                 break;
@@ -44,7 +43,7 @@
                     echo '<li><a href="index.php">Inicio</a></li>
                 <li><a href="yali.php">Estación El Yali </a></li>
                 <li><a href="#">Estación La Campana</a></li>
-                <li class="active"><a href="#"><span class="sr-only">(current)</span>Estación El Peral</a></li>'                                ;
+                <li class="active"><a href="#">Estación El Peral</a></li>'                                ;
 
                 break;
 
