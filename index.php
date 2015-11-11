@@ -29,9 +29,9 @@ include ("scr/php/menu.php");
 <div class="col-md-10 col-md-offset-1">
 
     <div class="row">
-        <p class="text-justify">La Facultad de Ingeniería en colaboración con la Dirección de Meteorología de la Armada de Chile y la Corporación Nacional Forestal (CONAF) se encuentra habilitando estaciones meteorológicas Davis en diferentes áreas protegidas de la Región de Valparaíso.
+        <p class="text-justify">La Facultad de Ingeniera en colaboraciÃ³n con la DirecciÃ³n de MeteorologÃ­a de la Armada de Chile y la CorporaciÃ³n Nacional Forestal (CONAF) se encuentra habilitando estaciones meteorolÃ³gicas Davis en diferentes Ã¡reas protegidas de la RegiÃ³n de ValparaÃ­so.
             En una primera fase se habilitaron El Parque Nacional La Campana y Santuario de la Naturaleza Laguna el Peral.
-            Próximamente se espera agregar La Reserva Nacional El Yali y La Reserva Nacional Lago Peñuelas, finalmente se espera agregar un equipo en las propias dependencias de la Facultad de Ingeniería. Los datos instantáneos son publicados en línea en los enlaces que se presentan a continuación y aquellos investigadores que requieran las series de tiempo pueden solicitarlas a nuestra Facultad.</p>
+            PrÃ³ximamente se espera agregar La Reserva Nacional El Yali y La Reserva Nacional Lago PeÃ±uelas, finalmente se espera agregar un equipo en las propias dependencias de la Facultad de IngenierÃ­a. Los datos instantÃ¡neos son publicados en lÃ­nea en los enlaces que se presentan a continuaciÃ³n y aquellos investigadores que requieran las series de tiempo pueden solicitarlas a nuestra Facultad.</p>
         <br>
     </div>
 
@@ -40,7 +40,7 @@ include ("scr/php/menu.php");
             <div class="thumbnail">
                 <img src="scr/img/Yali.jpg" alt="..." height="200px" width="400px">
                 <div class="caption">
-                    <h3>Estación El Yali</h3>
+                    <h3>EstaciÃ³n El Yali</h3>
                     <p>...</p>
                     <center><p><a href="yali.php" class="btn btn-primary" role="button">Entrar</a> </p></center>
                 </div>
@@ -50,7 +50,7 @@ include ("scr/php/menu.php");
                 <div class="thumbnail">
                     <img src="scr/img/Campana.jpg" alt="..." height="200px" width="400px">
                     <div class="caption">
-                        <h3>Estación La Campana</h3>
+                        <h3>EstaciÃ³n La Campana</h3>
                         <p>...</p>
                         <center><p><a href="#" class="btn btn-primary" role="button">Entrar</a> </p></center>
                     </div>
@@ -60,7 +60,7 @@ include ("scr/php/menu.php");
                     <div class="thumbnail">
                         <img src="scr/img/Peral.jpg" alt="..." height="200px" width="400px">
                         <div class="caption">
-                            <h3>Estación El Peral</h3>
+                            <h3>EstaciÃ³n El Peral</h3>
                             <p>...</p>
                             <center><p><a href="#" class="btn btn-primary" role="button">Entrar</a> </p></center>
                         </div>
