@@ -38,7 +38,7 @@ include ("scr/php/menu.php");
     <div class="row">
         <div class="col-sm-6 col-md-4 col-lg-4">
             <div class="thumbnail">
-                <img src="scr/img/Yali.jpg" alt="..." height="200px" width="400px">
+                <img src="scr/img/Yali.jpg" alt="..." height="200px" width="500px">
                 <div class="caption">
                     <h3>EstaciÃ³n El Yali</h3>
                     <p>...</p>
@@ -48,7 +48,7 @@ include ("scr/php/menu.php");
         </div>
             <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="thumbnail">
-                    <img src="scr/img/Campana.jpg" alt="..." height="200px" width="400px">
+                    <img src="scr/img/Campana.jpg" alt="..." height="200px" width="500px">
                     <div class="caption">
                         <h3>EstaciÃ³n La Campana</h3>
                         <p>...</p>
@@ -58,7 +58,7 @@ include ("scr/php/menu.php");
              </div>
                 <div class="col-sm-6 col-md-4 col-lg-4">
                     <div class="thumbnail">
-                        <img src="scr/img/Peral.jpg" alt="..." height="200px" width="400px">
+                        <img src="scr/img/Peral.jpg" alt="..." height="200px" width="500px">
                         <div class="caption">
                             <h3>EstaciÃ³n El Peral</h3>
                             <p>...</p>
@@ -70,4 +70,6 @@ include ("scr/php/menu.php");
     </div>
 </div>
 </div>
+<script src="bootstrap/js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
