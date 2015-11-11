@@ -14,14 +14,14 @@ include ("scr/php/menu.php");
 ?>
 <div class="container-fluid">
 <div class="row" style="padding-bottom: 10px;">
-    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12" style=" padding-bottom: 7px; border-bottom: 1px solid ">
+    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 " style=" padding-bottom: 7px; border-bottom: 1px solid ">
         <div class="col-md-4 col-sm-4 col-xs-4">
             <img src="scr\img\uplafi.png" class="img-responsive"/>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-4">
+        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
             <img src="scr\img\armada.png" class="img-responsive"/>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-4">
+        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
             <img src="scr\img\conaf.png" class="img-responsive"/>
         </div>
     </div>
@@ -36,9 +36,9 @@ include ("scr/php/menu.php");
     </div>
 
     <div class="row">
-        <div class="col-sm-6 col-md-4">
+        <div class="col-sm-6 col-md-4 col-lg-4">
             <div class="thumbnail">
-                <img src="scr/img/Yali.jpg" alt="..." height="200px">
+                <img src="scr/img/Yali.jpg" alt="..." height="200px" width="400px">
                 <div class="caption">
                     <h3>Estación El Yali</h3>
                     <p>...</p>
@@ -46,9 +46,9 @@ include ("scr/php/menu.php");
                 </div>
             </div>
         </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="thumbnail">
-                    <img src="scr/img/Campana.jpg" alt="..." height="200px">
+                    <img src="scr/img/Campana.jpg" alt="..." height="200px" width="400px">
                     <div class="caption">
                         <h3>Estación La Campana</h3>
                         <p>...</p>
@@ -56,9 +56,9 @@ include ("scr/php/menu.php");
                     </div>
                 </div>
              </div>
-                <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-4 col-lg-4">
                     <div class="thumbnail">
-                        <img src="scr/img/Peral.jpg" alt="..." height="200px">
+                        <img src="scr/img/Peral.jpg" alt="..." height="200px" width="400px">
                         <div class="caption">
                             <h3>Estación El Peral</h3>
                             <p>...</p>
