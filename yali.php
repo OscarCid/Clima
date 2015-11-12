@@ -24,6 +24,7 @@ include ("scr/php/banner.php"); ?>
 <script src="bootstrap/js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 </div>
+<?php include ("scr/php/foot.php")?>
 </body>
 </html>
 

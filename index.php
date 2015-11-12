@@ -68,7 +68,9 @@ include ("scr/php/menu.php");
 
     </div>
 </div>
+
 </div>
+<?php include ("scr/php/foot.php")?>
 <script src="bootstrap/js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
