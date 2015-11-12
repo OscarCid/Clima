@@ -41,7 +41,7 @@ include ("scr/php/menu.php");
                 <div class="caption">
                     <h3>Estación El Yali</h3>
                     <p>...</p>
-                    <center><p><a href="yali.php" class="btn btn-primary" role="button">Entrar</a> </p></center>
+                    <center><p><a href="yali" class="btn btn-primary" role="button">Entrar</a> </p></center>
                 </div>
             </div>
         </div>
