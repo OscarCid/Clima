@@ -186,9 +186,9 @@
         <img src="scr/img/logo_upla_color_fondo_negro.png" height="55px">
 
         <p class="footer-links">
-            <a href="index.php">Inicio</a>
+            <a href="index">Inicio</a>
             ·
-            <a href="#">El Yali</a>
+            <a href="yali">El Yali</a>
             ·
             <a href="#">La Campana</a>
             ·
