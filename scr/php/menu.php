@@ -53,19 +53,20 @@
 
 ?>
 
-                <li class="dropdown">
+<!--                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Afiliados<span class="caret"></span></a>
                     <ul class="dropdown-menu">
+-->
+                        <li><a href="http://www.upla.cl/facultadingenieria" class="navbar-brand" target="_blank"><img alt="" src="scr/img/uplafi.png" height="25px"></a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="http://meteoarmada.directemar.cl" class="navbar-brand" target="_blank"><img alt="" src="scr/img/armada.png" height="25px"></a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="http://www.conaf.cl" class="navbar-brand" target="_blank"><img alt="" src="scr/img/conaf.png" height="25px"></a></li>
 
-                        <li><a href="http://www.upla.cl/facultadingenieria" target="_blank"><img alt="" src="scr/img/uplafi.png" height="30px"></a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="http://meteoarmada.directemar.cl" target="_blank"><img alt="" src="scr/img/armada.png" height="30px"></a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="http://www.conaf.cl" target="_blank"><img alt="" src="scr/img/conaf.png" height="30px"></a></li>
-                    </ul>
+                <!-- </ul>
                 </li>
-            </ul>
-
+                </ul>
+                -->
 
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
