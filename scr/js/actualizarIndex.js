@@ -3,6 +3,7 @@
  */
 function actualizarIndex() {
 
+
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
@@ -10,12 +11,21 @@ function actualizarIndex() {
             // code for IE6, IE5
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
+    // variable, suuestaente la traeremos desde la url donde se habra la mierda
+    var value = "probando=holi";
+    xmlhttp.open("POST","scr/php/datosIndex.php",true);
+    //esta mierda hace mas pega
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.setRequestHeader("Content-length", value.length);
+    xmlhttp.setRequestHeader("Connection", "close");
+
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
             }
         }
-        xmlhttp.open("POST","scr/php/datosIndex.php",true);
-        xmlhttp.send();
+
+    //aqui mandamos la caga pal otro lado
+        xmlhttp.send(value);
 
 }

@@ -7,6 +7,7 @@
 
 <?php
 
+echo $_POST['probando']; // NULL
 $con = mysqli_connect('localhost','root','','clima');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
@@ -185,6 +186,7 @@ while($row = mysqli_fetch_array($result)) {
 ";
     mysqli_close($con);
 }
+
 ?>
 </body>
 </html>
