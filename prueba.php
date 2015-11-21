@@ -10,7 +10,7 @@
 $porciones = explode("/", $actual_link);
 
 ?>
-<body onload="actualizarIndex('yali'); setInterval(actualizarIndex.bind(null,'yali'),2000)">
+<body onload="actualizarIndex('yali'); setInterval(actualizarIndex.bind(null,'yali'),5000)">
 
 <div class="alert alert-success collapse col-md-10 col-md-offset-1" id="success-alert">
     <strong>Espere! </strong>
