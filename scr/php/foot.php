@@ -181,18 +181,31 @@
 
 <footer class="footer-distributed">
 
-    <div class="footer-left">
+    <div class="footer-left" style="padding-top: 20px">
 
-        <img src="scr/img/logo_upla_color_fondo_negro.png" height="55px">
+<div style="height: 30px">
+    <div style="float: left; padding-right: 10px">
+        <a href="http://www.upla.cl"  target="_blank"><img src="scr/img/logo_upla_color_fondo_negro.png" height="25px"></a>
+   </div>
+    <div style="float: left; padding-right: 10px">
+        <a href="http://www.upla.cl/facultadingenieria"  target="_blank"><img alt="" src="scr/img/uplafi.png" height="25px"></a>
+    </div>
+    <div style="float: left; padding-right: 10px">
+        <a href="http://meteoarmada.directemar.cl"  target="_blank"><img alt="" src="scr/img/armada.png" height="25px"></a>
+    </div>
+    <div style="float: left; ">
+        <a href="http://www.conaf.cl"  target="_blank"><img alt="" src="scr/img/conaf.png" height="25px"></a>
+    </div>
+    </div>
 
         <p class="footer-links">
             <a href="index">Inicio</a>
             ·
             <a href="yali">El Yali</a>
             ·
-            <a href="#">La Campana</a>
+            <a href="campana">La Campana</a>
             ·
-            <a href="#">El Peral</a>
+            <a href="peral">El Peral</a>
             ·
             <a href="http://www.upla.cl"target="_blank">UPLA</a>
             ·
