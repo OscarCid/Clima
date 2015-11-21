@@ -7,6 +7,7 @@
     <script src="bootstrap/js/jquery.min.js"></script>
     <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
     <script src="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <?php include 'scr/conexion.php';?>
     <!-- Grafico Temperatura -->
     <script type="text/javascript">
