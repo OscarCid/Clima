@@ -1,7 +1,7 @@
 /**
  * Created by Oscar on 03/10/2015.
  */
-function actualizarIndex() {
+function actualizarIndex(url) {
 
 
         if (window.XMLHttpRequest) {
@@ -12,11 +12,12 @@ function actualizarIndex() {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
     // variable, suuestaente la traeremos desde la url donde se habra la mierda
-    var value = "probando=holi";
+    var value = "probando="+url;
+    alert(url);
     xmlhttp.open("POST","scr/php/datosIndex.php",true);
     //esta mierda hace mas pega
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.setRequestHeader("Content-length", value.length);
+    xmlhttp.setRequestHeader("Content-length", url.length);
     xmlhttp.setRequestHeader("Connection", "close");
 
         xmlhttp.onreadystatechange = function() {

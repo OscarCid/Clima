@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
+<?php $actual_link = "$_SERVER[REQUEST_URI]";
+$porciones = explode("/", $actual_link);
+echo $porciones[2];
+?>
 
-<body onload="actualizarIndex(); setInterval('actualizarIndex()',2000)">
+<body onload="actualizarIndex('<? echo $porciones[2] ?>'); setInterval('actualizarIndex()',2000)">
 <div class="container-fluid">
 <?php
 $pag="yali";

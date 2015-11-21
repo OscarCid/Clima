@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
 </head>
-
-<body onLoad="setInterval('actualizarIndex()',300000);">
+<?php $actual_link = "$_SERVER[REQUEST_URI]";
+$porciones = explode("/", $actual_link);
+echo $porciones[2];
+?>
+<body onload="actualizarIndex('<?php echo $porciones[2]; ?>'); setInterval(actualizarIndex.bind(null,'<?php echo $porciones[2]; ?>'),2000)">
 <script> window.onload = actualizarIndex(); </script>
 <div id="txtHint"></div>
 
