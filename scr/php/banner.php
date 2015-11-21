@@ -11,13 +11,13 @@
 <div class="row hidden-xs" style="padding-bottom: 10px;">
     <div class="col-md-10 col-md-offset-1 col-sm-12 " style=" padding-bottom: 7px; border-bottom: 1px solid ">
         <div class="col-md-4 col-sm-4">
-            <img src="scr\img\uplafi.png"/>
+            <img src="scr/img/uplafi.png"/>
         </div>
         <div class="col-md-4 col-sm-4">
-            <img src="scr\img\armada.png"/>
+            <img src="scr/img/armada.png"/>
         </div>
         <div class="col-md-4 col-sm-4">
-            <img src="scr\img\conaf.png"/>
+            <img src="scr/img/conaf.png"/>
         </div>
     </div>
 </div>
@@ -290,7 +290,7 @@ $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <img src="scr\img\fase\<?php echo $luna ?>.png" height="100px" class="center-block img-circle"/>
+                            <img src="scr/img/fase/<?php echo $luna ?>.png" height="100px" class="center-block img-circle"/>
                         </div>
                     </div>
 

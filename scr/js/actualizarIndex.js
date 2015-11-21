@@ -3,7 +3,7 @@
  */
 function actualizarIndex(url) {
 
-    $("#success-alert").fadeTo(1000, 250).slideDown(250, function(){
+    $("#success-alert").slideDown(250, function(){
         $('#success-alert').show();
     });
 

@@ -22,7 +22,7 @@ include ("scr/php/banner.php"); ?>
 <!-- Tu no tienes alma -->
     <div class="alert alert-success collapse col-md-10 col-md-offset-1" id="success-alert">
         <strong>Espere! </strong>
-        Estamos Actualizando la informacion para usted.
+        Estamos actualizando la informacion para usted.
         <div class="progress">
             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
             </div>

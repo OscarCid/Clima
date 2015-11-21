@@ -4,6 +4,7 @@
     <title>Meteorologia UPLA</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="scr/js/actualizarIndex.js"></script>
+    <link rel="icon" type="image/png" href="/scr/img/favicon.ico">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -44,13 +45,13 @@ include ("scr/php/menu.php");
 <div class="row" style="padding-bottom: 10px;">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 " style=" padding-bottom: 7px; border-bottom: 1px solid ">
         <div class="col-md-4 col-sm-4 col-xs-4">
-            <img src="scr\img\uplafi.png" class="img-responsive"/>
+            <img src="scr/img/uplafi.png" class="img-responsive"/>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
-            <img src="scr\img\armada.png" class="img-responsive"/>
+            <img src="scr/img/armada.png" class="img-responsive"/>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
-            <img src="scr\img\conaf.png" class="img-responsive"/>
+            <img src="scr/img/conaf.png" class="img-responsive"/>
         </div>
     </div>
 </div>
