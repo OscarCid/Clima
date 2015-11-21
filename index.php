@@ -15,6 +15,32 @@ $pag="inicio";
 include ("scr/php/menu.php");
 ?>
 
+<style>
+/* unvisited link */
+#lonk a:link {
+    color: black !important;
+	text-decoration: none !important;
+}
+
+/* visited link */
+#lonk a:visited {
+    color: black !important;
+	text-decoration: none !important;
+}
+
+/* mouse over link */
+#lonk a:hover {
+    color: black !important;
+	text-decoration: none !important;
+}
+
+/* selected link */
+#lonk a:active {
+	text-decoration: none !important;
+    color: black !important;
+}
+</style>
+
 <div class="row" style="padding-bottom: 10px;">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 " style=" padding-bottom: 7px; border-bottom: 1px solid ">
         <div class="col-md-4 col-sm-4 col-xs-4">
@@ -35,36 +61,45 @@ include ("scr/php/menu.php");
         <br>
     </div>
 
-    <div class="row">
+    <div class="row" id="lonk">
         <div class="col-sm-6 col-md-4 col-lg-4">
+		<a href="yali">
             <div class="thumbnail">
+				<h3 class="text-center">Estación El Yali</h3>
                 <img src="scr/img/Yali.jpg" alt="..." height="200px" width="500px">
                 <div class="caption">
-                    <h3>Estación El Yali</h3>
+                    
                     <p>...</p>
-                    <center><p><a href="yali" class="btn btn-primary" role="button">Entrar</a> </p></center>
+                    
                 </div>
             </div>
+		</a>
         </div>
             <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="thumbnail">
+            <a href="campana">    
+				<div class="thumbnail">
+					<h3 class="text-center">Estación La Campana</h3>
                     <img src="scr/img/Campana.jpg" alt="..." height="200px" width="500px">
                     <div class="caption">
-                        <h3>Estación La Campana</h3>
+                        
                         <p>...</p>
-                        <center><p><a href="#" class="btn btn-primary" role="button">Entrar</a> </p></center>
+                        
                     </div>
                 </div>
+			</a>	
              </div>
                 <div class="col-sm-6 col-md-4 col-lg-4">
+				<a href="peral">
                     <div class="thumbnail">
+						<h3 class="text-center">Estación El Peral</h3>
                         <img src="scr/img/Peral.jpg" alt="..." height="200px" width="500px">
                         <div class="caption">
-                            <h3>Estación El Peral</h3>
+                            
                             <p>...</p>
-                            <center><p><a href="#" class="btn btn-primary" role="button">Entrar</a> </p></center>
+                            
                         </div>
                     </div>
+				</a>	
                 </div>
 
     </div>
