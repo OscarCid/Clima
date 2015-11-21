@@ -3,7 +3,9 @@
  */
 function actualizarIndex(url) {
 
-    $('#success-alert').show();
+    $("#success-alert").fadeTo(1000, 250).slideDown(250, function(){
+        $('#success-alert').show();
+    });
 
     if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
