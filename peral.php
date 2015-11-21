@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html >
 <head>
+    <title>Estación El Peral - Meteorologia UPLA</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="scr/js/actualizarIndex.js"></script>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
