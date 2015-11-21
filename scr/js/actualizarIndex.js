@@ -3,8 +3,9 @@
  */
 function actualizarIndex(url) {
 
+    $('#success-alert').show();
 
-        if (window.XMLHttpRequest) {
+    if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -22,6 +23,7 @@ function actualizarIndex(url) {
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+                $('#success-alert').hide();
             }
         }
 

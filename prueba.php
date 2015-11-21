@@ -10,9 +10,18 @@
 $porciones = explode("/", $actual_link);
 
 ?>
-<body onload="actualizarIndex('<?php echo $porciones[2]; ?>'); setInterval(actualizarIndex.bind(null,'<?php echo $porciones[2]; ?>'),2000)">
-<script> window.onload = actualizarIndex(); </script>
-<div id="txtHint"></div>
+<body onload="actualizarIndex('yali'); setInterval(actualizarIndex.bind(null,'yali'),2000)">
+
+<div class="alert alert-success collapse col-md-10 col-md-offset-1" id="success-alert">
+    <strong>Espere! </strong>
+    Estamos Actualizando la informacion para usted.
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span class="sr-only">45% Complete</span>
+        </div>
+    </div>
+</div>
+<div id="txtHint"><span class="close" data-dismiss="alert">&times;</span></div>
 
 <script type="text/javascript">
 
