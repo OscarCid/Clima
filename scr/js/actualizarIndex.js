@@ -13,7 +13,6 @@ function actualizarIndex(url) {
         }
     // variable, suuestaente la traeremos desde la url donde se habra la mierda
     var value = "probando="+url;
-    alert(url);
     xmlhttp.open("POST","scr/php/datosIndex.php",true);
     //esta mierda hace mas pega
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

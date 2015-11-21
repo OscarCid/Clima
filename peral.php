@@ -13,17 +13,16 @@ $porciones = explode("/", $actual_link);
 
 <body onload="actualizarIndex('<?php echo $porciones[2]; ?>'); setInterval(actualizarIndex.bind(null,'<?php echo $porciones[2]; ?>'),2000)">
 <div class="container-fluid">
-<?php
-$pag="yali";
-include ("scr/php/menu.php");
-include ("scr/php/banner.php"); ?>
-<!-- Div que muestra los datos de scr/php/datosIndex.php -->
-<!-- Tu no tienes alma -->
-<div id="txtHint"></div>
-<script src="bootstrap/js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
+    <?php
+    $pag=$porciones[2];
+    include ("scr/php/menu.php");
+    include ("scr/php/banner.php"); ?>
+    <!-- Div que muestra los datos de scr/php/datosIndex.php -->
+    <!-- Tu no tienes alma -->
+    <div id="txtHint"></div>
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </div>
 <?php include ("scr/php/foot.php")?>
 </body>
 </html>
-

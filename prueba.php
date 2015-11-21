@@ -8,7 +8,7 @@
 </head>
 <?php $actual_link = "$_SERVER[REQUEST_URI]";
 $porciones = explode("/", $actual_link);
-echo $porciones[2];
+
 ?>
 <body onload="actualizarIndex('<?php echo $porciones[2]; ?>'); setInterval(actualizarIndex.bind(null,'<?php echo $porciones[2]; ?>'),2000)">
 <script> window.onload = actualizarIndex(); </script>

@@ -21,29 +21,29 @@
                 case 'inicio':
                 echo  '<li class="active"><a href="index">Inicio</a></li>
                 <li><a href="yali">Estación El Yali </a></li>
-                <li><a href="#">Estación La Campana</a></li>
-                <li><a href="#">Estación El Peral</a></li>'                              ;
+                <li><a href="campana">Estación La Campana</a></li>
+                <li><a href="peral">Estación El Peral</a></li>'                              ;
 
                 break;
                 case 'yali':
                 echo '<li><a href="index">Inicio</a></li>
                 <li class="active"><a href="yali">Estación El Yali</a></li>
-                <li><a href="#">Estación La Campana</a></li>
-                <li><a href="#">Estación El Peral</a></li>'                               ;
+                <li><a href="campana">Estación La Campana</a></li>
+                <li><a href="peral">Estación El Peral</a></li>'                               ;
 
                 break;
                 case 'campana':
                 echo '<li><a href="index">Inicio</a></li>
                 <li><a href="yali">Estación El Yali </a></li>
                 <li class="active"><a href="#">Estación La Campana</a></li>
-                <li><a href="#">Estación El Peral</a></li>'                                ;
+                <li><a href="peral">Estación El Peral</a></li>'                                ;
 
                 break;
                 case 'peral':
                     echo '<li><a href="index">Inicio</a></li>
                 <li><a href="yali">Estación El Yali </a></li>
-                <li><a href="#">Estación La Campana</a></li>
-                <li class="active"><a href="#">Estación El Peral</a></li>'                                ;
+                <li><a href="campana">Estación La Campana</a></li>
+                <li class="active"><a href="peral">Estación El Peral</a></li>'                                ;
 
                 break;
 

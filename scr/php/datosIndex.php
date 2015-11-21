@@ -7,14 +7,16 @@
 
 <?php
 
-echo $_POST['probando']; // NULL
+echo $_POST['probando'];
+$estacion = $_POST['probando'];
+// NULL
 $con = mysqli_connect('localhost','root','','clima');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
 
 mysqli_select_db($con,"clima");
-$sql="SELECT * FROM yali ORDER BY ordenar DESC LIMIT 1;";
+$sql="SELECT * FROM $estacion ORDER BY ordenar DESC LIMIT 1;";
 $result = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
 
 
