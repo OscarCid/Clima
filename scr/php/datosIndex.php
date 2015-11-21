@@ -7,7 +7,6 @@
 
 <?php
 
-echo $_POST['probando'];
 $estacion = $_POST['probando'];
 // NULL
 $con = mysqli_connect('localhost','root','','clima');

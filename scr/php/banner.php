@@ -23,8 +23,37 @@
 </div>
 
 <?php
-$lat='-33.7886';
-$lon='-71.6873';
+
+switch ($pag)
+{
+    case 'inicio':
+        $est=' '                              ;
+
+        break;
+    case 'yali':
+        $est='El Yali'                               ;
+        $lat='-33.7488'                             ;
+        $lon='-71.7021'                             ;
+        $emb= '!1m18!1m12!1m3!1d3317.4558502148225!2d-71.70218868514273!3d-33.74888442027571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDQ0JzU2LjAiUyA3McKwNDInMDAuMCJX!5e0!3m2!1ses!2scl!4v1448075117442"';
+        break;
+    case 'campana':
+        $est='La Campana'                                ;
+        $lat='-32.9912'                             ;
+        $lon='-71.1403'                             ;
+        $emb= '!1m18!1m12!1m3!1d16385.062089666924!2d-71.14036530093792!3d-32.9912300371242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDU5JzE3LjAiUyA3McKwMDgnMzQuMCJX!5e0!3m2!1ses!2scl!4v1448075283755"';
+        break;
+    case 'peral':
+        $est='El Peral'                                ;
+        $lat='-33.5042'                             ;
+        $lon='-71.6104'                             ;
+        $emb= '!1m18!1m12!1m3!1d3326.8909039657547!2d-71.61048165048022!3d-33.50421541725178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDMwJzE0LjAiUyA3McKwMzYnMzcuMCJX!5e0!3m2!1ses!2scl!4v1448074950703"';
+        break;
+
+    default:
+        return 'Error';
+}
+
+
 
 $sun_info = date_sun_info(strtotime("now"),$lat ,$lon );
 date_default_timezone_set('America/Santiago');
@@ -63,19 +92,14 @@ $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
 
     <div class="col-md-10 col-md-offset-1">
 
-        <div class="col-md-3">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13269.836758480427!2d-71.6968742!3d-33.7487981!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDQ0JzU2LjAiUyA3McKwNDInMDAuMCJX!5e0!3m2!1ses-419!2scl!4v1443649161129"
-                    iframe width="100%" height="245px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  style="border:0" allowfullscreen></iframe>
-        </div>
-
-        <div class="col-md-9 ">
+        <div class="col-md-8 ">
             <div class="row">
 
                 <div class="row">
                     <div class="col-md-12">
                         <h4>
                             <strong>
-                                Estación Meteorológica El Yali
+                                Estación Meteorológica <?php echo $est?>
                             </strong>
                         </h4>
                     </div>
@@ -273,6 +297,11 @@ $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
     </div>
 
 </div>
+
+        <div class="col-md-4">
+            <iframe src="https://www.google.com/maps/embed?pb=<?php echo $emb?>
+                    iframe width="100%" height="265px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  style="border:0" allowfullscreen></iframe>
+        </div>
 
     </div>
 
