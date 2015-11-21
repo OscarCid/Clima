@@ -10,10 +10,6 @@
 
 <body onload="actualizarIndex(); setInterval('actualizarIndex()',2000)">
 <div class="container-fluid">
-<script> /*
-    window.onload = function() {
-
-    }  </script>
 <?php
 $pag="yali";
 include ("scr/php/menu.php");
