@@ -3,7 +3,7 @@
  */
 function actualizarIndex(url) {
 
-    $("#success-alert").slideDown(250, function(){
+    $("#success-alert").slideDown(400, function(){
         $('#success-alert').show();
     });
 
@@ -25,7 +25,7 @@ function actualizarIndex(url) {
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
-                $("#success-alert").fadeTo(1000, 250).slideUp(250, function(){
+                $("#success-alert").fadeTo(1000, 400).slideUp(400, function(){
                     $('#success-alert').hide();
                 });
             }

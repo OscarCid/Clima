@@ -4,7 +4,7 @@
     <title>Meteorologia UPLA</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="scr/js/actualizarIndex.js"></script>
-    <link rel="icon" type="image/png" href="/scr/img/favicon.ico">
+    <link rel="icon" type="image/png" href="favicon.ico">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
