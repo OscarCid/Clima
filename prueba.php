@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
     <script src="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <?php include 'scr/conexion.php';?>
+    <?php
+        include 'scr/php/graficos/consultas.php';
+        $graficosYali = new graficos("yali");
+    ?>
     <!-- Grafico Temperatura -->
     <script type="text/javascript">
         var f = new Date();
@@ -50,8 +53,6 @@
                     name: 'Temperatura',
                     data: [
                         <?php
-                        include 'scr/php/graficos/consultas.php';
-                            $graficosYali = new graficos("yali");
                             $graficosYali->unaHora("temp","si");
                         ?>
                     ]
@@ -60,8 +61,6 @@
                         name: 'Punto de Rocio',
                         data: [
                             <?php
-                            include 'scr/consulta 12horas.php';
-                                $graficosYali = new graficos("yali");
                                 $graficosYali->unaHora("pRocio","si");
                             ?>
                         ]
@@ -110,17 +109,7 @@
                     name: 'Velocidad Media',
                     data: [
                         <?php
-                            include 'scr/consulta 12horas.php';
-                            while ($row = mysql_fetch_array ($result))
-                            {
-                            $hora = $row['hora'];
-                            $fecha = $row['fecha'];
-                            list($hora, $minuto) = split('[/:.-]', $hora);
-                            list($dia, $mes, $año) = split('[/:.-]', $fecha);
-                            $mes=$mes-1;
-
-                            echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$row['vMedio'].".".$row['vMedioDec']."],";
-                            }
+                            $graficosYali->unaHora("vMedio","si")
                         ?>
                     ]
                 },
@@ -128,17 +117,7 @@
                         name: 'Velocidad Rafaga',
                         data: [
                             <?php
-                                include 'scr/consulta 12horas.php';
-                                while ($row = mysql_fetch_array ($result))
-                                {
-                                $hora = $row['hora'];
-                                $fecha = $row['fecha'];
-                                list($hora, $minuto) = split('[/:.-]', $hora);
-                                list($dia, $mes, $año) = split('[/:.-]', $fecha);
-                                $mes=$mes-1;
-
-                                echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$row['vRafaga'].".".$row['vRafagaDec']."],";
-                                }
+                                $graficosYali->unaHora("vRafaga","si")
                             ?>
                         ]
                     }]
@@ -184,17 +163,7 @@
                     name: 'Humedad',
                     data: [
                         <?php
-                            include 'scr/consulta 12horas.php';
-                            while ($row = mysql_fetch_array ($result))
-                            {
-                            $hora = $row['hora'];
-                            $fecha = $row['fecha'];
-                            list($hora, $minuto) = split('[/:.-]', $hora);
-                            list($dia, $mes, $año) = split('[/:.-]', $fecha);
-                            $mes=$mes-1;
-
-                            echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$row['humedad']."],";
-                            }
+                            $graficosYali->unaHora("humedad","no")
                         ?>
                     ]
                 }]
@@ -240,17 +209,7 @@
                     name: 'Presion',
                     data: [
                         <?php
-                            include 'scr/consulta 12horas.php';
-                            while ($row = mysql_fetch_array ($result))
-                            {
-                            $hora = $row['hora'];
-                            $fecha = $row['fecha'];
-                            list($hora, $minuto) = split('[/:.-]', $hora);
-                            list($dia, $mes, $año) = split('[/:.-]', $fecha);
-                            $mes=$mes-1;
-
-                            echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$row['presion'].".".$row['presionDec']."],";
-                            }
+                            $graficosYali->unaHora("presion","si")
                         ?>
                     ]
                 }]
@@ -354,17 +313,7 @@
                     name: 'Radiacion',
                     data: [
                         <?php
-                            include 'scr/consulta 12horas.php';
-                            while ($row = mysql_fetch_array ($result))
-                            {
-                            $hora = $row['hora'];
-                            $fecha = $row['fecha'];
-                            list($hora, $minuto) = split('[/:.-]', $hora);
-                            list($dia, $mes, $año) = split('[/:.-]', $fecha);
-                            $mes=$mes-1;
-
-                            echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$row['rSolar']."],";
-                            }
+                            $graficosYali->unaHora("rSolar","no")
                         ?>
                     ]
                 }],
@@ -448,5 +397,6 @@
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <script src="highcharts/js/highcharts.js"></script>
 <script src="highcharts/js/modules/exporting.js"></script>
+<script src="highcharts/export-csv.js"></script>
 
-</html>z
+</html>

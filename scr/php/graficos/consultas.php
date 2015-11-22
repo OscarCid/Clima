@@ -37,8 +37,9 @@ class graficos
                     list($hora, $minuto) = split('[/:.-]', $hora);
                     list($dia, $mes, $año) = split('[/:.-]', $fecha);
                     $mes=$mes-1;
+                    $año="20".$año;
                     $temperatura = (($fila1[$grafico].".".$fila1[$grafico."Dec"])+($fila2[$grafico].".".$fila2[$grafico."Dec"])+($fila3[$grafico].".".$fila3[$grafico."Dec"]))/3;
-                    $temperatura = number_format($temperatura, 1, '.', '');
+                    $temperatura = number_format($temperatura, 2, '.', '');
                     echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$temperatura."],";
 
                 }
@@ -48,11 +49,15 @@ class graficos
             {
                 while($fila1 = $resultado1 -> fetch_array() and $fila2 = $resultado2 -> fetch_array() and $fila3 = $resultado3 -> fetch_array())
                 {
-                    $presion = (($fila1["presion"].".".$fila1["presionDec"])+($fila2["presion"].".".$fila2["presionDec"])+($fila3["presion"].".".$fila3["presionDec"]))/3;
-                    $presion = number_format($presion, 2, '.', '');
-                    echo "Título: " . $fila2["hora"] . "";
-                    echo "Contenido: " . $fila2["fecha"] . "";
-                    echo "Humedad: " . $presion . "<hr>";
+                    $hora = $fila2['hora'];
+                    $fecha = $fila2['fecha'];
+                    list($hora, $minuto) = split('[/:.-]', $hora);
+                    list($dia, $mes, $año) = split('[/:.-]', $fecha);
+                    $mes=$mes-1;
+                    $año="20".$año;
+                    $temperatura = (($fila1[$grafico])+($fila2[$grafico])+($fila3[$grafico]))/3;
+                    $temperatura = number_format($temperatura, 2, '.', '');
+                    echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$temperatura."],";
                 }
                 break;
             }
