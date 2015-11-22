@@ -1,42 +1,452 @@
 <!DOCTYPE html>
-<html >
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <script src="scr/js/actualizarIndex.js"></script>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-</head>
-<?php $actual_link = "$_SERVER[REQUEST_URI]";
-$porciones = explode("/", $actual_link);
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
+    <script src="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <?php include 'scr/conexion.php';?>
+    <!-- Grafico Temperatura -->
+    <script type="text/javascript">
+        var f = new Date();
+        $(function () {
+            $('#GraficoTemperatura').highcharts({
+                title: {
+                    text: 'Temperatura - Punto de rocio'
+                },
+                subtitle: {
+                    text: 'Tendencia de las ultimas 12 horas'
+                },
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            symbol: 'url(scr/img/save.gif)'
+                        }
+                    }
+                },
+                xAxis: {
+                    title: {
+                        enabled: true,
+                        text: 'Horas'
+                    },
+                    type: 'datetime',
 
-?>
-<body onload="actualizarIndex('yali'); setInterval(actualizarIndex.bind(null,'yali'),5000)">
-<div class="alert alert-success collapse col-md-10 col-md-offset-1" id="success-alert">
-    <strong>Espere! </strong>
-    Estamos Actualizando la informacion para usted.
-    <div class="progress">
-        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    dateTimeLabelFormats : {
+                        hour: '%I %p',
+                        minute: '%I:%M %p'
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Nudoss (Kts)'
+                    },
+                    min: 0
+                },
+
+                series: [{
+                    name: 'Temperatura',
+                    data: [
+                        <?php
+                        include 'scr/php/graficos/consultas.php';
+                            $graficosYali = new graficos("yali");
+                            $graficosYali->unaHora("temp","si");
+                        ?>
+                    ]
+                },
+                    {
+                        name: 'Punto de Rocio',
+                        data: [
+                            <?php
+                            include 'scr/consulta 12horas.php';
+                                $graficosYali = new graficos("yali");
+                                $graficosYali->unaHora("pRocio","si");
+                            ?>
+                        ]
+                    }]
+            });
+        });
+    </script>
+
+    <!-- Grafico Viento -->
+    <script type="text/javascript">
+        $(function () {
+            $('#GraficoViento').highcharts({
+                title: {
+                    text: 'Velocidad Viento'
+                },
+                subtitle: {
+                    text: 'Tendencia de las ultimas 12 horas'
+                },
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            symbol: 'url(scr/img/save.gif)'
+                        }
+                    }
+                },
+                xAxis: {
+                    title: {
+                        enabled: true,
+                        text: 'Horas'
+                    },
+                    type: 'datetime',
+
+                    dateTimeLabelFormats : {
+                        hour: '%I %p',
+                        minute: '%I:%M %p'
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Nudoss (Kts)'
+                    },
+                    min: 0
+                },
+
+                series: [{
+                    name: 'Velocidad Media',
+                    data: [
+                        <?php
+                            include 'scr/consulta 12horas.php';
+                            while ($row = mysql_fetch_array ($result))
+                            {
+                            $hora = $row['hora'];
+                            $fecha = $row['fecha'];
+                            list($hora, $minuto) = split('[/:.-]', $hora);
+                            list($dia, $mes, $año) = split('[/:.-]', $fecha);
+                            $mes=$mes-1;
+
+                            echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$row['vMedio'].".".$row['vMedioDec']."],";
+                            }
+                        ?>
+                    ]
+                },
+                    {
+                        name: 'Velocidad Rafaga',
+                        data: [
+                            <?php
+                                include 'scr/consulta 12horas.php';
+                                while ($row = mysql_fetch_array ($result))
+                                {
+                                $hora = $row['hora'];
+                                $fecha = $row['fecha'];
+                                list($hora, $minuto) = split('[/:.-]', $hora);
+                                list($dia, $mes, $año) = split('[/:.-]', $fecha);
+                                $mes=$mes-1;
+
+                                echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$row['vRafaga'].".".$row['vRafagaDec']."],";
+                                }
+                            ?>
+                        ]
+                    }]
+            });
+        });
+    </script>
+    <!-- Grafico Humedad -->
+    <script type="text/javascript">
+        $(function () {
+            $('#GraficoHumedad').highcharts({
+                title: {
+                    text: 'Humedad'
+                },
+                subtitle: {
+                    text: 'Tendencia de las ultimas 12 horas'
+                },
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            symbol: 'url(scr/img/save.gif)'
+                        }
+                    }
+                },
+                xAxis: {
+                    title: {
+                        enabled: true,
+                        text: 'Horas'
+                    },
+                    type: 'datetime',
+
+                    dateTimeLabelFormats : {
+                        hour: '%I %p',
+                        minute: '%I:%M %p'
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Humedad (%)'
+                    }
+                },
+
+                series: [{
+                    name: 'Humedad',
+                    data: [
+                        <?php
+                            include 'scr/consulta 12horas.php';
+                            while ($row = mysql_fetch_array ($result))
+                            {
+                            $hora = $row['hora'];
+                            $fecha = $row['fecha'];
+                            list($hora, $minuto) = split('[/:.-]', $hora);
+                            list($dia, $mes, $año) = split('[/:.-]', $fecha);
+                            $mes=$mes-1;
+
+                            echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$row['humedad']."],";
+                            }
+                        ?>
+                    ]
+                }]
+            });
+        });
+    </script>
+    <!-- Grafico Presion -->
+    <script type="text/javascript">
+        $(function () {
+            $('#GraficoPresion').highcharts({
+                title: {
+                    text: 'Presion'
+                },
+                subtitle: {
+                    text: 'Tendencia de las ultimas 12 horas'
+                },
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            symbol: 'url(scr/img/save.gif)'
+                        }
+                    }
+                },
+                xAxis: {
+                    title: {
+                        enabled: true,
+                        text: 'Horas'
+                    },
+                    type: 'datetime',
+
+                    dateTimeLabelFormats : {
+                        hour: '%I %p',
+                        minute: '%I:%M %p'
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Presion (hPa)'
+                    }
+                },
+
+                series: [{
+                    name: 'Presion',
+                    data: [
+                        <?php
+                            include 'scr/consulta 12horas.php';
+                            while ($row = mysql_fetch_array ($result))
+                            {
+                            $hora = $row['hora'];
+                            $fecha = $row['fecha'];
+                            list($hora, $minuto) = split('[/:.-]', $hora);
+                            list($dia, $mes, $año) = split('[/:.-]', $fecha);
+                            $mes=$mes-1;
+
+                            echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$row['presion'].".".$row['presionDec']."],";
+                            }
+                        ?>
+                    ]
+                }]
+            });
+        });
+    </script>
+    <!-- grafico Radiacion solar -->
+    <script type="text/javascript">
+        // Data retrieved from http://vikjavev.no/ver/index.php?spenn=2d&sluttid=16.06.2015.
+        $(function () {
+            $('#GraficoRadiacion').highcharts({
+                chart: {
+                    type: 'spline'
+                },
+                title: {
+                    text: 'Radiacion Solar'
+                },
+                subtitle: {
+                    text: 'Tendencia de las ultimas 12 horas'
+                },
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            symbol: 'url(scr/img/save.gif)'
+                        }
+                    }
+                },
+                xAxis: {
+                    title: {
+                        enabled: true,
+                        text: 'Horas'
+                    },
+                    type: 'datetime',
+
+                    dateTimeLabelFormats : {
+                        hour: '%I %p',
+                        minute: '%I:%M %p'
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Potencia (W/m^2)'
+                    },
+                    min: 0,
+                    minorGridLineWidth: 0,
+                    gridLineWidth: 0,
+                    alternateGridColor: null,
+                    plotBands: [{ // Bajo
+                        from: 0,
+                        to: 83.4,
+                        color: 'rgba(142, 233, 55, 0.2)',
+                        label: {
+                            text: 'Bajo',
+                            style: {
+                                color: '#606060'
+                            }
+                        }
+                    }, { // Light breeze
+                        from: 83.5,
+                        to: 166,
+                        color: 'rgba(251, 255, 55, 0.2)',
+                        label: {
+                            text: 'Medio',
+                            style: {
+                                color: '#606060'
+                            }
+                        }
+                    }, { // Gentle breeze
+                        from: 167,
+                        to: 221,
+                        color: 'rgba(255, 158, 6, 0.2)',
+                        label: {
+                            text: 'Alto',
+                            style: {
+                                color: '#606060'
+                            }
+                        }
+                    }, { // Moderate breeze
+                        from: 222,
+                        to: 305,
+                        color: 'rgba(255, 47, 6, 0.2)',
+                        label: {
+                            text: 'Muy Alto',
+                            style: {
+                                color: '#606060'
+                            }
+                        }
+                    }, { // Fresh breeze
+                        from: 306,
+                        to: 10000,
+                        color: 'rgba(179, 0, 255, 0.2)',
+                        label: {
+                            text: 'Extremo',
+                            style: {
+                                color: '#606060'
+                            }
+                        }
+                    }]
+                },
+                series: [{
+                    name: 'Radiacion',
+                    data: [
+                        <?php
+                            include 'scr/consulta 12horas.php';
+                            while ($row = mysql_fetch_array ($result))
+                            {
+                            $hora = $row['hora'];
+                            $fecha = $row['fecha'];
+                            list($hora, $minuto) = split('[/:.-]', $hora);
+                            list($dia, $mes, $año) = split('[/:.-]', $fecha);
+                            $mes=$mes-1;
+
+                            echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$row['rSolar']."],";
+                            }
+                        ?>
+                    ]
+                }],
+                navigation: {
+                    menuItemStyle: {
+                        fontSize: '10px'
+                    }
+                }
+            });
+        });
+    </script>
+    <style>
+        .tab-content > .tab-pane {
+            display: block;
+            height: 0;
+            overflow-y: hidden;
+        }
+
+        .tab-content > .active {
+            height: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class='row'>
+    <div class='col-md-8 col-md-offset-2'>
+        <!-------->
+        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="Graficos" class="nav nav-pills">
+                <li class="active"><a href="#tab1" data-toggle="tab">Humedad</a></li>
+                <li><a href="#tab2" data-toggle="pill">Presion</a></li>
+                <li><a href="#tab3" data-toggle="pill">Temperatura</a></li>
+                <li><a href="#tab4" data-toggle="pill">Viento</a></li>
+                <li><a href="#tab5" data-toggle="pill">Radiacion</a></li>
+                <li><a href="#tab6" data-toggle="pill">Ubicacion</a></li>
+            </ul>
+            <div id="my-tab-content" class="tab-content">
+                <div id="tab1" class="tab-pane fade in active">
+                    <div id="GraficoHumedad" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                </div>
+                <div id="tab2" class="tab-pane fade">
+                    <div id="GraficoPresion" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                </div>
+                <div class="tab-pane fade" id="tab3">
+                    <div id="GraficoTemperatura" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                </div>
+                <div class="tab-pane fade" id="tab4">
+                    <div id="GraficoViento" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                </div>
+                <div class="tab-pane fade" id="tab5">
+                    <div id="GraficoRadiacion" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                </div>
+                <div class="tab-pane fade" id="tab6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13269.836758480427!2d-71.6968742!3d-33.7487981!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDQ0JzU2LjAiUyA3McKwNDInMDAuMCJX!5e0!3m2!1ses-419!2scl!4v1443649161129"
+                            iframe width="100%" height="500px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  style="border:0" allowfullscreen></iframe>
+                    <br>
+
+
+                </div>
+            </div>
         </div>
+        <script>
+            $("#Graficos").bootstrapDynamicTabs();
+        </script>
     </div>
 </div>
-<div id="txtHint"><span class="close" data-dismiss="alert">&times;</span></div>
+
+</body>
 
 <script type="text/javascript">
+    jQuery(document).ready(function ($) {
 
-    <?php
-        $useragent=$_SERVER['HTTP_USER_AGENT'];
-        if(preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i',$useragent)||preg_match('/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i',substr($useragent,0,4)))
-        {
-            echo "
-                      $(window).load(function(){
-                      $('#myModal').modal('show');
-                      });
-                 ";
-        }
-        ?>
+        $('#tabs').tab();
 
+    });
 </script>
-<script src="bootstrap/js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>
+
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script src="highcharts/js/highcharts.js"></script>
+<script src="highcharts/js/modules/exporting.js"></script>
+
+</html>z
