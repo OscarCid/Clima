@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<?php include 'scr/conexion.php';?>
+
 <head>
     <title>Meteorologia UPLA</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -69,8 +71,17 @@ include ("scr/php/menu.php");
 				<h3 class="text-center">Estación El Yali</h3>
                 <img src="scr/img/Yali.jpg" alt="..." height="200px" width="500px">
                 <div class="caption">
-                    
-                    <p>...</p>
+
+                    <p class="text-center">
+                        <?php
+                        $dbname="clima";
+                        $query="SELECT * FROM yali ORDER BY hora DESC LIMIT 1 ";
+                        $result=mysql_db_query ($dbname, $query, $link);
+                        while ($row = mysql_fetch_array ($result)) {
+                            echo "<strong>Fecha:</strong> ".$row['fecha']. " <strong>Hora: </strong>  ".$row['hora']."<br><strong>Temperatura:</strong> ".$row['temp'].".".$row['tempDec']."°C";
+                        }
+                        ?>
+                    </p>
                     
                 </div>
             </div>
@@ -83,7 +94,16 @@ include ("scr/php/menu.php");
                     <img src="scr/img/Campana.jpg" alt="..." height="200px" width="500px">
                     <div class="caption">
                         
-                        <p>...</p>
+                        <p class="text-center">
+                            <?php
+                            $dbname="clima";
+                            $query="SELECT * FROM campana ORDER BY hora DESC LIMIT 1 ";
+                            $result=mysql_db_query ($dbname, $query, $link);
+                            while ($row = mysql_fetch_array ($result)) {
+                                echo "<strong>Fecha:</strong> ".$row['fecha']. " <strong>Hora: </strong>  ".$row['hora']."<br><strong>Temperatura:</strong> ".$row['temp'].".".$row['tempDec']."°C";
+                            }
+                            ?>
+                        </p>
                         
                     </div>
                 </div>
@@ -95,8 +115,17 @@ include ("scr/php/menu.php");
 						<h3 class="text-center">Estación El Peral</h3>
                         <img src="scr/img/Peral.jpg" alt="..." height="200px" width="500px">
                         <div class="caption">
-                            
-                            <p>...</p>
+
+                            <p class="text-center">
+                                <?php
+                                $dbname="clima";
+                                $query="SELECT * FROM peral ORDER BY hora DESC LIMIT 1 ";
+                                $result=mysql_db_query ($dbname, $query, $link);
+                                while ($row = mysql_fetch_array ($result)) {
+                                    echo "<strong>Fecha:</strong> ".$row['fecha']. " <strong>Hora: </strong>  ".$row['hora']."<br><strong>Temperatura:</strong> ".$row['temp'].".".$row['tempDec']."°C";
+                                }
+                                ?>
+                            </p>
                             
                         </div>
                     </div>
