@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://www.upla.cl" target="_blank"><img alt="" src="scr/img/logo_upla_color.png" height="25px"></a>
+            <a class="navbar-brand" href="index" target="_blank"><img alt="" src="scr/img/logo_met.png" height="25px"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,17 +53,11 @@
 
 ?>
 
-<!--                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Afiliados<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
--->
 
-
-                <!-- </ul>
-                </li>
                 </ul>
-                -->
+
 
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+

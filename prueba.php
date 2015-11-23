@@ -1,19 +1,6 @@
 
-    <?php include 'scr/php/graficos/graficos.php'; ?>
-    <style>
-        .navbar .nav,
-        .navbar .nav > li {
-            float:none;
-            display:inline-block;
-            *display:inline; /* ie7 fix */
-            *zoom:1; /* hasLayout ie7 trigger */
-            vertical-align: top;
-        }
+<?php include 'scr/php/graficos/graficos.php'; ?>
 
-        .navbar-inner {
-            text-align:center;
-        }
-    </style>
 
 
 <div class='row'>
