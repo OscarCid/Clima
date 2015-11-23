@@ -46,16 +46,16 @@ while($row = mysqli_fetch_array($result)) {
                                                                 <td>$row[hora]</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Temperatura</td>
+                                                                <td>Temperatura Exterior</td>
                                                                 <td>$row[temp].$row[tempDec] C</td>
-                                                                <td>Humedad</td>
+                                                                <td>Humedad Exterior</td>
                                                                 <td>$row[humedad] %</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Punto de Rocio</td>
-                                                                <td>$row[pRocio].$row[pRocioDec] C</td>
-                                                                <td>Indice de Calor</td>
-                                                                <td>$row[indCalor].$row[indCalorDec] C</td>
+                                                                <td>Temperatura Interior</td>
+                                                                <td>$row[tempInterior].$row[tempInteriorDec] C</td>
+                                                                <td>Humedad Interior</td>
+                                                                <td>$row[humInterior] %</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
@@ -131,12 +131,14 @@ while($row = mysqli_fetch_array($result)) {
                                                         </thead>
                                                         <tbody>
                                                         <tr>
-                                                            <td>Velocidad viento (rafaga)</td>
-                                                            <td>$row[vRafaga].$row[vRafagaDec] kts</td>
-                                                            <td>Velocidad viento (medio)</td>
-                                                            <td>$row[vMedio].$row[vMedioDec] kts</td>
+                                                            <td>Intencidad del Viento</td>
+                                                            <td>$row[intViento].$row[intVientoDec] kts</td>
+                                                            <td>Viento Base</td>
+                                                            <td>$row[vBase].$row[vBaseDec] kts</td>
                                                         </tr>
                                                         <tr>
+                                                            <td>Rafaga Viento</td>
+                                                            <td>$row[vRafaga].$row[vRafagaDec] kts</td>
                                                             <td>Direccion del Viento</td>
                                                             <td>$row[direcViento]</td>
                                                         </tr>
@@ -169,8 +171,8 @@ while($row = mysqli_fetch_array($result)) {
                                                         <tr>
                                                             <td>Presion</td>
                                                             <td>$row[presion].$row[presionDec] hPa</td>
-                                                            <td>Steady</td>
-                                                            <td>?</td>
+                                                            <td>Radiacion Solar</td>
+                                                            <td>$row[rSolar]</td>
                                                         </tr>
 
                                                         </tbody>
