@@ -6,7 +6,7 @@
  * Time: 21:41
  */
         include 'scr/php/graficos/consultas.php';
-        $graficosYali = new graficos("yali");
+        $graficosYali = new graficos($porciones[2]);
     ?>
 <!-- Grafico Temperatura -->
 <script type="text/javascript">
