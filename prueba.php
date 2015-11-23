@@ -29,7 +29,7 @@
     </style>
 
 </head>
-
+<?php include 'scr/php/graficos/graficos.php'; ?>
 <body>
 
 <div class='row'>
