@@ -101,9 +101,6 @@
     });
 </script>
 
-<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-<script src="highcharts/js/highcharts.js"></script>
-<script src="highcharts/js/modules/exporting.js"></script>
-<script src="highcharts/export-csv.js"></script>
+
 
 </html>
