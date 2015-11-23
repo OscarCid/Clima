@@ -25,9 +25,18 @@ class graficos
             case "si":
             {
                 $graficoDec=$grafico."Dec";
-                $primero="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:55' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $segundo="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $tercero="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:05' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                if ($this->estacion == "campana")
+                {
+                    $primero="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:50' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                    $segundo="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                    $tercero="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:10' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                }
+                else
+                {
+                    $primero = "SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:55' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                    $segundo = "SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                    $tercero = "SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:05' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                }
                 $resultado1 = $this->coneccion -> query($primero) or trigger_error($this->coneccion ->error);
                 $resultado2 = $this->coneccion -> query($segundo) or trigger_error($this->coneccion ->error);
                 $resultado3 = $this->coneccion -> query($tercero) or trigger_error($this->coneccion ->error);
@@ -42,15 +51,24 @@ class graficos
                     $temperatura = (($fila1[$grafico].".".$fila1[$grafico."Dec"])+($fila2[$grafico].".".$fila2[$grafico."Dec"])+($fila3[$grafico].".".$fila3[$grafico."Dec"]))/3;
                     $temperatura = number_format($temperatura, 2, '.', '');
                     echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$temperatura."],";
-
                 }
                 break;
             }
             case "no":
             {
-                $primero="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:55' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $segundo="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $tercero="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:05' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                $graficoDec=$grafico."Dec";
+                if ($this->estacion == "campana") {
+                    $primero = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:50' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                    $segundo = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                    $tercero = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:10' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                }
+                else{
+                    $primero = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:55' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                    $segundo = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                    $tercero = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:05' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                }
+
+
                 $resultado1 = $this->coneccion -> query($primero) or trigger_error($this->coneccion ->error);
                 $resultado2 = $this->coneccion -> query($segundo) or trigger_error($this->coneccion ->error);
                 $resultado3 = $this->coneccion -> query($tercero) or trigger_error($this->coneccion ->error);
@@ -103,7 +121,7 @@ class graficos
             }
             break;
         }
-         $resultado1 = $this->coneccion -> query($cero1) or trigger_error($this->coneccion ->error);
+        $resultado1 = $this->coneccion -> query($cero1) or trigger_error($this->coneccion ->error);
         $resultado2 = $this->coneccion -> query($cero2) or trigger_error($this->coneccion ->error);
         $resultado3 = $this->coneccion -> query($cero3) or trigger_error($this->coneccion ->error);
         $resultado4 = $this->coneccion -> query($ocho1) or trigger_error($this->coneccion ->error);
