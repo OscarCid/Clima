@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="utf-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <script src="bootstrap/js/jquery.min.js"></script>
-    <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
-    <script src="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <?php include 'scr/php/graficos/graficos.php'; ?>
     <style>
         .tab-content > .tab-pane {
             display: block;
@@ -28,9 +20,6 @@
         }
     </style>
 
-</head>
-<?php include 'scr/php/graficos/graficos.php'; ?>
-<body>
 
 <div class='row'>
     <div class='col-md-10 col-md-offset-1'>
@@ -91,7 +80,6 @@
     </div>
 </div>
 
-</body>
 
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
@@ -100,7 +88,3 @@
 
     });
 </script>
-
-
-
-</html>

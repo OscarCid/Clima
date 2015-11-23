@@ -5,15 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="scr/js/actualizarIndex.js"></script>
 
+    <meta charset="utf-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <script src="bootstrap/js/jquery.min.js"></script>
     <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
     <script src="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.js"></script>
-
-    <script src="https://jqueryjs.googlecode.com/files/jquery-1.3.min.js"></script>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <script>
     jQuery(document).ready(function() {
@@ -31,6 +28,9 @@
                 return false;
             }
         });
+        setInterval(function () {
+            $('#GraficoTemperatura').highcharts().reflow();
+        }, 10);
     });
 </script>
 </head>
@@ -85,7 +85,6 @@ $porciones = explode("/", $actual_link);
             </a>
             <br>
         </div>
-
         <?php include "prueba.php"?>
     </div>
 
