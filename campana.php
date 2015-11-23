@@ -35,15 +35,17 @@ $porciones = explode("/", $actual_link);
     <!-- Tu no tienes alma -->
     <div id="div2" class="oculto">
 
-        <div class="col-md-2 col-md-offset-5 col-xs-6 col-xs-offset-3" style="padding-bottom: 10px">
+        <div class="col-md-12 col-xs-12" style="padding-bottom: 10px">
+            <center>
 
-            <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
+                <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
 
-            <a href="#div1" class='MO'>
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
-            </a>
+                <a href="#div1" class='MO'>
+                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
+                </a>
 
-            <br>
+            </center>
+
         </div>
 
         <div class="alert alert-success collapse col-md-10 col-md-offset-1 col-xs-12" id="success-alert">
@@ -61,16 +63,17 @@ $porciones = explode("/", $actual_link);
 
     <div id="div1" class="oculto">
 
-        <div class="col-md-2 col-md-offset-5 col-xs-6 col-xs-offset-3" style="padding-bottom: 10px">
+        <div class="col-md-12 col-xs-12" style="padding-bottom: 10px">
+            <center>
+                <a href="#div2" class='MO'>
+                    <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
+                </a>
 
-            <a href="#div2" class='MO'>
-                <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
-            </a>
+                <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
+            </center>
 
-            <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
-
-            <br>
         </div>
+
         <?php include "prueba.php"?>
     </div>
 
