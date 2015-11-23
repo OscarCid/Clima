@@ -289,7 +289,7 @@ $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2" style="padding-bottom: 10px">
                             <img src="scr/img/fase/<?php echo $luna ?>.png" height="100px" class="center-block img-circle"/>
                         </div>
                     </div>

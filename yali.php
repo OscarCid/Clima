@@ -12,24 +12,8 @@
     <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
     <script src="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<script>
-    jQuery(document).ready(function() {
-        $(".oculto").hide();
-        $("#div2").show();
-        $(".MO").click(function(){
-            var nodo = $(this).attr("href");
 
-            if ($(nodo).is(":visible")){
-                $(nodo).hide();
-                return false;
-            }else{
-                $(".oculto").hide();
-                $(nodo).fadeToggle( "slow" );
-                return false;
-            }
-        });
-    });
-</script>
+    <script src="scr/js/cambioDiv.js"></script>
 </head>
 <?php $actual_link = "$_SERVER[REQUEST_URI]";
 $porciones = explode("/", $actual_link);
@@ -49,16 +33,18 @@ $porciones = explode("/", $actual_link);
     <!-- Tu no tienes alma -->
     <div id="div2" class="oculto">
 
-    <div class="col-md-2 col-md-offset-5" style="padding-bottom: 10px">
+    <div class="col-md-2 col-md-offset-5 col-xs-6 col-xs-offset-3" style="padding-bottom: 10px">
+
+        <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
+
         <a href="#div1" class='MO'>
             <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
         </a>
 
-        <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
-
         <br>
     </div>
-    <div class="alert alert-success collapse col-md-10 col-md-offset-1" id="success-alert">
+
+    <div class="alert alert-success collapse col-md-10 col-md-offset-1 col-xs-12" id="success-alert">
         <strong>Espere! </strong>
         Estamos actualizando la informacion para usted.
         <div class="progress">
@@ -73,13 +59,14 @@ $porciones = explode("/", $actual_link);
 
     <div id="div1" class="oculto">
 
-        <div class="col-md-2 col-md-offset-5" style="padding-bottom: 10px">
-
-                <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
+        <div class="col-md-2 col-md-offset-5 col-xs-6 col-xs-offset-3" style="padding-bottom: 10px">
 
             <a href="#div2" class='MO'>
             <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
             </a>
+
+            <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
+
             <br>
         </div>
         <?php include "prueba.php"?>
@@ -89,15 +76,10 @@ $porciones = explode("/", $actual_link);
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="highcharts/js/highcharts.js"></script>
     <script src="highcharts/js/modules/exporting.js"></script>
+    <script src="highcharts/export-csv.js"></script>
 </div>
 
-
-
 <?php include ("scr/php/foot.php")?>
-
-
-
-
 
 </body>
 </html>
