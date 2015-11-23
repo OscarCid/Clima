@@ -17,7 +17,7 @@
     $(function () {
         $('#GraficoTemperatura').highcharts({
             title: {
-                text: 'Temperatura - Punto de rocio'
+                text: 'Temperatura Interior - Temperatura Exterior'
             },
             subtitle: {
                 text: 'Tendencia de las ultimas 12 horas'
@@ -43,13 +43,13 @@
             },
             yAxis: {
                 title: {
-                    text: 'Nudoss (Kts)'
+                    text: 'Celcius (°C)'
                 },
                 min: 0
             },
 
             series: [{
-                name: 'Temperatura',
+                name: 'Temperatura Interior',
                 data: [
                     <?php
                         $graficosYali->unaHora("temp","si");
@@ -57,10 +57,10 @@
                 ]
             },
                 {
-                    name: 'Punto de Rocio',
+                    name: 'Temperatura Exterior',
                     data: [
                         <?php
-                            $graficosYali->unaHora("pRocio","si");
+                            $graficosYali->unaHora("tempInterior","si");
                         ?>
                     ]
                 }]
@@ -76,7 +76,7 @@
     $(function () {
         $('#GraficoTemperatura8horas').highcharts({
             title: {
-                text: 'Temperatura - Punto de rocio'
+                text: 'Temperatura Interior - Temperatura Exterior'
             },
             subtitle: {
                 text: 'Tendencia de las ultimos 7 Dias'
@@ -102,13 +102,13 @@
             },
             yAxis: {
                 title: {
-                    text: 'Nudoss (Kts)'
+                    text: 'Celcius (°C)'
                 },
                 min: 0
             },
 
             series: [{
-                name: 'Temperatura',
+                name: 'Temperatura Exterior',
                 data: [
                     <?php
                         $graficosYali->tresTomas("temp","si");
@@ -116,10 +116,10 @@
                 ]
             },
                 {
-                    name: 'Punto de Rocio',
+                    name: 'Temperatura Interior',
                     data: [
                         <?php
-                            $graficosYali->tresTomas("pRocio","si");
+                            $graficosYali->tresTomas("tempInterior","si");
                         ?>
                     ]
                 }]
@@ -127,60 +127,7 @@
     });
 </script>
 <!-- Grafico Viento -->
-<script type="text/javascript">
-    $(function () {
-        $('#GraficoViento').highcharts({
-            title: {
-                text: 'Velocidad Viento'
-            },
-            subtitle: {
-                text: 'Tendencia de las ultimas 12 horas'
-            },
-            exporting: {
-                buttons: {
-                    contextButton: {
-                        symbol: 'url(scr/img/save.gif)'
-                    }
-                }
-            },
-            xAxis: {
-                title: {
-                    enabled: true,
-                    text: 'Horas'
-                },
-                type: 'datetime',
 
-                dateTimeLabelFormats : {
-                    hour: '%I %p',
-                    minute: '%I:%M %p'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Nudoss (Kts)'
-                },
-                min: 0
-            },
-
-            series: [{
-                name: 'Velocidad Media',
-                data: [
-                    <?php
-                        $graficosYali->unaHora("vMedio","si")
-                    ?>
-                ]
-            },
-                {
-                    name: 'Velocidad Rafaga',
-                    data: [
-                        <?php
-                            $graficosYali->unaHora("vRafaga","si")
-                        ?>
-                    ]
-                }]
-        });
-    });
-</script>
 <!-- Grafico Humedad  1 hora-->
 <script type="text/javascript">
     setInterval(function () {
@@ -189,10 +136,10 @@
     $(function () {
         $('#GraficoHumedad').highcharts({
             title: {
-                text: 'Humedad'
+                text: 'Humedad Interior - Humedad Exterior'
             },
             subtitle: {
-                text: 'Tendencia de las ultimas 12 horas'
+                text: 'Tendencia de las ultimos 7 Dias'
             },
             exporting: {
                 buttons: {
@@ -215,18 +162,27 @@
             },
             yAxis: {
                 title: {
-                    text: 'Humedad (%)'
-                }
+                    text: 'Humedad ( % )'
+                },
+                min: 0
             },
 
             series: [{
-                name: 'Humedad',
+                name: 'Humedad Exterior',
                 data: [
                     <?php
-                        $graficosYali->unaHora("humedad","no")
+                        $graficosYali->unaHora("humedad","no");
                     ?>
                 ]
-            }]
+            },
+                {
+                    name: 'Humedad Interior',
+                    data: [
+                        <?php
+                            $graficosYali->unaHora("humInterior","no");
+                        ?>
+                    ]
+                }]
         });
     });
 </script>
@@ -238,7 +194,7 @@
     $(function () {
         $('#GraficoHumedad8horas').highcharts({
             title: {
-                text: 'Humedad'
+                text: 'Humedad Interior - Humedad Exterior'
             },
             subtitle: {
                 text: 'Tendencia de las ultimos 7 Dias'
@@ -264,22 +220,31 @@
             },
             yAxis: {
                 title: {
-                    text: 'Humedad (%)'
-                }
+                    text: 'Humedad ( % )'
+                },
+                min: 0
             },
 
             series: [{
-                name: 'Humedad',
+                name: 'Humedad Exterior',
                 data: [
                     <?php
-                        $graficosYali->tresTomas("humedad","no")
+                        $graficosYali->tresTomas("humedad","no");
                     ?>
                 ]
-            }]
+            },
+                {
+                    name: 'Humedad Interior',
+                    data: [
+                        <?php
+                            $graficosYali->tresTomas("humInterior","no");
+                        ?>
+                    ]
+                }]
         });
     });
 </script>
-<!-- Grafico Presion -->
+<!-- Grafico Presion 1 Hora -->
 <script type="text/javascript">
     setInterval(function () {
         $('#GraficoPresion').highcharts().reflow();
@@ -322,6 +287,55 @@
                 data: [
                     <?php
                         $graficosYali->unaHora("presion","si")
+                    ?>
+                ]
+            }]
+        });
+    });
+</script>
+<!-- Grafico Presion 8 Horas -->
+<script type="text/javascript">
+    setInterval(function () {
+        $('#GraficoPresion8Horas').highcharts().reflow();
+    }, 10);
+    $(function () {
+        $('#GraficoPresion8Horas').highcharts({
+            title: {
+                text: 'Presion'
+            },
+            subtitle: {
+                text: 'Tendencia de las ultimas 12 horas'
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        symbol: 'url(scr/img/save.gif)'
+                    }
+                }
+            },
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text: 'Horas'
+                },
+                type: 'datetime',
+
+                dateTimeLabelFormats : {
+                    hour: '%I %p',
+                    minute: '%I:%M %p'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Presion (hPa)'
+                }
+            },
+
+            series: [{
+                name: 'Presion',
+                data: [
+                    <?php
+                        $graficosYali->tresTomas("presion","si")
                     ?>
                 ]
             }]
