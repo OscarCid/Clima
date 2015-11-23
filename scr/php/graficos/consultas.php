@@ -12,7 +12,8 @@ class graficos
     {
         $this->estacion = $estacion;
         $this->coneccion = new mysqli($this->host, $this->user, $this->password, "clima") or die ("<center>No se puede conectar con la base de datos\n</center>\n");
-        if ($this->coneccion ->connect_errno) {
+        if ($this->coneccion ->connect_errno)
+        {
             echo "Fallo al conectar a MySQL: (" . $this->coneccion ->connect_errno . ") " . $this->coneccion ->connect_error;
         }
     }
@@ -67,15 +68,33 @@ class graficos
 
     public function tresTomas($grafico, $decimal)
     {
+        $minutos = "";
         $hora = "SELECT hora from $this->estacion ORDER BY ordenar DESC LIMIT 1";
         $resultado = $this->coneccion -> query($hora) or trigger_error($this->coneccion ->error);
         while($fila = $resultado -> fetch_array())
         {
-            list($hora, $minuto) = split('[/:.-]', $fila["hora"]);
-            echo $hora;
+            list($hora, $minutos) = split('[/:.-]', $fila["hora"]);
         }
+
+        switch (true)
+        {
+            case ($hora>=0 || $hora<=7 || ($hora=7 && $minutos<=59)):
+            {
+                switch ($decimal)
+                {
+                    case("si"):
+                    {
+                        break;
+                    }
+                    case ("no"):
+                    {
+                        break;
+                    }
+                }
+               break;
+            }
+
+        }
+
     }
 }
-
-$holi = new graficos("yali");
-$holi ->tresTomas("humedad","no");

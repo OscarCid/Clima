@@ -34,53 +34,59 @@
 
 <div class='row'>
     <div class='col-md-10 col-md-offset-1'>
-        <!---- Tabs seleccion tipo grafico (temp, humedad, viento, etc. ---->
-        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-            <ul id="Graficos" class="nav nav-pills">
-                <li class="active"><a href="#tab1" data-toggle="tab">Humedad</a></li>
-                <li><a href="#tab2" data-toggle="pill">Presion</a></li>
-                <li><a href="#tab3" data-toggle="pill">Temperatura</a></li>
-                <li><a href="#tab4" data-toggle="pill">Viento</a></li>
-                <li><a href="#tab5" data-toggle="pill">Radiacion</a></li>
-                <li><a href="#tab6" data-toggle="pill">Precipitaciones</a></li>
-            </ul>
-            <div id="my-tab-content" class="tab-content">
-                <div id="tab1" class="tab-pane fade in active">
-                        <ul id="horaPresion" class="nav nav-pills">
-                            <li class="active"><a href="#presion1" data-toggle="tab">1 Hora</a></li>
-                            <li><a href="#presion2" data-toggle="pill">3 mediciones al dia</a></li>
-                            <li><a href="#presion3" data-toggle="pill">1 dia</a></li>
-                        </ul>
-                        <div id="my-tab-content" class="tab-content">
-                            <div id="presion1" class="tab-pane fade in active">
-                                <div id="GraficoHumedad" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
-                            </div>
-                            <div id="presion2" class="tab-pane fade">
-                                <div id="GraficoPresion" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
-                            </div>
-                            <div class="tab-pane fade" id="presion3">
-                                <div id="GraficoTemperatura" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+        <div class="container">
+            <div class="tabbable" role="tabpanel" data-example-id="togglable-tabs">
+                <ul class="nav nav-pills" id="prueba">
+                    <li class="active"><a href="#temperatura" data-toggle="tab">Temperatura</a></li>
+                    <li><a href="#presion" data-toggle="tab">Section 2</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="temperatura">
+                        <div class="span8">
+                            <div class="tabbable">
+                                <ul class="nav nav-pills">
+                                    <li class="active"><a href="#temperatura1" data-toggle="tab">Cada 1 Hora</a></li>
+                                    <li><a href="#temperatura2" data-toggle="tab">Cada 3 Horas</a></li>
+                                    <li><a href="#temperatura3" data-toggle="tab">Cada 1 Dia</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="temperatura1">
+                                        <div id="GraficoTemperatura" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                                    </div>
+                                    <div class="tab-pane" id="temperatura2">
+                                        <p>I'm in Section 4.</p>
+                                    </div>
+                                    <div class="tab-pane" id="temperatura3">
+                                        <p>I'm in Section 4.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                </div>
-
-                <div id="tab2" class="tab-pane fade">
-                    <div id="GraficoPresion" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
-                </div>
-                <div class="tab-pane fade" id="tab3">
-                    <div id="GraficoTemperatura" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
-                </div>
-                <div class="tab-pane fade" id="tab4">
-                    <div id="GraficoViento" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
-                </div>
-                <div class="tab-pane fade" id="tab5">
-                    <div id="GraficoRadiacion" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                    </div>
+                    <div class="tab-pane" id="presion">
+                        <div class="span8">
+                            <div class="tabbable">
+                                <ul class="nav nav-pills">
+                                    <li class="active"><a href="#tab3" data-toggle="tab">Section 3</a></li>
+                                    <li><a href="#tab4" data-toggle="tab">Section 4</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab3">
+                                        <div id="GraficoHumedad" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                                    </div>
+                                    <div class="tab-pane" id="tab4">
+                                        <p>I'm in Section 4.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <script>
-            $("#Graficos").bootstrapDynamicTabs();
-            $("#horaPresion").bootstrapDynamicTabs();
+            $("#prueba").bootstrapDynamicTabs();
         </script>
     </div>
 </div>
