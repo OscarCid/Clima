@@ -75,7 +75,7 @@ include ("scr/php/menu.php");
                     <p class="text-center">
                         <?php
                         $dbname="clima";
-                        $query="SELECT * FROM yali ORDER BY hora DESC LIMIT 1 ";
+                        $query="SELECT * FROM yali ORDER BY ordenar DESC LIMIT 1 ";
                         $result=mysql_db_query ($dbname, $query, $link);
                         while ($row = mysql_fetch_array ($result)) {
                             echo "<strong>Fecha:</strong> ".$row['fecha']. " <strong>Hora: </strong>  ".$row['hora']."<br><strong>Temperatura:</strong> ".$row['temp'].".".$row['tempDec']."°C";
@@ -97,7 +97,7 @@ include ("scr/php/menu.php");
                         <p class="text-center">
                             <?php
                             $dbname="clima";
-                            $query="SELECT * FROM campana ORDER BY hora DESC LIMIT 1 ";
+                            $query="SELECT * FROM campana ORDER BY ordenar DESC LIMIT 1 ";
                             $result=mysql_db_query ($dbname, $query, $link);
                             while ($row = mysql_fetch_array ($result)) {
                                 echo "<strong>Fecha:</strong> ".$row['fecha']. " <strong>Hora: </strong>  ".$row['hora']."<br><strong>Temperatura:</strong> ".$row['temp'].".".$row['tempDec']."°C";
@@ -119,7 +119,7 @@ include ("scr/php/menu.php");
                             <p class="text-center">
                                 <?php
                                 $dbname="clima";
-                                $query="SELECT * FROM peral ORDER BY hora DESC LIMIT 1 ";
+                                $query="SELECT * FROM peral ORDER BY ordenar DESC LIMIT 1 ";
                                 $result=mysql_db_query ($dbname, $query, $link);
                                 while ($row = mysql_fetch_array ($result)) {
                                     echo "<strong>Fecha:</strong> ".$row['fecha']. " <strong>Hora: </strong>  ".$row['hora']."<br><strong>Temperatura:</strong> ".$row['temp'].".".$row['tempDec']."°C";
