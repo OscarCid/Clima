@@ -78,7 +78,7 @@ class graficos
 
         switch (true)
         {
-            case ($hora>=0 || $hora<=7 || ($hora=7 && $minutos<=59)):
+            case ($hora>=0 || $hora<7 || ($hora=7 && $minutos<=59)):
             {
                 switch ($decimal)
                 {

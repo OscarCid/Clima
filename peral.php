@@ -4,8 +4,12 @@
     <title>Estación El Peral - Meteorologia UPLA</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="scr/js/actualizarIndex.js"></script>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
+    <script src="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <?php $actual_link = "$_SERVER[REQUEST_URI]";
@@ -29,8 +33,12 @@ $porciones = explode("/", $actual_link);
         </div>
     </div>
     <div id="txtHint"></div>
-    <script src="bootstrap/js/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <?php
+    include ("prueba.php"); ?>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <script src="highcharts/js/highcharts.js"></script>
+    <script src="highcharts/js/modules/exporting.js"></script>
+    <script src="highcharts/export-csv.js"></script>
 </div>
 <?php include ("scr/php/foot.php")?>
 </body>

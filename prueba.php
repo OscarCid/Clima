@@ -38,7 +38,7 @@
             <div class="tabbable" role="tabpanel" data-example-id="togglable-tabs">
                 <ul class="nav nav-pills" id="prueba">
                     <li class="active"><a href="#temperatura" data-toggle="tab">Temperatura</a></li>
-                    <li><a href="#presion" data-toggle="tab">Section 2</a></li>
+                    <li><a href="#presion" data-toggle="tab">Presion</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="temperatura">
