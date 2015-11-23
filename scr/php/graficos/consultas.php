@@ -16,6 +16,7 @@ class graficos
             echo "Fallo al conectar a MySQL: (" . $this->coneccion ->connect_errno . ") " . $this->coneccion ->connect_error;
         }
     }
+
     public function unaHora($grafico, $decimal)
     {
         $this->grafico = $grafico;
@@ -63,4 +64,18 @@ class graficos
             }
         }
     }
+
+    public function tresTomas($grafico, $decimal)
+    {
+        $hora = "SELECT hora from $this->estacion ORDER BY ordenar DESC LIMIT 1";
+        $resultado = $this->coneccion -> query($hora) or trigger_error($this->coneccion ->error);
+        while($fila = $resultado -> fetch_array())
+        {
+            list($hora, $minuto) = split('[/:.-]', $fila["hora"]);
+            echo $hora;
+        }
+    }
 }
+
+$holi = new graficos("yali");
+$holi ->tresTomas("humedad","no");

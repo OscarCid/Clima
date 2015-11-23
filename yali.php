@@ -11,7 +11,6 @@
 <?php $actual_link = "$_SERVER[REQUEST_URI]";
 $porciones = explode("/", $actual_link);
 ?>
-
 <body onload="actualizarIndex('<?php echo $porciones[2]; ?>'); setInterval(actualizarIndex.bind(null,'<?php echo $porciones[2]; ?>'),5000)">
 <div class="container-fluid">
 <?php

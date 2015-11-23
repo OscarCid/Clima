@@ -8,323 +8,6 @@
     <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
     <script src="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <?php
-        include 'scr/php/graficos/consultas.php';
-        $graficosYali = new graficos("yali");
-    ?>
-    <!-- Grafico Temperatura -->
-    <script type="text/javascript">
-        var f = new Date();
-        $(function () {
-            $('#GraficoTemperatura').highcharts({
-                title: {
-                    text: 'Temperatura - Punto de rocio'
-                },
-                subtitle: {
-                    text: 'Tendencia de las ultimas 12 horas'
-                },
-                exporting: {
-                    buttons: {
-                        contextButton: {
-                            symbol: 'url(scr/img/save.gif)'
-                        }
-                    }
-                },
-                xAxis: {
-                    title: {
-                        enabled: true,
-                        text: 'Horas'
-                    },
-                    type: 'datetime',
-
-                    dateTimeLabelFormats : {
-                        hour: '%I %p',
-                        minute: '%I:%M %p'
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Nudoss (Kts)'
-                    },
-                    min: 0
-                },
-
-                series: [{
-                    name: 'Temperatura',
-                    data: [
-                        <?php
-                            $graficosYali->unaHora("temp","si");
-                        ?>
-                    ]
-                },
-                    {
-                        name: 'Punto de Rocio',
-                        data: [
-                            <?php
-                                $graficosYali->unaHora("pRocio","si");
-                            ?>
-                        ]
-                    }]
-            });
-        });
-    </script>
-
-    <!-- Grafico Viento -->
-    <script type="text/javascript">
-        $(function () {
-            $('#GraficoViento').highcharts({
-                title: {
-                    text: 'Velocidad Viento'
-                },
-                subtitle: {
-                    text: 'Tendencia de las ultimas 12 horas'
-                },
-                exporting: {
-                    buttons: {
-                        contextButton: {
-                            symbol: 'url(scr/img/save.gif)'
-                        }
-                    }
-                },
-                xAxis: {
-                    title: {
-                        enabled: true,
-                        text: 'Horas'
-                    },
-                    type: 'datetime',
-
-                    dateTimeLabelFormats : {
-                        hour: '%I %p',
-                        minute: '%I:%M %p'
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Nudoss (Kts)'
-                    },
-                    min: 0
-                },
-
-                series: [{
-                    name: 'Velocidad Media',
-                    data: [
-                        <?php
-                            $graficosYali->unaHora("vMedio","si")
-                        ?>
-                    ]
-                },
-                    {
-                        name: 'Velocidad Rafaga',
-                        data: [
-                            <?php
-                                $graficosYali->unaHora("vRafaga","si")
-                            ?>
-                        ]
-                    }]
-            });
-        });
-    </script>
-    <!-- Grafico Humedad -->
-    <script type="text/javascript">
-        $(function () {
-            $('#GraficoHumedad').highcharts({
-                title: {
-                    text: 'Humedad'
-                },
-                subtitle: {
-                    text: 'Tendencia de las ultimas 12 horas'
-                },
-                exporting: {
-                    buttons: {
-                        contextButton: {
-                            symbol: 'url(scr/img/save.gif)'
-                        }
-                    }
-                },
-                xAxis: {
-                    title: {
-                        enabled: true,
-                        text: 'Horas'
-                    },
-                    type: 'datetime',
-
-                    dateTimeLabelFormats : {
-                        hour: '%I %p',
-                        minute: '%I:%M %p'
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Humedad (%)'
-                    }
-                },
-
-                series: [{
-                    name: 'Humedad',
-                    data: [
-                        <?php
-                            $graficosYali->unaHora("humedad","no")
-                        ?>
-                    ]
-                }]
-            });
-        });
-    </script>
-    <!-- Grafico Presion -->
-    <script type="text/javascript">
-        $(function () {
-            $('#GraficoPresion').highcharts({
-                title: {
-                    text: 'Presion'
-                },
-                subtitle: {
-                    text: 'Tendencia de las ultimas 12 horas'
-                },
-                exporting: {
-                    buttons: {
-                        contextButton: {
-                            symbol: 'url(scr/img/save.gif)'
-                        }
-                    }
-                },
-                xAxis: {
-                    title: {
-                        enabled: true,
-                        text: 'Horas'
-                    },
-                    type: 'datetime',
-
-                    dateTimeLabelFormats : {
-                        hour: '%I %p',
-                        minute: '%I:%M %p'
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Presion (hPa)'
-                    }
-                },
-
-                series: [{
-                    name: 'Presion',
-                    data: [
-                        <?php
-                            $graficosYali->unaHora("presion","si")
-                        ?>
-                    ]
-                }]
-            });
-        });
-    </script>
-    <!-- grafico Radiacion solar -->
-    <script type="text/javascript">
-        // Data retrieved from http://vikjavev.no/ver/index.php?spenn=2d&sluttid=16.06.2015.
-        $(function () {
-            $('#GraficoRadiacion').highcharts({
-                chart: {
-                    type: 'spline'
-                },
-                title: {
-                    text: 'Radiacion Solar'
-                },
-                subtitle: {
-                    text: 'Tendencia de las ultimas 12 horas'
-                },
-                exporting: {
-                    buttons: {
-                        contextButton: {
-                            symbol: 'url(scr/img/save.gif)'
-                        }
-                    }
-                },
-                xAxis: {
-                    title: {
-                        enabled: true,
-                        text: 'Horas'
-                    },
-                    type: 'datetime',
-
-                    dateTimeLabelFormats : {
-                        hour: '%I %p',
-                        minute: '%I:%M %p'
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Potencia (W/m^2)'
-                    },
-                    min: 0,
-                    minorGridLineWidth: 0,
-                    gridLineWidth: 0,
-                    alternateGridColor: null,
-                    plotBands: [{ // Bajo
-                        from: 0,
-                        to: 83.4,
-                        color: 'rgba(142, 233, 55, 0.2)',
-                        label: {
-                            text: 'Bajo',
-                            style: {
-                                color: '#606060'
-                            }
-                        }
-                    }, { // Light breeze
-                        from: 83.5,
-                        to: 166,
-                        color: 'rgba(251, 255, 55, 0.2)',
-                        label: {
-                            text: 'Medio',
-                            style: {
-                                color: '#606060'
-                            }
-                        }
-                    }, { // Gentle breeze
-                        from: 167,
-                        to: 221,
-                        color: 'rgba(255, 158, 6, 0.2)',
-                        label: {
-                            text: 'Alto',
-                            style: {
-                                color: '#606060'
-                            }
-                        }
-                    }, { // Moderate breeze
-                        from: 222,
-                        to: 305,
-                        color: 'rgba(255, 47, 6, 0.2)',
-                        label: {
-                            text: 'Muy Alto',
-                            style: {
-                                color: '#606060'
-                            }
-                        }
-                    }, { // Fresh breeze
-                        from: 306,
-                        to: 10000,
-                        color: 'rgba(179, 0, 255, 0.2)',
-                        label: {
-                            text: 'Extremo',
-                            style: {
-                                color: '#606060'
-                            }
-                        }
-                    }]
-                },
-                series: [{
-                    name: 'Radiacion',
-                    data: [
-                        <?php
-                            $graficosYali->unaHora("rSolar","no")
-                        ?>
-                    ]
-                }],
-                navigation: {
-                    menuItemStyle: {
-                        fontSize: '10px'
-                    }
-                }
-            });
-        });
-    </script>
     <style>
         .tab-content > .tab-pane {
             display: block;
@@ -335,6 +18,14 @@
         .tab-content > .active {
             height: auto;
         }
+        .nav-tabs > li, .nav-pills > li {
+            float:none;
+            display:inline-block;
+        }
+
+        .nav-pills{
+            text-align:center;
+        }
     </style>
 
 </head>
@@ -342,8 +33,8 @@
 <body>
 
 <div class='row'>
-    <div class='col-md-8 col-md-offset-2'>
-        <!-------->
+    <div class='col-md-10 col-md-offset-1'>
+        <!---- Tabs seleccion tipo grafico (temp, humedad, viento, etc. ---->
         <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
             <ul id="Graficos" class="nav nav-pills">
                 <li class="active"><a href="#tab1" data-toggle="tab">Humedad</a></li>
@@ -351,12 +42,28 @@
                 <li><a href="#tab3" data-toggle="pill">Temperatura</a></li>
                 <li><a href="#tab4" data-toggle="pill">Viento</a></li>
                 <li><a href="#tab5" data-toggle="pill">Radiacion</a></li>
-                <li><a href="#tab6" data-toggle="pill">Ubicacion</a></li>
+                <li><a href="#tab6" data-toggle="pill">Precipitaciones</a></li>
             </ul>
             <div id="my-tab-content" class="tab-content">
                 <div id="tab1" class="tab-pane fade in active">
-                    <div id="GraficoHumedad" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                        <ul id="horaPresion" class="nav nav-pills">
+                            <li class="active"><a href="#presion1" data-toggle="tab">1 Hora</a></li>
+                            <li><a href="#presion2" data-toggle="pill">3 mediciones al dia</a></li>
+                            <li><a href="#presion3" data-toggle="pill">1 dia</a></li>
+                        </ul>
+                        <div id="my-tab-content" class="tab-content">
+                            <div id="presion1" class="tab-pane fade in active">
+                                <div id="GraficoHumedad" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                            </div>
+                            <div id="presion2" class="tab-pane fade">
+                                <div id="GraficoPresion" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                            </div>
+                            <div class="tab-pane fade" id="presion3">
+                                <div id="GraficoTemperatura" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                            </div>
+                        </div>
                 </div>
+
                 <div id="tab2" class="tab-pane fade">
                     <div id="GraficoPresion" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
                 </div>
@@ -369,17 +76,11 @@
                 <div class="tab-pane fade" id="tab5">
                     <div id="GraficoRadiacion" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
                 </div>
-                <div class="tab-pane fade" id="tab6">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13269.836758480427!2d-71.6968742!3d-33.7487981!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDQ0JzU2LjAiUyA3McKwNDInMDAuMCJX!5e0!3m2!1ses-419!2scl!4v1443649161129"
-                            iframe width="100%" height="500px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  style="border:0" allowfullscreen></iframe>
-                    <br>
-
-
-                </div>
             </div>
         </div>
         <script>
             $("#Graficos").bootstrapDynamicTabs();
+            $("#horaPresion").bootstrapDynamicTabs();
         </script>
     </div>
 </div>
