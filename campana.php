@@ -3,14 +3,18 @@
 <head>
     <title>Estación La Campana - Meteorologia UPLA</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="scr/js/actualizarIndex.js"></script>
     <meta charset="utf-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Script ajax -->
+    <script src="scr/js/actualizarIndex.js"></script>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <script src="bootstrap/js/jquery.min.js"></script>
     <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Script botones grafico tablas -->
     <script src="scr/js/cambioDiv.js"></script>
 </head>
 <?php $actual_link = "$_SERVER[REQUEST_URI]";
@@ -70,8 +74,6 @@ $porciones = explode("/", $actual_link);
         <?php include "prueba.php"?>
     </div>
 
-    <script src="bootstrap/js/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="highcharts/js/highcharts.js"></script>
     <script src="highcharts/js/modules/exporting.js"></script>
     <script src="highcharts/export-csv.js"></script>
