@@ -8,7 +8,7 @@
         include 'scr/php/graficos/consultas.php';
         $graficosYali = new graficos($porciones[2]);
     ?>
-<!-- Grafico Temperatura -->
+<!-- Grafico Temperatura 1 Hora -->
 <script type="text/javascript">
     var f = new Date();
     setInterval(function () {
@@ -61,6 +61,65 @@
                     data: [
                         <?php
                             $graficosYali->unaHora("pRocio","si");
+                        ?>
+                    ]
+                }]
+        });
+    });
+</script>
+<!-- Grafico Temperatura 8 Hora -->
+<script type="text/javascript">
+    var f = new Date();
+    setInterval(function () {
+        $('#GraficoTemperatura8horas').highcharts().reflow();
+    }, 10);
+    $(function () {
+        $('#GraficoTemperatura8horas').highcharts({
+            title: {
+                text: 'Temperatura - Punto de rocio'
+            },
+            subtitle: {
+                text: 'Tendencia de las ultimos 7 Dias'
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        symbol: 'url(scr/img/save.gif)'
+                    }
+                }
+            },
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text: 'Horas'
+                },
+                type: 'datetime',
+
+                dateTimeLabelFormats : {
+                    hour: '%I %p',
+                    minute: '%I:%M %p'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Nudoss (Kts)'
+                },
+                min: 0
+            },
+
+            series: [{
+                name: 'Temperatura',
+                data: [
+                    <?php
+                        $graficosYali->tresTomas("temp","si");
+                    ?>
+                ]
+            },
+                {
+                    name: 'Punto de Rocio',
+                    data: [
+                        <?php
+                            $graficosYali->tresTomas("pRocio","si");
                         ?>
                     ]
                 }]
@@ -122,7 +181,7 @@
         });
     });
 </script>
-<!-- Grafico Humedad -->
+<!-- Grafico Humedad  1 hora-->
 <script type="text/javascript">
     setInterval(function () {
         $('#GraficoHumedad').highcharts().reflow();
@@ -171,8 +230,60 @@
         });
     });
 </script>
+<!-- Grafico Humedad 8 horas -->
+<script type="text/javascript">
+    setInterval(function () {
+        $('#GraficoHumedad8horas').highcharts().reflow();
+    }, 10);
+    $(function () {
+        $('#GraficoHumedad8horas').highcharts({
+            title: {
+                text: 'Humedad'
+            },
+            subtitle: {
+                text: 'Tendencia de las ultimos 7 Dias'
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        symbol: 'url(scr/img/save.gif)'
+                    }
+                }
+            },
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text: 'Horas'
+                },
+                type: 'datetime',
+
+                dateTimeLabelFormats : {
+                    hour: '%I %p',
+                    minute: '%I:%M %p'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Humedad (%)'
+                }
+            },
+
+            series: [{
+                name: 'Humedad',
+                data: [
+                    <?php
+                        $graficosYali->tresTomas("humedad","no")
+                    ?>
+                ]
+            }]
+        });
+    });
+</script>
 <!-- Grafico Presion -->
 <script type="text/javascript">
+    setInterval(function () {
+        $('#GraficoPresion').highcharts().reflow();
+    }, 10);
     $(function () {
         $('#GraficoPresion').highcharts({
             title: {
