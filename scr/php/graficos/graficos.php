@@ -11,6 +11,9 @@
 <!-- Grafico Temperatura -->
 <script type="text/javascript">
     var f = new Date();
+    setInterval(function () {
+        $('#GraficoTemperatura').highcharts().reflow();
+    }, 10);
     $(function () {
         $('#GraficoTemperatura').highcharts({
             title: {
@@ -121,6 +124,9 @@
 </script>
 <!-- Grafico Humedad -->
 <script type="text/javascript">
+    setInterval(function () {
+        $('#GraficoHumedad').highcharts().reflow();
+    }, 10);
     $(function () {
         $('#GraficoHumedad').highcharts({
             title: {

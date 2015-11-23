@@ -28,9 +28,6 @@
                 return false;
             }
         });
-        setInterval(function () {
-            $('#GraficoTemperatura').highcharts().reflow();
-        }, 10);
     });
 </script>
 </head>
