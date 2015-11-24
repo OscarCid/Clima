@@ -33,6 +33,7 @@ while($row = mysqli_fetch_array($result4)) {
     $promPrecipDec = $row["promedio"]/10;
 }
 $precipAnio = $promPrecip + $promPrecipDec;
+$precipAnio = number_format($precipAnio, 6, '.','');
 //Consulta ultimos datos
 $sql="SELECT * FROM $estacion ORDER BY ordenar DESC LIMIT 1;";
 $result = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
