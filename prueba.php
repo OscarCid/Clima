@@ -21,7 +21,6 @@
                                 <ul class="nav nav-pills">
                                     <li class="active"><a href="#temperatura1" data-toggle="pill">Cada 1 Hora</a></li>
                                     <li><a href="#temperatura2" data-toggle="pill">Cada 8 Horas</a></li>
-                                    <li><a href="#temperatura3" data-toggle="pill">Cada 1 Dia</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="temperatura1">
@@ -29,9 +28,6 @@
                                     </div>
                                     <div class="tab-pane" id="temperatura2">
                                         <div id="GraficoTemperatura8horas" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="tab-pane" id="temperatura3">
-                                        <p>I'm in Section 4.</p>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +39,6 @@
                                 <ul class="nav nav-pills">
                                     <li class="active"><a href="#presion1" data-toggle="pill">Cada 1 Hora</a></li>
                                     <li><a href="#presion2" data-toggle="pill">Cada 8 Horas</a></li>
-                                    <li><a href="#presion3" data-toggle="pill">Cada 1 Dia</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="presion1">
@@ -51,9 +46,6 @@
                                     </div>
                                     <div class="tab-pane" id="presion2">
                                         <div id="GraficoPresion8Horas" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="tab-pane" id="presion3">
-                                        <p>I'm in Section 4.</p>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +57,6 @@
                                 <ul class="nav nav-pills">
                                     <li class="active"><a href="#humedad1" data-toggle="pill">Cada 1 Hora</a></li>
                                     <li><a href="#humedad2" data-toggle="pill">Cada 8 Horas</a></li>
-                                    <li><a href="#humedad3" data-toggle="pill">Cada 1 Dia</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="humedad1">
@@ -73,9 +64,6 @@
                                     </div>
                                     <div class="tab-pane" id="humedad2">
                                         <div id="GraficoHumedad8horas" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="tab-pane" id="humedad3">
-                                        <p>I'm in Section 4.</p>
                                     </div>
                                 </div>
                             </div>

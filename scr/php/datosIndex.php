@@ -39,6 +39,91 @@ $result = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
 
 
 while($row = mysqli_fetch_array($result)) {
+    $dviento = $row["direcViento"];
+    $letra = "";
+    switch(true)
+    {
+        case (($dviento >= 349.5 && $dviento <= 360) || ($dviento >= 0 && $dviento <= 10.5)):
+        {
+            $letra= "N";
+            break;
+        }
+        case (($dviento >= 10.5) && $dviento <= 33.5):
+        {
+            $letra= "NNE";
+            break;
+        }
+        case (($dviento >= 33.5) && $dviento <= 55.5):
+        {
+            $letra= "NE";
+            break;
+        }
+        case (($dviento >= 55.5) && $dviento <= 78.5):
+        {
+            $letra= "ENE";
+            break;
+        }
+        case (($dviento >= 78.5) && $dviento <= 100.5):
+        {
+            $letra= "E";
+            break;
+        }
+        case (($dviento >= 100.5) && $dviento <= 123.5):
+        {
+            $letra= "ESE";
+            break;
+        }
+        case (($dviento >= 123.5) && $dviento <= 145.5):
+        {
+            $letra= "SE";
+            break;
+        }
+        case (($dviento >= 145.5) && $dviento <= 168.5):
+        {
+            $letra= "SSE";
+            break;
+        }
+        case (($dviento >= 168.5) && $dviento <= 190.5):
+        {
+            $letra= "S";
+            break;
+        }
+        case (($dviento >= 190.5) && $dviento <= 213.5):
+        {
+            $letra= "SSO";
+            break;
+        }
+        case (($dviento >= 213.5) && $dviento <= 235.5):
+        {
+            $letra= "SO";
+            break;
+        }
+        case (($dviento >= 235.5) && $dviento <= 258.5):
+        {
+            $letra= "OSO";
+            break;
+        }
+        case (($dviento >= 258.5) && $dviento <= 280.5):
+        {
+            $letra= "0";
+            break;
+        }
+        case (($dviento >= 280.5) && $dviento <= 303.5):
+        {
+            $letra= "ONO";
+            break;
+        }
+        case (($dviento >= 303.5) && $dviento <= 325.5):
+        {
+            $letra= "NO";
+            break;
+        }
+        case (($dviento >= 325.5) && $dviento <= 349.5):
+        {
+            $letra= "NNO";
+            break;
+        }
+    }
     echo "
 <div class='row'>
     <div class='cold-md-12'>
@@ -159,7 +244,7 @@ while($row = mysqli_fetch_array($result)) {
                                                             <td>Rafaga Viento</td>
                                                             <td>$row[vRafaga].$row[vRafagaDec] kts</td>
                                                             <td>Direccion del Viento</td>
-                                                            <td>$row[direcViento]</td>
+                                                            <td>$row[direcViento]° $letra</td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
