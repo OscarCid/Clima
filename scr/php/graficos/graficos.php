@@ -139,7 +139,7 @@
                 text: 'Humedad Interior - Humedad Exterior'
             },
             subtitle: {
-                text: 'Tendencia de las ultimos 7 Dias'
+                text: 'Tendencia de las ultimas 12 horas'
             },
             exporting: {
                 buttons: {
