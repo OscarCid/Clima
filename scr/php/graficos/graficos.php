@@ -304,7 +304,7 @@
                 text: 'Presion'
             },
             subtitle: {
-                text: 'Tendencia de las ultimas 12 horas'
+                text: 'Tendencia de las ultimos 7 Dias'
             },
             exporting: {
                 buttons: {
