@@ -7,7 +7,29 @@
  */
         include 'scr/php/graficos/consultas.php';
         $graficosYali = new graficos($porciones[2]);
-    ?>
+		
+		$pag=$porciones[2];
+
+		switch ($pag)
+                {
+				case 'yali':
+                $tituloViento = 'Estación Meteorológica El Yali'                               ;
+
+                break;
+                case 'campana':
+                $tituloViento = 'Estación Meteorológica La Campana'                                ;
+
+                break;
+                case 'peral':
+                $tituloViento = 'Estación Meteorológica El Peral'                                ;
+
+                break;
+
+                default:
+                return 'Error';
+				}
+?>
+   
 <!-- Grafico Temperatura 1 Hora -->
 <script type="text/javascript">
     var f = new Date();
@@ -451,3 +473,76 @@
         });
     });
 </script>
+<!--Grafico viento-->
+<script type="text/javascript">
+$(function () {
+setInterval(function () {
+        $('#GraficoViento').highcharts().reflow();
+    }, 10);
+    // Parse the data from an inline table using the Highcharts Data plugin
+    $('#GraficoViento').highcharts({
+        data: {
+            table: 'freq',
+            startRow: 1,
+            endRow: 17,
+            endColumn: 7
+        },
+
+        chart: {
+            polar: true,
+            type: 'column'
+        },
+
+        title: {
+            text: 'Rosa de los Vientos, <?php echo $tituloViento ?>'
+        },
+
+        subtitle: {
+            text: '<?php ?>'
+        },
+
+        pane: {
+            size: '85%'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 100,
+            layout: 'vertical'
+        },
+
+        xAxis: {
+            tickmarkPlacement: 'on'
+        },
+
+        yAxis: {
+            min: 0,
+            endOnTick: false,
+            showLastLabel: true,
+            title: {
+                text: 'Frequencia (%)'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value + '%';
+                }
+            },
+            reversedStacks: false
+        },
+
+        tooltip: {
+            valueSuffix: '%'
+        },
+
+        plotOptions: {
+            series: {
+                stacking: 'normal',
+                shadow: false,
+                groupPadding: 0,
+                pointPlacement: 'on'
+            }
+        }
+    });
+});
+		</script>

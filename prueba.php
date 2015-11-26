@@ -12,6 +12,7 @@
                     <li class="active"><a href="#temperatura" data-toggle="pill">Temperatura</a></li>
                     <li><a href="#presion" data-toggle="pill">Presión</a></li>
                     <li><a href="#humedad" data-toggle="pill">Humedad</a></li>
+                    <li><a href="#viento" data-toggle="pill">Dirección Viento</a></li>
                 </ul>
             </div>
                 <div class="tab-content">
@@ -69,6 +70,25 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="tab-pane" id="viento">
+                        <div class="span8">
+
+
+                                    <div class="tab-pane fade in active">
+
+
+										<?php include "scr/php/graficos/viento.php"; ?>
+
+
+                                    </div>
+                        </div>
+                    </div>
+
+
+                        </div>
+                    </div>
+
                 </div>
             <!-- </div> -->
             <script>

@@ -106,7 +106,7 @@ while($row = mysqli_fetch_array($result)) {
         }
         case (($dviento >= 258.5) && $dviento <= 280.5):
         {
-            $letra= "0";
+            $letra= "O";
             break;
         }
         case (($dviento >= 280.5) && $dviento <= 303.5):
@@ -152,13 +152,13 @@ while($row = mysqli_fetch_array($result)) {
                                                             </tr>
                                                             <tr>
                                                                 <td>Temperatura Exterior</td>
-                                                                <td>$row[temp].$row[tempDec] C</td>
+                                                                <td>$row[temp].$row[tempDec] °C</td>
                                                                 <td>Humedad Exterior</td>
                                                                 <td>$row[humedad] %</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Temperatura Interior</td>
-                                                                <td>$row[tempInterior].$row[tempInteriorDec] C</td>
+                                                                <td>$row[tempInterior].$row[tempInteriorDec] °C</td>
                                                                 <td>Humedad Interior</td>
                                                                 <td>$row[humInterior] %</td>
                                                             </tr>
@@ -189,7 +189,7 @@ while($row = mysqli_fetch_array($result)) {
                                                             <tbody>
                                                             <tr>
                                                                 <td>Precipitacion hoy</td>
-                                                                <td>?</td>
+                                                                <td>$row[precipHoy].$row[precipHoyDec] mm</td>
                                                                 <td>Ritmo</td>
                                                                 <td>$row[ritmoLLuvia].$row[ritmoLLuviaDec] mm/hr</td>
                                                             </tr>
@@ -197,7 +197,7 @@ while($row = mysqli_fetch_array($result)) {
                                                                 <td>Precipitacion este mes</td>
                                                                 <td>?</td>
                                                                 <td>Precipitaciones este año</td>
-                                                                <td>$precipAnio</td>
+                                                                <td>$precipAnio mm</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Precipitacion esta hora</td>
