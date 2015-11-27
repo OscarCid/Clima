@@ -6,13 +6,6 @@ if (!$con) {
 
 $pag=$porciones[2];
 
-$sql0="SELECT * FROM $pag ORDER BY ordenar DESC limit 1;";
-$result0 = mysqli_query($con,$sql0)or die("Error en: " . mysql_error());
-while($row = mysqli_fetch_array($result0)) {
-	$fecha = $row['fecha'];
-	list($dia, $mes, $anno) = split('[/:.-]', $fecha);
-}
-
 ?>
 	
 <script src="highcharts/js/highcharts.js"></script>
@@ -33,7 +26,7 @@ while($row = mysqli_fetch_array($result0)) {
             </tr>
 <?php
 //where fecha like
-$sql="SELECT * FROM $pag WHERE fecha LIKE '%$mes-$anno' ORDER BY ordenar DESC limit 1000";
+$sql="SELECT * FROM $pag ORDER BY ordenar DESC limit 4380";
 $result = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
 $result2 = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
 $result3 = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
@@ -236,7 +229,7 @@ while($row = mysqli_fetch_array($result14)) {
 }
 
 while($row = mysqli_fetch_array($result15)) {
-    $dviento15 = $row["direcViento"];
+    $dviento = $row["direcViento"];
 	$countNO=0;
     switch (true) {
         case (($dviento >= 303.5) && $dviento <= 325.5): {

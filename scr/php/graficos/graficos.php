@@ -498,7 +498,7 @@ setInterval(function () {
         },
 
         subtitle: {
-            text: 'Tendencia Actual Mes (%)'
+            text: 'Tendencia ultimos 15 días (%)'
         },
 
         pane: {
