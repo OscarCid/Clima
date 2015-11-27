@@ -6,12 +6,21 @@ if (!$con) {
 
 $pag=$porciones[2];
 
+$sql0="SELECT * FROM $pag ORDER BY ordenar DESC limit 1;";
+$result0 = mysqli_query($con,$sql0)or die("Error en: " . mysql_error());
+while($row = mysqli_fetch_array($result0)) {
+	$fecha = $row['fecha'];
+	list($dia, $mes, $anno) = split('[/:.-]', $fecha);
+}
+
 ?>
 	
 <script src="highcharts/js/highcharts.js"></script>
 <script src="highcharts/js/highcharts-more.js"></script>
 <script src="highcharts/js/modules/data.js"></script>
-<div id="GraficoViento" style="min-width: 420px; height: 400px; margin: 0 auto"></div>
+
+<div id="GraficoViento" style="min-width: 300px; height: 500px; margin: 0 auto">
+</div>
 
     <div style="display:none">
         <table id="freq" border="0" cellspacing="0" cellpadding="0">
@@ -20,10 +29,11 @@ $pag=$porciones[2];
             </tr>
             <tr nowrap bgcolor="#CCCCFF">
                 <th class="freq">Dirección</th>
-                <th class="freq">Total</th>
+                <th class="freq">Frecuencia (%)</th>
             </tr>
 <?php
-$sql="SELECT * FROM $pag ORDER BY ordenar DESC limit 100;";
+//where fecha like
+$sql="SELECT * FROM $pag WHERE fecha LIKE '%$mes-$anno' ORDER BY ordenar DESC limit 1000";
 $result = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
 $result2 = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
 $result3 = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
@@ -306,8 +316,8 @@ echo "	<tr nowrap>
 			<td class='data'>".porcentaje($total, $countSSE, 2)."</td>
 		</TR>
         <tr nowrap>
-            <td class='dir'>SE</td>
-			<td class='data'>".porcentaje($total, $countSE, 2)."</td>
+            <td class='dir'>S</td>
+			<td class='data'>".porcentaje($total, $countS, 2)."</td>
 		</TR>
         <tr nowrap bgcolor='#DDDDDD'>
             <td class='dir'>SSO</td>
@@ -338,7 +348,7 @@ echo "	<tr nowrap>
 			<td class='data'>".porcentaje($total, $countNNO, 2)."</td>
 		</tr>
 		<tr nowrap>
-            <td class='dir'>Total</td>
+            <td class='dir'>Frecuencia (%)</td>
 			<td class='data'>$total</td>
 		</TR>";
 		

@@ -4,7 +4,7 @@
 
 
 <div class='row'>
-    <div class='col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xs-12'>
+    <div class='col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xs-12 col-sm-12'>
         <div class="container">
             <!-- <div class="tabbable" role="tabpanel" data-example-id="togglable-tabs"> -->
             <div class="centered-pills" id="pill">

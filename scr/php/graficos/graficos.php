@@ -498,7 +498,7 @@ setInterval(function () {
         },
 
         subtitle: {
-            text: '<?php ?>'
+            text: 'Tendencia Actual Mes (%)'
         },
 
         pane: {
@@ -507,7 +507,7 @@ setInterval(function () {
 
         legend: {
             align: 'right',
-            verticalAlign: 'top',
+            verticalAlign: 'center',
             y: 100,
             layout: 'vertical'
         },
@@ -519,7 +519,7 @@ setInterval(function () {
         yAxis: {
             min: 0,
             endOnTick: false,
-            showLastLabel: true,
+            showLastLabel: false,
             title: {
                 text: 'Frequencia (%)'
             },
@@ -530,7 +530,14 @@ setInterval(function () {
             },
             reversedStacks: false
         },
-
+		
+		exporting: {
+                buttons: {
+                    contextButton: {
+                        symbol: 'url(scr/img/save.gif)'
+                }
+            }
+        },
         tooltip: {
             valueSuffix: '%'
         },
