@@ -5,7 +5,6 @@ class graficos
     private $user = "root";
     private $password = "";
     private $estacion = "";
-    private $grafico = "";
     private $coneccion = "";
 
     public function __construct($estacion)
@@ -189,4 +188,20 @@ class graficos
 
     }
 
+    public function json()
+    {
+        $consulta="SELECT * FROM $this->estacion ORDER BY ordenar DESC LIMIT 1";
+        $resultado = $this->coneccion -> query($consulta) or trigger_error($this->coneccion ->error);
+
+        while($row = $resultado -> fetch_array() )
+        {
+            $json_output[] = $row;
+        }
+        print(json_encode($json_output));
+    }
+
+    function __destruct()
+    {
+        mysqli_close($this->coneccion);
+    }
 }
