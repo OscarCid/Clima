@@ -1,7 +1,9 @@
 
 <?php include 'scr/php/graficos/graficos.php'; ?>
 
-
+<script src="highcharts/js/highcharts.js"></script>
+<script src="highcharts/js/highcharts-more.js"></script>
+<script src="highcharts/js/modules/data.js"></script>
 
 <div class='row'>
     <div class='col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xs-12 col-sm-12'>
@@ -78,7 +80,29 @@
                                     <div class="tab-pane fade in active">
 
 
-										<?php include "scr/php/graficos/viento.php"; ?>
+										
+
+										<div id="GraficoViento" style="min-width: 300px; height: 500px; margin: 0 auto">
+										</div>
+
+										<div style="display:none">
+											<table id="freq" border="0" cellspacing="0" cellpadding="0">
+												<tr nowrap bgcolor="#CCCCFF">
+													<th colspan="9" class="hdr">Tabla de Frecuencia (%)</th>
+												</tr>
+												<tr nowrap bgcolor="#CCCCFF">
+													<th class="freq">Dirección</th>
+													<th class="freq">Frecuencia (%)</th>
+												</tr>
+										<?php
+
+										$graficosYali->viento("intViento");
+										
+										?>
+
+											</table>
+										</div>
+
 
 
                                     </div>

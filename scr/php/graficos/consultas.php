@@ -187,6 +187,222 @@ class graficos
         }
 
     }
+	
+	public function viento($grafico)
+    {
+		$graficoDec=$grafico."Dec";
+		$sql="SELECT $grafico,$graficoDec,direcViento FROM $this->estacion WHERE hora LIKE '%00' ORDER BY ordenar DESC limit 360";
+		$resultado = $this->coneccion -> query($sql) or trigger_error($this->coneccion ->error);
+
+		$array1[]=0;
+		$array2[]=0;
+		$array3[]=0;
+		$array4[]=0;
+		$array5[]=0;
+		$array6[]=0;
+		$array7[]=0;
+		$array8[]=0;
+		$array9[]=0;
+		$array10[]=0;
+		$array11[]=0;
+		$array12[]=0;
+		$array13[]=0;
+		$array14[]=0;
+		$array15[]=0;
+		$array16[]=0;
+		
+		while($row = mysqli_fetch_array($resultado)) {
+			$dviento = $row["direcViento"];
+			switch (true) {
+				case (($dviento >= 349.5 && $dviento <= 360) || ($dviento >= 0 && $dviento <= 10.5)): {
+					$array1[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 10.5) && $dviento <= 33.5): {
+					$array2[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 33.5) && $dviento <= 55.5): {
+					$array3[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 55.5) && $dviento <= 78.5): {
+					$array4[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 78.5) && $dviento <= 100.5): {
+					$array5[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 100.5) && $dviento <= 123.5): {
+					$array6[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 123.5) && $dviento <= 145.5): {
+					$array7[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 145.5) && $dviento <= 168.5): {
+					$array8[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 168.5) && $dviento <= 190.5): {
+					$array9[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 190.5) && $dviento <= 213.5): {
+					$array10[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 213.5) && $dviento <= 235.5): {
+					$array11[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 235.5) && $dviento <= 258.5): {
+					$array12[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 258.5) && $dviento <= 280.5): {
+					$array13[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 280.5) && $dviento <= 303.5): {
+					$array14[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 303.5) && $dviento <= 325.5): {
+					$array15[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+			switch (true) {
+				case (($dviento >= 325.5) && $dviento <= 349.5): {
+					$array16[]=$row['intViento'].'.'.$row['intVientoDec'];
+					break;
+				}
+			}
+		}
+
+										function porcentaje($total, $parte, $redondear = 2) {
+											return round($parte / $total * 100, $redondear);
+										}
+										$countN=count($array1)-1;
+										$countNNE=count($array2)-1;
+										$countNE=count($array3)-1;
+										$countENE=count($array4)-1;
+										$countE=count($array5)-1;
+										$countESE=count($array6)-1;
+										$countSE=count($array7)-1;
+										$countSSE=count($array8)-1;
+										$countS=count($array9)-1;
+										$countSSO=count($array10)-1;
+										$countSO=count($array11)-1;
+										$countOSO=count($array12)-1;
+										$countO=count($array13)-1;
+										$countONO=count($array14)-1;
+										$countNO=count($array15)-1;
+										$countNNO=count($array16)-1;
+										$total = $countN + $countNE + $countNNE + $countE + $countENE + $countESE + $countNNO + $countNO + $countO + $countONO + $countOSO + $countS + $countSE + $countSO + $countSSE + $countSSO;
+
+										echo "	<tr nowrap>
+													<td class='dir'>N</td>
+													<td class='data'>".porcentaje($total, $countN, 2)."</td>
+												</TR>
+												<tr nowrap bgcolor='#DDDDDD'>
+													<td class='dir'>NNE</td>
+													<td class='data'>".porcentaje($total, $countNNE, 2)."</td>
+												</TR>
+												<tr nowrap>
+													<td class='dir'>NE</td>
+													<td class='data'>".porcentaje($total, $countNE, 2)."</td>
+												</TR>
+												<tr nowrap  bgcolor='#DDDDDD'>
+													<td class='dir'>ENE</td>
+													<td class='data'>".porcentaje($total, $countENE, 2)."</td>
+												</TR>
+												<tr nowrap>
+													<td class='dir'>E</td>
+													<td class='data'>".porcentaje($total, $countE, 2)."</td>
+												</TR>
+												<tr nowrap bgcolor='#DDDDDD'>
+													<td class='dir'>ESE</td>
+													<td class='data'>".porcentaje($total, $countESE, 2)."</td>
+												</TR>
+												<tr nowrap>
+													<td class='dir'>SE</td>
+													<td class='data'>".porcentaje($total, $countSE, 2)."</td>
+												</TR>
+												<tr nowrap bgcolor='#DDDDDD'>
+													<td class='dir'>SSE</td>
+													<td class='data'>".porcentaje($total, $countSSE, 2)."</td>
+												</TR>
+												<tr nowrap>
+													<td class='dir'>S</td>
+													<td class='data'>".porcentaje($total, $countS, 2)."</td>
+												</TR>
+												<tr nowrap bgcolor='#DDDDDD'>
+													<td class='dir'>SSO</td>
+													<td class='data'>".porcentaje($total, $countSSO, 2)."</td>
+												</TR>
+												<tr nowrap>
+													<td class='dir'>SO</td>
+													<td class='data'>".porcentaje($total, $countSO, 2)."</td>
+												</TR>
+												<tr nowrap bgcolor='#DDDDDD'>
+													<td class='dir'>OSO</td>
+													<td class='data'>".porcentaje($total, $countOSO, 2)."</td>
+												</TR>
+												<tr nowrap>
+													<td class='dir'>O</td>
+													<td class='data'>".porcentaje($total, $countO, 2)."</td>
+												</TR>
+												<tr nowrap bgcolor='#DDDDDD'>
+													<td class='dir'>ONO</td>
+													<td class='data'>".porcentaje($total, $countONO, 2)."</td>
+												</TR>
+												<tr nowrap>
+													<td class='dir'>NO</td>
+													<td class='data'>".porcentaje($total, $countNO, 2)."</td>
+												</TR>
+												<tr nowrap  bgcolor='#DDDDDD'>
+													<td class='dir'>NNO</td>
+													<td class='data'>".porcentaje($total, $countNNO, 2)."</td>
+												</tr>
+												<tr nowrap>
+													<td class='dir'>Frecuencia (%)</td>
+													<td class='data'>$total</td>
+												</TR>";
+												
+
+	}
 
     public function json()
     {
