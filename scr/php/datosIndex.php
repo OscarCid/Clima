@@ -11,7 +11,7 @@ if (!$con) {
 mysqli_select_db($con,"clima");
 //Consulta datos precipitaciones
 $sql2="SELECT * FROM $estacion WHERE precipHoy NOT LIKE 0 OR precipHoyDec NOT LIKE 0 ORDER BY ordenar DESC LIMIT 1";
-$result2 = mysqli_query($con,$sql2)or die("Error en: " . mysql_error());
+$result2 = mysqli_query($con,$sql2)or die("Error en: " . mysqli_error($con));
 
 while($row = mysqli_fetch_array($result2)) {
     $ultPrecipFecha = $row["fecha"];
@@ -21,13 +21,13 @@ while($row = mysqli_fetch_array($result2)) {
 $ano = date("y");
 
 $sql3="SELECT AVG( precipHoy ) AS promedio FROM $estacion WHERE fecha LIKE '%$ano'" ;
-$result3 = mysqli_query($con,$sql3)or die("Error en: " . mysql_error());
+$result3 = mysqli_query($con,$sql3)or die("Error en: " . mysqli_error($con));
 
 while($row = mysqli_fetch_array($result3)) {
     $promPrecip = $row["promedio"];
 }
 $sql4="SELECT AVG( precipHoyDec ) AS promedio FROM $estacion WHERE fecha LIKE '%$ano'" ;
-$result4 = mysqli_query($con,$sql4)or die("Error en: " . mysql_error());
+$result4 = mysqli_query($con,$sql4)or die("Error en: " .  mysqli_error($con));
 
 while($row = mysqli_fetch_array($result4)) {
     $promPrecipDec = $row["promedio"]/10;
@@ -36,7 +36,7 @@ $precipAnio = $promPrecip + $promPrecipDec;
 $precipAnio = number_format($precipAnio, 6, '.','');
 //Consulta ultimos datos
 $sql="SELECT * FROM $estacion ORDER BY ordenar DESC LIMIT 1;";
-$result = mysqli_query($con,$sql)or die("Error en: " . mysql_error());
+$result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
 
 
 while($row = mysqli_fetch_array($result)) {

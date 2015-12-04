@@ -55,7 +55,6 @@ class graficos
             }
             case "no":
             {
-                $graficoDec=$grafico."Dec";
                 if ($this->estacion == "campana") {
                     $primero = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:50' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
                     $segundo = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
@@ -400,8 +399,6 @@ class graficos
 													<td class='dir'>Frecuencia (%)</td>
 													<td class='data'>$total</td>
 												</TR>";
-												
-
 	}
 
     public function json()
