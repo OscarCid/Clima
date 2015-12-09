@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<?php include 'scr/conexion.php';?>
+<?php include 'scr/conexion.php';
+require_once("scr/php/login/myDBC.php");
+?>
 
 <head>
     <title>Meteorologia UPLA</title>
@@ -9,6 +11,8 @@
     <link rel="icon" type="image/png" href="favicon.ico">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+	<script src="bootstrap/js/jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>
@@ -44,19 +48,7 @@ include ("scr/php/menu.php");
 }
 </style>
 
-<div class="row" style="padding-bottom: 10px;">
-    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 " style=" padding-bottom: 7px; border-bottom: 1px solid ">
-        <div class="col-md-4 col-sm-4 col-xs-4">
-            <img src="scr/img/uplafi.png" class="img-responsive"/>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
-            <img src="scr/img/armada.png" class="img-responsive"/>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
-            <img src="scr/img/conaf.png" class="img-responsive"/>
-        </div>
-    </div>
-</div>
+<?php include "scr/php/banner2.php"?>
 <div class="col-md-10 col-md-offset-1">
 
     <div class="row">
@@ -137,7 +129,6 @@ include ("scr/php/menu.php");
 
 </div>
 <?php include ("scr/php/foot.php")?>
-<script src="bootstrap/js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 
