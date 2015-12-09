@@ -10,7 +10,17 @@ if (!$con) {
 
 mysqli_select_db($con,"clima");
 //Consulta datos precipitaciones
-$sql2="SELECT * FROM $estacion WHERE precipHoy NOT LIKE 0 OR precipHoyDec NOT LIKE 0 ORDER BY ordenar DESC LIMIT 1";
+
+$sql0="SELECT * FROM $estacion ORDER BY ordenar DESC LIMIT 1;";
+$result0 = mysqli_query($con,$sql0)or die("Error en: " .  mysqli_error($con));
+
+while($row = mysqli_fetch_array($result0)) {
+    $Fecha = $row["fecha"];
+	list( $dia, $mes, $ano ) = split( '[/.-]', $Fecha);
+	
+}
+
+$sql2="SELECT * FROM $estacion WHERE precHoy NOT LIKE '0.0' ORDER BY ordenar DESC LIMIT 1";
 $result2 = mysqli_query($con,$sql2)or die("Error en: " . mysqli_error($con));
 
 while($row = mysqli_fetch_array($result2)) {
@@ -18,26 +28,37 @@ while($row = mysqli_fetch_array($result2)) {
     $ultPrecipHora = $row["hora"];
 }
 
-$ano = date("y");
 
-$sql3="SELECT AVG( precipHoy ) AS promedio FROM $estacion WHERE fecha LIKE '%$ano'" ;
+$sql3="SELECT AVG( precHoy ) AS promedio FROM $estacion WHERE fecha LIKE '%$ano'" ;
 $result3 = mysqli_query($con,$sql3)or die("Error en: " . mysqli_error($con));
 
 while($row = mysqli_fetch_array($result3)) {
     $promPrecip = $row["promedio"];
 }
-$sql4="SELECT AVG( precipHoyDec ) AS promedio FROM $estacion WHERE fecha LIKE '%$ano'" ;
-$result4 = mysqli_query($con,$sql4)or die("Error en: " .  mysqli_error($con));
+
+$precipAnio = number_format($promPrecip, 6, '.','');
+
+$sql4="SELECT SUM(precHoy) AS precMensual FROM (SELECT DISTINCT(fecha), precHoy FROM yali WHERE fecha LIKE '%-$mes-%' AND precHoy NOT LIKE '0.0') AS tabla";
+$result4 = mysqli_query($con,$sql4)or die("Error en: " . mysqli_error($con));
 
 while($row = mysqli_fetch_array($result4)) {
-    $promPrecipDec = $row["promedio"]/10;
+    $precMes=$row['precMensual'];
 }
-$precipAnio = $promPrecip + $promPrecipDec;
-$precipAnio = number_format($precipAnio, 6, '.','');
+
+$sql5="SELECT * FROM $estacion WHERE fecha LIKE '$dia-$mes-%' AND precHoy NOT LIKE '0.0' ORDER BY ordenar DESC LIMIT 1";
+$result5 = mysqli_query($con,$sql5)or die("Error en: " . mysqli_error($con));
+$precDia="0.0";
+while($row = mysqli_fetch_array($result5)) {
+   
+		$precDia=$row['precHoy'];
+		
+	
+}
+
 //Consulta ultimos datos
+
 $sql="SELECT * FROM $estacion ORDER BY ordenar DESC LIMIT 1;";
 $result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
-
 
 while($row = mysqli_fetch_array($result)) {
     $dviento = $row["direcViento"];
@@ -152,13 +173,13 @@ while($row = mysqli_fetch_array($result)) {
                                                             </tr>
                                                             <tr>
                                                                 <td>Temperatura Exterior</td>
-                                                                <td>$row[temp].$row[tempDec] °C</td>
+                                                                <td>$row[temp] °C</td>
                                                                 <td>Humedad Exterior</td>
                                                                 <td>$row[humedad] %</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Temperatura Interior</td>
-                                                                <td>$row[tempInterior].$row[tempInteriorDec] °C</td>
+                                                                <td>$row[tempInterior] °C</td>
                                                                 <td>Humedad Interior</td>
                                                                 <td>$row[humInterior] %</td>
                                                             </tr>
@@ -189,19 +210,19 @@ while($row = mysqli_fetch_array($result)) {
                                                             <tbody>
                                                             <tr>
                                                                 <td>Precipitacion hoy</td>
-                                                                <td>$row[precipHoy].$row[precipHoyDec] mm</td>
+                                                                <td>$precDia mm</td>
                                                                 <td>Ritmo</td>
-                                                                <td>$row[ritmoLLuvia].$row[ritmoLLuviaDec] mm/hr</td>
+                                                                <td>$row[precActual] mm/hr</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Precipitacion este mes</td>
-                                                                <td>?</td>
+                                                                <td>$precMes mm</td>
                                                                 <td>Precipitaciones este año</td>
                                                                 <td>$precipAnio mm</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Precipitacion esta hora</td>
-                                                                <td>$row[precipHoy].$row[precipHoyDec] mm</td>
+                                                                <td>$row[precHoy] mm</td>
                                                                 <td>Ultima precipitacion</td>
                                                                 <td>$ultPrecipFecha $ultPrecipHora</td>
                                                             </tr>
@@ -237,15 +258,16 @@ while($row = mysqli_fetch_array($result)) {
                                                         <tbody>
                                                         <tr>
                                                             <td>Intencidad del Viento</td>
-                                                            <td>$row[intViento].$row[intVientoDec] kts</td>
-                                                            <td>Viento Base</td>
-                                                            <td>$row[vBase].$row[vBaseDec] kts</td>
+                                                            <td>$row[vPromedio] kts</td>
+                                                            <td>Rafaga Viento</td>
+                                                            <td>$row[vRafaga] kts</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Rafaga Viento</td>
-                                                            <td>$row[vRafaga].$row[vRafagaDec] kts</td>
+                                                            
                                                             <td>Direccion del Viento</td>
                                                             <td>$row[direcViento]° $letra</td>
+															<td></td>
+															<td></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -275,7 +297,7 @@ while($row = mysqli_fetch_array($result)) {
                                                         <tbody>
                                                         <tr>
                                                             <td>Presion</td>
-                                                            <td>$row[presion].$row[presionDec] hPa</td>
+                                                            <td>$row[presion] hPa</td>
                                                             <td>Radiacion Solar</td>
                                                             <td>$row[rSolar]</td>
                                                         </tr>

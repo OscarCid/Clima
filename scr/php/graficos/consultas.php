@@ -17,44 +17,9 @@ class graficos
         }
     }
 
-    public function unaHora($grafico, $decimal)
+    public function unaHora($grafico)
     {
-        switch ($decimal)
-        {
-            case "si":
-            {
-                $graficoDec=$grafico."Dec";
-                if ($this->estacion == "campana")
-                {
-                    $primero="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:50' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                    $segundo="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                    $tercero="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:10' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                }
-                else
-                {
-                    $primero = "SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:55' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                    $segundo = "SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                    $tercero = "SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '%:05' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                }
-                $resultado1 = $this->coneccion -> query($primero) or trigger_error($this->coneccion ->error);
-                $resultado2 = $this->coneccion -> query($segundo) or trigger_error($this->coneccion ->error);
-                $resultado3 = $this->coneccion -> query($tercero) or trigger_error($this->coneccion ->error);
-                while($fila1 = $resultado1 -> fetch_array() and $fila2 = $resultado2 -> fetch_array() and $fila3 = $resultado3 -> fetch_array())
-                {
-                    $hora = $fila2['hora'];
-                    $fecha = $fila2['fecha'];
-                    list($hora, $minuto) = split('[/:.-]', $hora);
-                    list($dia, $mes, $año) = split('[/:.-]', $fecha);
-                    $mes=$mes-1;
-                    $año="20".$año;
-                    $temperatura = (($fila1[$grafico].".".$fila1[$grafico."Dec"])+($fila2[$grafico].".".$fila2[$grafico."Dec"])+($fila3[$grafico].".".$fila3[$grafico."Dec"]))/3;
-                    $temperatura = number_format($temperatura, 2, '.', '');
-                    echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$temperatura."],";
-                }
-                break;
-            }
-            case "no":
-            {
+        
                 if ($this->estacion == "campana") {
                     $primero = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:50' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
                     $segundo = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
@@ -82,31 +47,13 @@ class graficos
                     $temperatura = number_format($temperatura, 2, '.', '');
                     echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$temperatura."],";
                 }
-                break;
-            }
-        }
+               
+        
     }
 
-    public function tresTomas($grafico, $decimal)
+    public function tresTomas($grafico)
     {
-        $graficoDec=$grafico."Dec";
-        switch ($decimal)
-        {
-            case "si":
-            {
-                $cero1="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '23:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $cero2="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '00:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $cero3="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '01:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $ocho1="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '07:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $ocho2="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '08:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $ocho3="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '09:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $cuatro1="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '15:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $cuatro2="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '16:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $cuatro3="SELECT * FROM (SELECT $grafico,$graficoDec,hora,fecha,ordenar FROM $this->estacion where hora like '17:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-            }
-            break;
-            case "no":
-            {
+        
                 $cero1="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '23:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
                 $cero2="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '00:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
                 $cero3="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '01:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
@@ -116,9 +63,7 @@ class graficos
                 $cuatro1="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '15:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
                 $cuatro2="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '16:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
                 $cuatro3="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '17:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-            }
-            break;
-        }
+
         $resultado1 = $this->coneccion -> query($cero1) or trigger_error($this->coneccion ->error);
         $resultado2 = $this->coneccion -> query($cero2) or trigger_error($this->coneccion ->error);
         $resultado3 = $this->coneccion -> query($cero3) or trigger_error($this->coneccion ->error);
@@ -137,14 +82,9 @@ class graficos
             list($dia1, $mes1, $año1) = split('[/:.-]', $fecha1);
             $mes1=$mes1-1;
             $año1="20".$año1;
-            if($decimal == "si")
-            {
-                $temperatura1 = (($fila1[$grafico] . "." . $fila1[$grafico . "Dec"]) + ($fila2[$grafico] . "." . $fila2[$grafico . "Dec"]) + ($fila3[$grafico] . "." . $fila3[$grafico . "Dec"])) / 3;
-            }
-            else
-            {
+            
                 $temperatura1 = (($fila1[$grafico])+($fila2[$grafico])+($fila3[$grafico]))/3;
-            }
+            
             $temperatura1 = number_format($temperatura1, 2, '.', '');
             /*segundo dato */
             $hora2 = $fila5['hora'];
@@ -153,14 +93,9 @@ class graficos
             list($dia2, $mes2, $año2) = split('[/:.-]', $fecha2);
             $mes2=$mes2-1;
             $año2="20".$año2;
-            if($decimal == "si")
-            {
-                $temperatura2 = (($fila4[$grafico].".".$fila4[$grafico."Dec"])+($fila5[$grafico].".".$fila5[$grafico."Dec"])+($fila6[$grafico].".".$fila6[$grafico."Dec"]))/3;
-            }
-            else
-            {
+
                 $temperatura2 = (($fila4[$grafico])+($fila5[$grafico])+($fila6[$grafico]))/3;
-            }
+            
             $temperatura2 = number_format($temperatura2, 2, '.', '');
             /*tercer dato */
             $hora3 = $fila8['hora'];
@@ -169,14 +104,9 @@ class graficos
             list($dia3, $mes3, $año3) = split('[/:.-]', $fecha3);
             $mes3=$mes3-1;
             $año3="20".$año3;
-            if($decimal == "si")
-            {
-                $temperatura3 = (($fila7[$grafico].".".$fila7[$grafico."Dec"])+($fila8[$grafico].".".$fila8[$grafico."Dec"])+($fila9[$grafico].".".$fila9[$grafico."Dec"]))/3;
-            }
-            else
-            {
+
                 $temperatura3 = (($fila7[$grafico])+($fila8[$grafico])+($fila9[$grafico]))/3;
-            }
+            
             $temperatura3 = number_format($temperatura3, 2, '.', '');
 
             echo "[Date.UTC(".$año1.", ".$mes1.", ".$dia1.", ".$hora1.", ".$minuto1."), ".$temperatura1."],";
@@ -187,10 +117,70 @@ class graficos
 
     }
 	
+	public function anualPrec($grafico)
+    {
+		$ene="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-01-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$feb="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-02-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$mar="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-03-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$abr="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-04-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$may="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-05-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$jun="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-06-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$jul="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-07-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$ago="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-08-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$sep="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-09-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$oct="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-10-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$nov="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-11-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$dic="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-12-%' AND $grafico NOT LIKE '0.0') AS tabla";
+	
+	    $resultado1 = $this->coneccion -> query($ene) or trigger_error($this->coneccion ->error);
+        $resultado2 = $this->coneccion -> query($feb) or trigger_error($this->coneccion ->error);
+        $resultado3 = $this->coneccion -> query($mar) or trigger_error($this->coneccion ->error);
+        $resultado4 = $this->coneccion -> query($abr) or trigger_error($this->coneccion ->error);
+        $resultado5 = $this->coneccion -> query($may) or trigger_error($this->coneccion ->error);
+        $resultado6 = $this->coneccion -> query($jun) or trigger_error($this->coneccion ->error);
+        $resultado7 = $this->coneccion -> query($jul) or trigger_error($this->coneccion ->error);
+        $resultado8 = $this->coneccion -> query($ago) or trigger_error($this->coneccion ->error);
+        $resultado9 = $this->coneccion -> query($sep) or trigger_error($this->coneccion ->error);
+		$resultado10 = $this->coneccion -> query($oct) or trigger_error($this->coneccion ->error);
+        $resultado11 = $this->coneccion -> query($nov) or trigger_error($this->coneccion ->error);
+        $resultado12 = $this->coneccion -> query($dic) or trigger_error($this->coneccion ->error);
+        
+			$datoEne = 0;
+			$datoFeb = 0;
+			$datoMar = 0;
+			$datoAbr = 0;
+			$datoMay = 0;
+			$datoJun = 0;
+			$datoJul = 0;
+			$datoAgo = 0;
+			$datoSep = 0;
+			$datoOct = 0;
+			$datoNov = 0;
+			$datoDic = 0;
+			
+		while($fila1 = $resultado1 -> fetch_array() and $fila2 = $resultado2 -> fetch_array() and $fila3 = $resultado3 -> fetch_array() and $fila4 = $resultado4 -> fetch_array() and $fila5 = $resultado5 -> fetch_array() and $fila6 = $resultado6 -> fetch_array() and $fila7 = $resultado7 -> fetch_array() and $fila8 = $resultado8 -> fetch_array() and $fila9 = $resultado9 -> fetch_array() and $fila10 = $resultado10 -> fetch_array() and $fila11 = $resultado11 -> fetch_array() and $fila12 = $resultado12 -> fetch_array())
+        {
+			$datoEne = $fila1['precMensual'];
+			$datoFeb = $fila2['precMensual'];			
+			$datoMar = $fila3['precMensual'];			
+			$datoAbr = $fila4['precMensual'];			
+			$datoMay = $fila5['precMensual'];			
+			$datoJun = $fila6['precMensual'];			
+			$datoJul = $fila7['precMensual'];			
+			$datoAgo = $fila8['precMensual'];			
+			$datoSep = $fila9['precMensual'];			
+			$datoNov = $fila10['precMensual'];			
+			$datoNov = $fila11['precMensual'];			
+			$datoDic = $fila12['precMensual'];
+		}
+		
+		echo $datoEne.", ".$datoFeb.", ".$datoMar.", ".$datoAbr.", ".$datoMay.", ".$datoJun.", ".$datoJul.", ".$datoAgo.", ".$datoSep.", ".$datoOct.", ".$datoNov.", ".$datoDic;
+	}
+	
 	public function viento($grafico)
     {
-		$graficoDec=$grafico."Dec";
-		$sql="SELECT $grafico,$graficoDec,direcViento FROM $this->estacion WHERE hora LIKE '%00' ORDER BY ordenar DESC limit 360";
+		
+		$sql="SELECT $grafico,direcViento FROM $this->estacion WHERE hora LIKE '%00' ORDER BY ordenar DESC limit 360";
 		$resultado = $this->coneccion -> query($sql) or trigger_error($this->coneccion ->error);
 
 		$array1[]=0;
@@ -214,97 +204,82 @@ class graficos
 			$dviento = $row["direcViento"];
 			switch (true) {
 				case (($dviento >= 349.5 && $dviento <= 360) || ($dviento >= 0 && $dviento <= 10.5)): {
-					$array1[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array1[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 10.5) && $dviento <= 33.5): {
-					$array2[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array2[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 33.5) && $dviento <= 55.5): {
-					$array3[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array3[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 55.5) && $dviento <= 78.5): {
-					$array4[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array4[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 78.5) && $dviento <= 100.5): {
-					$array5[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array5[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 100.5) && $dviento <= 123.5): {
-					$array6[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array6[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 123.5) && $dviento <= 145.5): {
-					$array7[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array7[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 145.5) && $dviento <= 168.5): {
-					$array8[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array8[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 168.5) && $dviento <= 190.5): {
-					$array9[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array9[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 190.5) && $dviento <= 213.5): {
-					$array10[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array10[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 213.5) && $dviento <= 235.5): {
-					$array11[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array11[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 235.5) && $dviento <= 258.5): {
-					$array12[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array12[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 258.5) && $dviento <= 280.5): {
-					$array13[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array13[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 280.5) && $dviento <= 303.5): {
-					$array14[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array14[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 303.5) && $dviento <= 325.5): {
-					$array15[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array15[]=$row['vPromedio'];
 					break;
 				}
-			}
-			switch (true) {
+			
 				case (($dviento >= 325.5) && $dviento <= 349.5): {
-					$array16[]=$row['intViento'].'.'.$row['intVientoDec'];
+					$array16[]=$row['vPromedio'];
 					break;
 				}
 			}

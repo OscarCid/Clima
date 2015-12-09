@@ -14,6 +14,8 @@
                     <li class="active"><a href="#temperatura" data-toggle="pill">Temperatura</a></li>
                     <li><a href="#presion" data-toggle="pill">Presión</a></li>
                     <li><a href="#humedad" data-toggle="pill">Humedad</a></li>
+					<li><a href="#radSolar" data-toggle="pill">Radiación Solar</a></li>
+					<li><a href="#prec" data-toggle="pill">Precipitación</a></li>
                     <li><a href="#viento" data-toggle="pill">Dirección Viento</a></li>
                 </ul>
             </div>
@@ -72,7 +74,37 @@
                             </div>
                         </div>
                     </div>
-
+					
+					<div class="tab-pane" id="radSolar">
+                        <div class="span8">
+                            <div class="tabbable">
+                                <ul class="nav nav-pills">
+                                    <li class="active"><a href="#radSolar1" data-toggle="pill">Cada 1 Hora</a></li>
+                                    <li><a href="#radSolar2" data-toggle="pill">Cada 8 Horas</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="radSolar1">
+                                        <div id="GraficoRadiacion" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                                    </div>
+                                    <div class="tab-pane" id="radSolar2">
+                                        <div id="GraficoRadiacion8horas" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					
+					<div class="tab-pane" id="prec">
+                        <div class="span8">
+                            
+                                    <div class="tab-pane fade in active" id="prec1">
+                                        <div id="GraficoPrecipitacion" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                                    </div>
+                                    
+                             
+                        </div>
+                    </div>
+					
                     <div class="tab-pane" id="viento">
                         <div class="span8">
 
@@ -96,7 +128,7 @@
 												</tr>
 										<?php
 
-										$graficosYali->viento("intViento");
+										$graficosYali->viento("vPromedio");
 										
 										?>
 
