@@ -29,7 +29,7 @@ $porciones = explode("/", $actual_link);
     $pag= $porciones[2];
     include ("scr/php/menu.php");
     include ("scr/php/banner.php");
-
+	include ("scr/php/alertaInc.php");
     ?>
 
     <!-- Div que muestra los datos de scr/php/datosIndex.php -->

@@ -19,16 +19,17 @@
 </head>
 <?php $actual_link = "$_SERVER[REQUEST_URI]";
 $porciones = explode("/", $actual_link);
+
 ?>
 <body onload="actualizarIndex('<?php echo $porciones[2]; ?>'); setInterval(actualizarIndex.bind(null,'<?php echo $porciones[2]; ?>'),60000)">
 
 <div class="container-fluid">
 
-    <?php
-    $pag= $porciones[2];
+    <?php 
+	$pag= $porciones[2];	
     include ("scr/php/menu.php");
     include ("scr/php/banner.php");
-
+	include ("scr/php/alertaInc.php");
     ?>
 
     <!-- Div que muestra los datos de scr/php/datosIndex.php -->

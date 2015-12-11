@@ -61,7 +61,12 @@ $sql="SELECT * FROM $estacion ORDER BY ordenar DESC LIMIT 1;";
 $result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
 
 while($row = mysqli_fetch_array($result)) {
-    $dviento = $row["direcViento"];
+    if($row['temp']>='30' && $row['humedad']<='30' && $row['vPromedio']>='16.2'){
+	echo '<script type="text/javascript">
+				alert("¡¡¡Alerta!!! Existe la posibilidad de incendio (30/30/30)");
+		</script>';
+	}
+	$dviento = $row["direcViento"];
     $letra = "";
     switch(true)
     {
