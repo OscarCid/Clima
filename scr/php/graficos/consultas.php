@@ -21,15 +21,15 @@ class graficos
     {
         
                 if ($this->estacion == "campana") {
-                    $primero = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:50' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                    $segundo = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                    $tercero = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:10' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                    $primero = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:50:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+                    $segundo = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:00:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+                    $tercero = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:10:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
                 }
                 else{
-                    $primero = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:55' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                    $segundo = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:00' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                    $tercero = "SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:05' ORDER BY ordenar DESC LIMIT 12) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                }
+					$primero = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:55:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+					$segundo = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:00:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+					$tercero = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:05:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+				}
 
 
                 $resultado1 = $this->coneccion -> query($primero) or trigger_error($this->coneccion ->error);
@@ -39,10 +39,9 @@ class graficos
                 {
                     $hora = $fila2['hora'];
                     $fecha = $fila2['fecha'];
-                    list($hora, $minuto) = split('[/:.-]', $hora);
-                    list($dia, $mes, $año) = split('[/:.-]', $fecha);
+                    list($hora, $minuto, $segundos) = split('[/:.-]', $hora);
+                    list($año, $mes, $dia) = split('[/:.-]', $fecha);
                     $mes=$mes-1;
-                    $año="20".$año;
                     $temperatura = (($fila1[$grafico])+($fila2[$grafico])+($fila3[$grafico]))/3;
                     $temperatura = number_format($temperatura, 2, '.', '');
                     echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$temperatura."],";
@@ -54,15 +53,15 @@ class graficos
     public function tresTomas($grafico)
     {
         
-                $cero1="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '23:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $cero2="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '00:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $cero3="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '01:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $ocho1="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '07:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $ocho2="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '08:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $ocho3="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '09:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $cuatro1="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '15:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $cuatro2="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '16:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
-                $cuatro3="SELECT * FROM (SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '17:00' ORDER BY ordenar DESC LIMIT 7) AS TempTable ORDER BY TempTable.ordenar ASC;";
+                $cero1="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '23:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $cero2="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '00:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $cero3="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '01:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $ocho1="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '07:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $ocho2="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '08:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $ocho3="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '09:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $cuatro1="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '15:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $cuatro2="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '16:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $cuatro3="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '17:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
 
         $resultado1 = $this->coneccion -> query($cero1) or trigger_error($this->coneccion ->error);
         $resultado2 = $this->coneccion -> query($cero2) or trigger_error($this->coneccion ->error);
@@ -79,9 +78,8 @@ class graficos
             $hora1 = $fila2['hora'];
             $fecha1 = $fila2['fecha'];
             list($hora1, $minuto1) = split('[/:.-]', $hora1);
-            list($dia1, $mes1, $año1) = split('[/:.-]', $fecha1);
+            list($año1, $mes1, $dia1) = split('[/:.-]', $fecha1);
             $mes1=$mes1-1;
-            $año1="20".$año1;
             
                 $temperatura1 = (($fila1[$grafico])+($fila2[$grafico])+($fila3[$grafico]))/3;
             
@@ -90,9 +88,8 @@ class graficos
             $hora2 = $fila5['hora'];
             $fecha2 = $fila5['fecha'];
             list($hora2, $minuto2) = split('[/:.-]', $hora2);
-            list($dia2, $mes2, $año2) = split('[/:.-]', $fecha2);
+            list($año2, $mes2, $dia2) = split('[/:.-]', $fecha2);
             $mes2=$mes2-1;
-            $año2="20".$año2;
 
                 $temperatura2 = (($fila4[$grafico])+($fila5[$grafico])+($fila6[$grafico]))/3;
             
@@ -101,17 +98,16 @@ class graficos
             $hora3 = $fila8['hora'];
             $fecha3 = $fila8['fecha'];
             list($hora3, $minuto3) = split('[/:.-]', $hora3);
-            list($dia3, $mes3, $año3) = split('[/:.-]', $fecha3);
+            list($año3, $mes3, $dia3) = split('[/:.-]', $fecha3);
             $mes3=$mes3-1;
-            $año3="20".$año3;
 
                 $temperatura3 = (($fila7[$grafico])+($fila8[$grafico])+($fila9[$grafico]))/3;
             
             $temperatura3 = number_format($temperatura3, 2, '.', '');
 
-            echo "[Date.UTC(".$año1.", ".$mes1.", ".$dia1.", ".$hora1.", ".$minuto1."), ".$temperatura1."],";
-            echo "[Date.UTC(".$año2.", ".$mes2.", ".$dia2.", ".$hora2.", ".$minuto2."), ".$temperatura2."],";
             echo "[Date.UTC(".$año3.", ".$mes3.", ".$dia3.", ".$hora3.", ".$minuto3."), ".$temperatura3."],";
+			echo "[Date.UTC(".$año2.", ".$mes2.", ".$dia2.", ".$hora2.", ".$minuto2."), ".$temperatura2."],";
+			echo "[Date.UTC(".$año1.", ".$mes1.", ".$dia1.", ".$hora1.", ".$minuto1."), ".$temperatura1."],";
 
         }
 

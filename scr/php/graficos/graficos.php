@@ -71,6 +71,17 @@
                 min: 0
             },
 
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        "" +
+                        '<b>' + this.series.name +'</b><br/>' +
+                        'Valor: '+ this.y +' °C'+'</b><br/>' +
+                        'Fecha: '+ Highcharts.dateFormat('%e-%b-%Y', this.x)+'</b><br/>' +
+                        'Hora: '+ Highcharts.dateFormat('%I:%M %p', this.x);
+                }
+            },
+
             series: [{
                 name: 'Temperatura Exterior',
                 data: [
@@ -129,7 +140,16 @@
                 },
                 min: 0
             },
-
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        "" +
+                        '<b>' + this.series.name +'</b><br/>' +
+                        'Valor: '+ this.y +' °C'+'</b><br/>' +
+                        'Fecha: '+ Highcharts.dateFormat('%e-%b-%Y', this.x)+'</b><br/>' +
+                        'Hora: '+ Highcharts.dateFormat('%I:%M %p', this.x);
+                }
+            },
             series: [{
                 name: 'Temperatura Exterior',
                 data: [
@@ -189,7 +209,16 @@
                 },
                 min: 0
             },
-
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        "" +
+                        '<b>' + this.series.name +'</b><br/>' +
+                        'Valor: '+ this.y +' %'+'</b><br/>' +
+                        'Fecha: '+ Highcharts.dateFormat('%e-%b-%Y', this.x)+'</b><br/>' +
+                        'Hora: '+ Highcharts.dateFormat('%I:%M %p', this.x);
+                }
+            },
             series: [{
                 name: 'Humedad Exterior',
                 data: [
@@ -247,7 +276,16 @@
                 },
                 min: 0
             },
-
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        "" +
+                        '<b>' + this.series.name +'</b><br/>' +
+                        'Valor: '+ this.y +' %'+'</b><br/>' +
+                        'Fecha: '+ Highcharts.dateFormat('%e-%b-%Y', this.x)+'</b><br/>' +
+                        'Hora: '+ Highcharts.dateFormat('%I:%M %p', this.x);
+                }
+            },
             series: [{
                 name: 'Humedad Exterior',
                 data: [
@@ -304,7 +342,16 @@
                     text: 'Presion (hPa)'
                 }
             },
-
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        "" +
+                        '<b>' + this.series.name +'</b><br/>' +
+                        'Valor: '+ this.y +' hPa'+'</b><br/>' +
+                        'Fecha: '+ Highcharts.dateFormat('%e-%b-%Y', this.x)+'</b><br/>' +
+                        'Hora: '+ Highcharts.dateFormat('%I:%M %p', this.x);
+                }
+            },
             series: [{
                 name: 'Presion',
                 data: [
@@ -353,7 +400,16 @@
                     text: 'Presion (hPa)'
                 }
             },
-
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        "" +
+                        '<b>' + this.series.name +'</b><br/>' +
+                        'Valor: '+ this.y +' hPa'+'</b><br/>' +
+                        'Fecha: '+ Highcharts.dateFormat('%e-%b-%Y', this.x)+'</b><br/>' +
+                        'Hora: '+ Highcharts.dateFormat('%I:%M %p', this.x);
+                }
+            },
             series: [{
                 name: 'Presion',
                 data: [
@@ -460,6 +516,16 @@
                         }
                     }
                 }]
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        "" +
+                        '<b>' + this.series.name +'</b><br/>' +
+                        'Valor: '+ this.y +' W/m^2'+'</b><br/>' +
+                        'Fecha: '+ Highcharts.dateFormat('%e-%b-%Y', this.x)+'</b><br/>' +
+                        'Hora: '+ Highcharts.dateFormat('%I:%M %p', this.x);
+                }
             },
             series: [{
                 name: 'Radiacion',
@@ -572,6 +638,16 @@
                         }
                     }
                 }]
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        "" +
+                        '<b>' + this.series.name +'</b><br/>' +
+                        'Valor: '+ this.y +' W/m^2'+'</b><br/>' +
+                        'Fecha: '+ Highcharts.dateFormat('%e-%b-%Y', this.x)+'</b><br/>' +
+                        'Hora: '+ Highcharts.dateFormat('%I:%M %p', this.x);
+                }
             },
             series: [{
                 name: 'Radiacion',
