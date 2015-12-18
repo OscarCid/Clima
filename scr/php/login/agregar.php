@@ -9,13 +9,12 @@ $apellidos = trim($_POST['apellidos']);
 $correo = trim($_POST['correo']);
 $pass = trim($_POST['pass']);
 $repass = trim($_POST['repass']);
-$rut = $_POST['rut2'];
 $patron1 = ("/^[a-z]+$/i"); //Expresión regular para solo caracteres
 
 //Validamos todos los campos con OR, si al menos hay uno que no cumpla la condición
 //El if se anula y mostramos un error y redirigimos al registro
 //filter_var es una expresión regular nativa de PHP
-if( $nombre == '' || preg_match(!$patron1, $nombre) || $apellidos == '' || $rut == '' || preg_match(!$patron1, $apellidos) || $correo == '' || !filter_var($correo, FILTER_VALIDATE_EMAIL) || ($pass != $repass) || $pass == "" || $repass == "" ){
+if( $nombre == '' || preg_match(!$patron1, $nombre) || $apellidos == ''  || preg_match(!$patron1, $apellidos) || $correo == '' || !filter_var($correo, FILTER_VALIDATE_EMAIL) || ($pass != $repass) || $pass == "" || $repass == "" ){
 		echo'<script type="text/javascript">
 			 alert("Error: Datos invalidos en el formulario");
 			 window.location="./../../registro.php"
@@ -29,7 +28,7 @@ if( $nombre == '' || preg_match(!$patron1, $nombre) || $apellidos == '' || $rut 
 	else{
 		$mydb = new myDBC();
 		$pass_oculto = crypt($pass, '_er#.lop');
-		$mydb->agregaUsuario($nombre, $apellidos, $correo, $pass_oculto, $rut);	
+		$mydb->agregaUsuario($nombre, $apellidos, $correo, $pass_oculto);	
 	}
 ?>
 

@@ -45,11 +45,11 @@ require_once("scr/php/login/myDBC.php");
                     <div class=" control col-md-12">        
                         <form id="loginform" class="form-horizontal" action="scr/php/login/login.php" role="form" method="post" >
                         
-
+						
 						<div class="form-group has-feedback">    
 								<div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="rut1" type="text" class="form-control" pattern="[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9Kk]{1}" name="rut" autofocus="" required="" value="" placeholder="rut">   
+                                    <input type="email" class="form-control" name="correo" id="correo" placeholder="Correo o Email" required="" autofocus="" value="" >   
 								</div>
 									<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 									<span class="help-block with-errors"></span>
@@ -100,7 +100,7 @@ require_once("scr/php/login/myDBC.php");
                         <div class="panel-body" >
                             <form id="signupform" class="form-horizontal" action="scr/php/login/agregar.php" role="form" method="post">
                                 
-                            <div class="form-group has-feedback">                                        
+<!--                            <div class="form-group has-feedback">                                        
                                     <label for="rut2" class="col-md-3 control-label">Rut</label>
                                     <div class="col-md-8">
                                         <input type="text" name="rut2" id="rut2" pattern="[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9Kk]{1}" class="form-control" placeholder="11.111.111-1" required="" >
@@ -110,7 +110,7 @@ require_once("scr/php/login/myDBC.php");
 								
 								<span class="help-block with-errors"></span>
 								</div>
-							</div>
+							</div>							-->
 							<div class="form-group has-feedback">		                                
                                     <label for="nombre" class="col-md-3 control-label">Nombre(s)</label>
                                     <div class="col-md-8">

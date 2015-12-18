@@ -45,7 +45,7 @@ class myDBC {
 		//El password obtenido se le aplica el crypt
 		//Posteriormente se compara en el query
 		$pass_c = crypt($contrasenia, '_er#.lop');
-		$q = "select * from usuarios where rut='$usuario' and password='$pass_c'";
+		$q = "select * from usuarios where correo='$usuario' and password='$pass_c'";
 		
 		$result = $this->mysqli->query($q);
 		//Si el resultado obtenido no tiene nada 
@@ -71,7 +71,7 @@ class myDBC {
 		
 	}
 	
-	public function agregaUsuario($nombre, $apellidos, $mail, $contras, $rut){
+	public function agregaUsuario($nombre, $apellidos, $mail, $contras){
 		
 		//Selecciona el correo ingresado para validarlo, en la variable valida
 		//está el resultado de la consulta
@@ -84,16 +84,16 @@ class myDBC {
 		if($valida->num_rows > 0)
 		{
 			  echo'<script type="text/javascript">
-				alert("Error al registrar! - Rut Duplicado");
+				alert("Error al registrar! - Correo Duplicado");
 				window.location=""
 				</script>';
 		}
-		//Sino hubo rut repetido
+		
 		else
 		{
 			//Inserta en la BD 
 			$sup=0;
-			$q = "INSERT INTO usuarios (nombre, apellidos, correo, password, rut, sup) VALUES ('$nombre','$apellidos', '$mail', '$contras', '$rut', '$sup' ); ";
+			$q = "INSERT INTO usuarios (nombre, apellidos, correo, password, sup) VALUES ('$nombre','$apellidos', '$mail', '$contras', '$sup' ); ";
 		
 			$result = $this->mysqli->query($q);
 			if($result){ //Si resultado es true, se agregó correctamente

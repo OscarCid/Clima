@@ -125,7 +125,7 @@ echo'	<li style="padding-left:15px"><p class="navbar-text">Ya estas registrado?<
 								 <form class="form" role="form" method="post" action="scr/php/login/login.php" accept-charset="UTF-8" id="login-nav">
 										<div class="form-group">
 											 <label class="sr-only" >usuario</label>
-											 <input id="rut" type="text" class="form-control" pattern="[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9Kk]{1}" name="rut" autofocus="" required="" value="" placeholder="rut">
+											 <input type="email" class="form-control" name="correo" id="correo" placeholder="correo o Email" required="" autofocus="" value="" > 
 										</div>
 										<div class="form-group">
 											 <label class="sr-only">contraseña</label>

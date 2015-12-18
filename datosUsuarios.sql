@@ -27,14 +27,14 @@ CREATE TABLE `usuarios` (
   `correo` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `rut` varchar(255) NOT NULL,
-  `sup` decimal(1,0) NOT NULL,
+  `sup` int(1) NOT NULL,
   PRIMARY KEY (`id`,`rut`,`sup`),
-  UNIQUE KEY `rut` (`rut`)
+  UNIQUE KEY `rut` (`rut`,`correo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usuarios` */
 
-insert  into `usuarios`(`id`,`nombre`,`apellidos`,`correo`,`password`,`rut`,`sup`) values (1,'Michel','Lira','michel.lira8@gmail.com','*0','17.972.601-7','0'),(2,'Mónica','Castillo','monica.castillo@alumnos.upla.cl','*0','18.064.583-7','0'),(3,'Gloria','Donoso','e.tupido2@gmail.com','*0','8.183.000-2','0');
+insert  into `usuarios`(`id`,`nombre`,`apellidos`,`correo`,`password`,`rut`,`sup`) values (1,'Michel','Lira','michel.lira8@gmail.com','*0','17.972.601-7',0),(2,'Mónica','Castillo','monica.castillo@alumnos.upla.cl','*0','18.064.583-7',0),(3,'Gloria','Donoso','e.tupido2@gmail.com','*0','8.183.000-2',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
