@@ -5,7 +5,6 @@
  * Date: 22/11/2015
  * Time: 21:41
  */
-		$porciones = array(0,1,'campana');
         include 'scr/php/graficos/consultas.php';
         $graficosYali = new graficos($porciones[2]);
 		

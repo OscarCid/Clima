@@ -21,14 +21,14 @@ class graficos
     {
         
                 if ($this->estacion == "campana") {
-                    $primero = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:50:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
-                    $segundo = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:00:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
-                    $tercero = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:10:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+                    $primero = "SELECT $grafico,hora,fecha FROM $this->estacion where hora like '%:50:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+                    $segundo = "SELECT $grafico,hora,fecha FROM $this->estacion where hora like '%:00:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+                    $tercero = "SELECT $grafico,hora,fecha FROM $this->estacion where hora like '%:10:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
                 }
                 else{
-					$primero = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:55:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
-					$segundo = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:00:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
-					$tercero = "SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '%:05:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+					$primero = "SELECT $grafico,hora,fecha FROM $this->estacion where hora like '%:55:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+					$segundo = "SELECT $grafico,hora,fecha FROM $this->estacion where hora like '%:00:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+					$tercero = "SELECT $grafico,hora,fecha FROM $this->estacion where hora like '%:05:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
 				}
 
 
@@ -53,15 +53,15 @@ class graficos
     public function tresTomas($grafico)
     {
         
-                $cero1="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '23:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
-                $cero2="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '00:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
-                $cero3="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '01:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
-                $ocho1="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '07:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
-                $ocho2="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '08:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
-                $ocho3="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '09:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
-                $cuatro1="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '15:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
-                $cuatro2="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '16:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
-                $cuatro3="SELECT $grafico,hora,fecha,ordenar FROM $this->estacion where hora like '17:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $cero1="SELECT $grafico,hora,fecha FROM $this->estacion where hora like '23:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $cero2="SELECT $grafico,hora,fecha FROM $this->estacion where hora like '00:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $cero3="SELECT $grafico,hora,fecha FROM $this->estacion where hora like '01:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $ocho1="SELECT $grafico,hora,fecha FROM $this->estacion where hora like '07:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $ocho2="SELECT $grafico,hora,fecha FROM $this->estacion where hora like '08:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $ocho3="SELECT $grafico,hora,fecha FROM $this->estacion where hora like '09:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $cuatro1="SELECT $grafico,hora,fecha FROM $this->estacion where hora like '15:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $cuatro2="SELECT $grafico,hora,fecha FROM $this->estacion where hora like '16:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
+                $cuatro3="SELECT $grafico,hora,fecha FROM $this->estacion where hora like '17:00:00' ORDER BY fecha DESC, hora DESC LIMIT 7;";
 
         $resultado1 = $this->coneccion -> query($cero1) or trigger_error($this->coneccion ->error);
         $resultado2 = $this->coneccion -> query($cero2) or trigger_error($this->coneccion ->error);

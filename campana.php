@@ -39,24 +39,28 @@ $porciones = explode("/", $actual_link);
         <div class="col-md-12 col-xs-12" style="padding-bottom: 10px">
             <center>
 
-                <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
+        <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
 
-                <a href="#div1" class='MO'>
-                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
-                </a>
+		<a href="#div3" class='MO'>
+            <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Otro</button>
+        </a>
+		
+        <a href="#div1" class='MO'>
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
+        </a>
 
             </center>
 
         </div>
 
-        <div class="alert alert-success collapse col-md-10 col-md-offset-1 col-xs-12" id="success-alert">
-            <strong>Espere! </strong>
-            Estamos actualizando la informacion para usted.
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                </div>
+    <div class="alert alert-success collapse col-md-10 col-md-offset-1 col-xs-12" id="success-alert">
+        <strong>Espere! </strong>
+        Estamos actualizando la informacion para usted.
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
             </div>
         </div>
+    </div>
         <div id="txtHint">
         </div>
 
@@ -65,17 +69,41 @@ $porciones = explode("/", $actual_link);
     <div id="div1" class="oculto">
 
         <div class="col-md-12 col-xs-12" style="padding-bottom: 10px">
-            <center>
-                <a href="#div2" class='MO'>
-                    <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
-                </a>
+        <center>
+            <a href="#div2" class='MO'>
+            <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
+            </a>
+			
+			<a href="#div3" class='MO'>
+            <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Otro</button>
+            </a>
+			
+            <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
+        </center>
 
-                <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
-            </center>
+        </div>
+		<?php include "prueba.php"?>
+        
+    </div>
+	
+	<div id="div3" class="oculto">
+
+        <div class="col-md-12 col-xs-12" style="padding-bottom: 10px">
+        <center>
+            <a href="#div2" class='MO'>
+            <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
+            </a>
+					
+            <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Otro</button>
+            
+			<a href="#div1" class='MO'>
+            <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
+			</a>
+		</center>
 
         </div>
 
-        <?php include "prueba.php"?>
+        
     </div>
 
     <script src="highcharts/js/highcharts.js"></script>
