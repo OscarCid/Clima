@@ -176,7 +176,7 @@ class graficos
 	public function viento($grafico)
     {
 		
-		$sql="SELECT $grafico,direcViento FROM $this->estacion WHERE hora LIKE '%00' ORDER BY ordenar DESC limit 360";
+		$sql="SELECT $grafico,direcViento FROM $this->estacion WHERE hora LIKE '%00:00' ORDER BY fecha DESC, hora DESC limit 360";
 		$resultado = $this->coneccion -> query($sql) or trigger_error($this->coneccion ->error);
 
 		$array1[]=0;
@@ -374,7 +374,7 @@ class graficos
 
     public function json()
     {
-        $consulta="SELECT * FROM $this->estacion ORDER BY ordenar DESC LIMIT 1";
+        $consulta="SELECT * FROM $this->estacion ORDER BY fecha DESC, hora DESC LIMIT 1";
         $resultado = $this->coneccion -> query($consulta) or trigger_error($this->coneccion ->error);
 
         while($row = $resultado -> fetch_array() )

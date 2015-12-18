@@ -11,25 +11,29 @@ if (!$con) {
 mysqli_select_db($con,"clima");
 //Consulta datos precipitaciones
 
-$sql0="SELECT * FROM $estacion ORDER BY ordenar DESC LIMIT 1;";
+$sql0="SELECT * FROM $estacion ORDER BY fecha DESC, hora DESC LIMIT 1;";
 $result0 = mysqli_query($con,$sql0)or die("Error en: " .  mysqli_error($con));
 
 while($row = mysqli_fetch_array($result0)) {
     $Fecha = $row["fecha"];
-	list( $dia, $mes, $ano ) = split( '[/.-]', $Fecha);
+	list( $ano, $mes, $dia  ) = split( '[/.-]', $Fecha);
 	
 }
 
-$sql2="SELECT * FROM $estacion WHERE precHoy NOT LIKE '0.0' ORDER BY ordenar DESC LIMIT 1";
-$result2 = mysqli_query($con,$sql2)or die("Error en: " . mysqli_error($con));
+$sql2="SELECT * FROM $estacion WHERE precHoy NOT LIKE '0.0' ORDER BY fecha DESC, hora DESC LIMIT 1";
+$result2 = mysqli_query($con,$sql2)or die();
+    $ultPrecipFecha = "--";
+    $ultPrecipHora = "--";
 
 while($row = mysqli_fetch_array($result2)) {
-    $ultPrecipFecha = $row["fecha"];
-    $ultPrecipHora = $row["hora"];
+		
+    $ultPrecipFecha = date("d-m-Y", strtotime($row['fecha']));
+    $ultPrecipHora = date("H:i", strtotime($row['hora']));
+
 }
 
 
-$sql3="SELECT AVG( precHoy ) AS promedio FROM $estacion WHERE fecha LIKE '%$ano'" ;
+$sql3="SELECT AVG( precHoy ) AS promedio FROM $estacion WHERE fecha LIKE '$ano%'" ;
 $result3 = mysqli_query($con,$sql3)or die("Error en: " . mysqli_error($con));
 
 while($row = mysqli_fetch_array($result3)) {
@@ -41,11 +45,12 @@ $precipAnio = number_format($promPrecip, 6, '.','');
 $sql4="SELECT SUM(precHoy) AS precMensual FROM (SELECT DISTINCT(fecha), precHoy FROM yali WHERE fecha LIKE '%-$mes-%' AND precHoy NOT LIKE '0.0') AS tabla";
 $result4 = mysqli_query($con,$sql4)or die("Error en: " . mysqli_error($con));
 
+$precMes= "0";
 while($row = mysqli_fetch_array($result4)) {
     $precMes=$row['precMensual'];
 }
 
-$sql5="SELECT * FROM $estacion WHERE fecha LIKE '$dia-$mes-%' AND precHoy NOT LIKE '0.0' ORDER BY ordenar DESC LIMIT 1";
+$sql5="SELECT * FROM $estacion WHERE fecha LIKE '%-$mes-$dia' AND precHoy NOT LIKE '0.0' ORDER BY fecha DESC, hora DESC LIMIT 1";
 $result5 = mysqli_query($con,$sql5)or die("Error en: " . mysqli_error($con));
 $precDia="0.0";
 while($row = mysqli_fetch_array($result5)) {
@@ -57,11 +62,11 @@ while($row = mysqli_fetch_array($result5)) {
 
 //Consulta ultimos datos
 
-$sql="SELECT * FROM $estacion ORDER BY ordenar DESC LIMIT 1;";
+$sql="SELECT * FROM $estacion ORDER BY fecha DESC, hora DESC LIMIT 1;";
 $result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
 
 while($row = mysqli_fetch_array($result)) {
-    if($row['temp']>='30' && $row['humedad']<='30' && $row['vPromedio']>='16.2'){
+    if($row['temp']>='30' && $row['humedad']<='30' && $row['vPromedio']>='16,2'){
 	echo '<script type="text/javascript">
 				alert("¡¡¡Alerta!!! Existe la posibilidad de incendio (30/30/30)");
 		</script>';
@@ -153,9 +158,9 @@ while($row = mysqli_fetch_array($result)) {
     }
     echo "
 <div class='row'>
-    <div class='cold-md-12'>
+    <div class='col-md-10 col-md-offset-1'>
     <!-- Primer Panel Temperatura-->
-            <div class='col-md-5 col-md-offset-1 col-xs-12'>
+            <div class='col-md-6 col-xs-12'>
                                             <div class='panel panel-primary'>
                                                 <div class='panel-heading'>
                                                     <h3 class='panel-title'>Temperatura y Humedad</h3>
@@ -165,32 +170,35 @@ while($row = mysqli_fetch_array($result)) {
                                                 <div class='col-md-12'>
                                                     <div class='bs-example' data-example-id='bordered-table'>
                                                         <table class='table table-bordered table-condensed table-responsive'>
-                                                            <thead>
-                                                            <tr>
-                                                            </tr>
-                                                            </thead>
+                                                
                                                             <tbody>
                                                             <tr>
-                                                                <td>Fecha</td>
-                                                                <td>$row[fecha]</td>
-                                                                <td>Hora</td>
-                                                                <td>$row[hora]</td>
+                                                                <td width='50%'><strong>Fecha</strong></td>
+                                                                <td>".date("d-m-Y", strtotime($row['fecha']))."</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Temperatura Exterior</td>
+																<td><strong>Hora</strong></td>
+                                                                <td>".date("H:i", strtotime($row['hora']))."</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Temperatura Exterior</strong></td>
                                                                 <td>$row[temp] °C</td>
-                                                                <td>Humedad Exterior</td>
+                                                            </tr>
+                                                            <tr>
+																<td><strong>Humedad Exterior</strong></td>
                                                                 <td>$row[humedad] %</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Temperatura Interior</td>
+                                                                <td><strong>Temperatura Interior</strong></td>
                                                                 <td>$row[tempInterior] °C</td>
-                                                                <td>Humedad Interior</td>
+                                                            </tr>
+                                                            <tr>
+																<td><strong>Humedad Interior</strong></td>
                                                                 <td>$row[humInterior] %</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
-                                                    </div>
+                                                  
                                                     </div>
                                                 </div>
                                                 </div>
@@ -198,7 +206,7 @@ while($row = mysqli_fetch_array($result)) {
                                             </div>
             </div>
     <!-- Panel Precipitaciones-->
-            <div class='col-md-5 col-xs-12'>
+            <div class='col-md-6 col-xs-12'>
                                             <div class='panel panel-primary'>
                                                 <div class='panel-heading'>
                                                     <h3 class='panel-title'>Precipitacion</h3>
@@ -208,27 +216,30 @@ while($row = mysqli_fetch_array($result)) {
                                                 <div class='col-md-12'>
                                                     <div class='bs-example' data-example-id='bordered-table'>
                                                         <table class='table table-bordered table-condensed table-responsive'>
-                                                            <thead>
-                                                            <tr>
-                                                            </tr>
-                                                            </thead>
+
                                                             <tbody>
                                                             <tr>
-                                                                <td>Precipitacion hoy</td>
+                                                                <td width='50%'><strong>Precipitacion hoy</strong></td>
                                                                 <td>$precDia mm</td>
-                                                                <td>Ritmo</td>
+                                                            </tr>
+                                                            <tr>
+																<td><strong>Ritmo</strong></td>
                                                                 <td>$row[precActual] mm/hr</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Precipitacion este mes</td>
+                                                                <td><strong>Precipitacion este mes</strong></td>
                                                                 <td>$precMes mm</td>
-                                                                <td>Precipitaciones este año</td>
+                                                            </tr>
+                                                            <tr>
+																<td><strong>Precipitaciones este año</strong></td>
                                                                 <td>$precipAnio mm</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Precipitacion esta hora</td>
+                                                                <td><strong>Precipitacion esta hora</strong></td>
                                                                 <td>$row[precHoy] mm</td>
-                                                                <td>Ultima precipitacion</td>
+                                                            </tr>
+                                                            <tr>
+																<td><strong>Ultima precipitacion</strong></td>
                                                                 <td>$ultPrecipFecha $ultPrecipHora</td>
                                                             </tr>
                                                             </tbody>
@@ -244,9 +255,9 @@ while($row = mysqli_fetch_array($result)) {
 </div>
 
 <div class='row'>
-    <div class='cold-md-12'>
+    <div class='col-md-10 col-md-offset-1'>
 <!-- Panel Viento-->
-        <div class='col-md-5 col-md-offset-1 col-xs-12'>
+        <div class='col-md-6 col-xs-12'>
                                         <div class='panel panel-primary'>
                                             <div class='panel-heading'>
                                                 <h3 class='panel-title'>Viento y Fuerza</h3>
@@ -256,23 +267,21 @@ while($row = mysqli_fetch_array($result)) {
                                             <div class='col-md-12'>
                                                 <div class='bs-example' data-example-id='bordered-table'>
                                                     <table class='table table-bordered table-condensed table-responsive'>
-                                                        <thead>
-                                                        <tr>
-                                                        </tr>
-                                                        </thead>
+                                                        
                                                         <tbody>
                                                         <tr>
-                                                            <td>Intencidad del Viento</td>
+                                                            <td width='50%'><strong>Intencidad del Viento</strong></td>
                                                             <td>$row[vPromedio] kts</td>
-                                                            <td>Rafaga Viento</td>
+                                                        </tr>
+                                                        <tr>
+															<td><strong>Rafaga Viento</strong></td>
                                                             <td>$row[vRafaga] kts</td>
                                                         </tr>
                                                         <tr>
                                                             
-                                                            <td>Direccion del Viento</td>
+                                                            <td><strong>Direccion del Viento</strong></td>
                                                             <td>$row[direcViento]° $letra</td>
-															<td></td>
-															<td></td>
+														
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -280,31 +289,30 @@ while($row = mysqli_fetch_array($result)) {
                                             </div>
                                             </div>
                                             </div>
-                                    </div>
-                                </div>
+										</div>
+                                
         </div>
 <!-- Panel Presion-->
-        <div class='col-md-5 col-xs-12'>
-                            <!-- Panel Presion-->
+        <div class='col-md-6 col-xs-12'>
+                           
                                         <div class='panel panel-primary'>
                                             <div class='panel-heading'>
-                                                <h3 class='panel-title'>Presion atmosferica y tendencia</h3>
+                                                <h3 class='panel-title'>Presión atmosferica y tendencia</h3>
                                             </div>
                                             <div class='panel-body'>
                                             <div class='row'>
                                             <div class='col-md-12'>
                                                 <div class='bs-example' data-example-id='bordered-table'>
                                                     <table class='table table-bordered table-condensed table-responsive'>
-                                                        <thead>
-                                                        <tr>
-                                                        </tr>
-                                                        </thead>
+                                                        
                                                         <tbody>
                                                         <tr>
-                                                            <td>Presion</td>
+                                                            <td width='50%'><strong>Presion</strong></td>
                                                             <td>$row[presion] hPa</td>
-                                                            <td>Radiacion Solar</td>
-                                                            <td>$row[rSolar]</td>
+                                                        </tr>
+														<tr>
+															<td><strong>Radiación Solar</strong></td>
+                                                            <td>$row[rSolar] W/m²</td>
                                                         </tr>
 
                                                         </tbody>

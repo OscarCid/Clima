@@ -51,7 +51,7 @@ include ("scr/php/menu.php");
 <?php include "scr/php/banner2.php"?>
 <div class="col-md-10 col-md-offset-1">
 
-    <div class="row">
+    <div class="row" style="padding-top:10px">
         <p class="text-justify">La Facultad de Ingeniería en colaboración con la Dirección de Meteorología de la Armada de Chile y la Corporación Nacional Forestal (CONAF) se encuentra habilitando estaciones meteorológicas Davis en diferentes áreas protegidas de la Región de Valparaíso. En una primera fase se habilitaron El Parque Nacional La Campana y Santuario de la Naturaleza Laguna el Peral. Próximamente se espera agregar La Reserva Nacional El Yali y La Reserva Nacional Lago Peñuelas, finalmente se espera agregar un equipo en las propias dependencias de la Facultad de Ingeniería. Los datos instantáneos son publicados en línea en los enlaces que se presentan a continuación y aquellos investigadores que requieran las series de tiempo pueden solicitarlas a nuestra Facultad.</p>
         <br>
     </div>
@@ -67,10 +67,10 @@ include ("scr/php/menu.php");
                     <p class="text-center">
                         <?php
                         $dbname="clima";
-                        $query="SELECT * FROM yali ORDER BY ordenar DESC LIMIT 1 ";
+                        $query="SELECT * FROM yali ORDER BY fecha DESC, hora DESC LIMIT 1 ";
                         $result=mysql_db_query ($dbname, $query, $link);
                         while ($row = mysql_fetch_array ($result)) {
-                            echo "<strong>Fecha:</strong> ".$row['fecha']. " <strong>Hora: </strong>  ".$row['hora']."<br><strong>Temperatura:</strong> ".$row['temp']."°C";
+                                echo "<strong>Fecha:</strong> ".date("d-m-Y", strtotime($row['fecha']))." <strong>Hora: </strong>  ".date("H:i", strtotime($row['hora']))."<br><strong>Temperatura:</strong> ".$row['temp']."°C";
                         }
                         ?>
                     </p>
@@ -89,10 +89,10 @@ include ("scr/php/menu.php");
                         <p class="text-center">
                             <?php
                             $dbname="clima";
-                            $query="SELECT * FROM campana ORDER BY ordenar DESC LIMIT 1 ";
+                            $query="SELECT * FROM campana ORDER BY fecha DESC, hora DESC LIMIT 1 ";
                             $result=mysql_db_query ($dbname, $query, $link);
                             while ($row = mysql_fetch_array ($result)) {
-                                echo "<strong>Fecha:</strong> ".$row['fecha']. " <strong>Hora: </strong>  ".$row['hora']."<br><strong>Temperatura:</strong> ".$row['temp']."°C";
+                                echo "<strong>Fecha:</strong> ".date("d-m-Y", strtotime($row['fecha']))." <strong>Hora: </strong>  ".date("H:i", strtotime($row['hora']))."<br><strong>Temperatura:</strong> ".$row['temp']."°C";
                             }
                             ?>
                         </p>
@@ -111,10 +111,10 @@ include ("scr/php/menu.php");
                             <p class="text-center">
                                 <?php
                                 $dbname="clima";
-                                $query="SELECT * FROM peral ORDER BY ordenar DESC LIMIT 1 ";
+                                $query="SELECT * FROM peral ORDER BY fecha DESC, hora DESC LIMIT 1 ";
                                 $result=mysql_db_query ($dbname, $query, $link);
                                 while ($row = mysql_fetch_array ($result)) {
-                                    echo "<strong>Fecha:</strong> ".$row['fecha']. " <strong>Hora: </strong>  ".$row['hora']."<br><strong>Temperatura:</strong> ".$row['temp']."°C";
+                                echo "<strong>Fecha:</strong> ".date("d-m-Y", strtotime($row['fecha']))." <strong>Hora: </strong>  ".date("H:i", strtotime($row['hora']))."<br><strong>Temperatura:</strong> ".$row['temp']."°C";
                                 }
                                 ?>
                             </p>

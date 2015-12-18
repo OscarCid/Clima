@@ -23,7 +23,7 @@
                 return 'Error';
 				}
 	
-	$sql="SELECT * FROM $pag ORDER BY ordenar DESC LIMIT 1";
+	$sql="SELECT * FROM $pag ORDER BY fecha DESC, hora DESC LIMIT 1";
 	$result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
 	while($row = mysqli_fetch_array($result)) {
 		

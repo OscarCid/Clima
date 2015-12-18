@@ -10,7 +10,7 @@
         <div class="container">
             <!-- <div class="tabbable" role="tabpanel" data-example-id="togglable-tabs"> -->
             <div class="centered-pills" id="pill">
-                <ul class="nav nav-pills navbar-inner" id="prueba">
+                <ul class="nav nav-tabs navbar-inner" id="prueba">
                     <li class="active"><a href="#temperatura" data-toggle="pill">Temperatura</a></li>
                     <li><a href="#presion" data-toggle="pill">Presión</a></li>
                     <li><a href="#humedad" data-toggle="pill">Humedad</a></li>

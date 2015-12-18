@@ -41,6 +41,10 @@ $porciones = explode("/", $actual_link);
 
         <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
 
+		<a href="#div3" class='MO'>
+            <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Otro</button>
+        </a>
+		
         <a href="#div1" class='MO'>
             <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
         </a>
@@ -69,14 +73,20 @@ $porciones = explode("/", $actual_link);
             <a href="#div2" class='MO'>
             <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
             </a>
-
+			
+			<a href="#div3" class='MO'>
+            <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Otro</button>
+            </a>
+			
             <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
         </center>
 
         </div>
 
-        <?php include "prueba.php"?>
+        
     </div>
+	
+	
 
     <script src="highcharts/js/highcharts.js"></script>
     <script src="highcharts/js/modules/exporting.js"></script>
