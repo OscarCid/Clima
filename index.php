@@ -67,7 +67,7 @@ include ("scr/php/menu.php");
                     <p class="text-center">
                         <?php
                         $dbname="clima";
-                        $query="SELECT * FROM yali ORDER BY fecha DESC, hora DESC LIMIT 1 ";
+                        $query="SELECT * FROM estacion WHERE estacion = 'yali' ORDER BY fecha DESC, hora DESC LIMIT 1 ";
                         $result=mysql_db_query ($dbname, $query, $link);
                         while ($row = mysql_fetch_array ($result)) {
                                 echo "<strong>Fecha:</strong> ".date("d-m-Y", strtotime($row['fecha']))." <strong>Hora: </strong>  ".date("H:i", strtotime($row['hora']))."<br><strong>Temperatura:</strong> ".$row['temp']."°C";
@@ -89,7 +89,7 @@ include ("scr/php/menu.php");
                         <p class="text-center">
                             <?php
                             $dbname="clima";
-                            $query="SELECT * FROM campana ORDER BY fecha DESC, hora DESC LIMIT 1 ";
+                            $query="SELECT * FROM estacion WHERE estacion = 'campana' ORDER BY fecha DESC, hora DESC LIMIT 1 ";
                             $result=mysql_db_query ($dbname, $query, $link);
                             while ($row = mysql_fetch_array ($result)) {
                                 echo "<strong>Fecha:</strong> ".date("d-m-Y", strtotime($row['fecha']))." <strong>Hora: </strong>  ".date("H:i", strtotime($row['hora']))."<br><strong>Temperatura:</strong> ".$row['temp']."°C";
@@ -111,7 +111,7 @@ include ("scr/php/menu.php");
                             <p class="text-center">
                                 <?php
                                 $dbname="clima";
-                                $query="SELECT * FROM peral ORDER BY fecha DESC, hora DESC LIMIT 1 ";
+                                $query="SELECT * FROM estacion WHERE estacion = 'peral' ORDER BY fecha DESC, hora DESC LIMIT 1 ";
                                 $result=mysql_db_query ($dbname, $query, $link);
                                 while ($row = mysql_fetch_array ($result)) {
                                 echo "<strong>Fecha:</strong> ".date("d-m-Y", strtotime($row['fecha']))." <strong>Hora: </strong>  ".date("H:i", strtotime($row['hora']))."<br><strong>Temperatura:</strong> ".$row['temp']."°C";

@@ -11,7 +11,7 @@ if (!$con) {
 mysqli_select_db($con,"clima");
 //Consulta datos precipitaciones
 
-$sql0="SELECT * FROM $estacion ORDER BY fecha DESC, hora DESC LIMIT 1;";
+$sql0="SELECT * FROM estacion WHERE estacion = '".$estacion."'  ORDER BY fecha DESC, hora DESC LIMIT 1;";
 $result0 = mysqli_query($con,$sql0)or die("Error en: " .  mysqli_error($con));
 
 while($row = mysqli_fetch_array($result0)) {
@@ -20,7 +20,7 @@ while($row = mysqli_fetch_array($result0)) {
 	
 }
 
-$sql2="SELECT * FROM $estacion WHERE precHoy NOT LIKE '0.0' ORDER BY fecha DESC, hora DESC LIMIT 1";
+$sql2="SELECT * FROM estacion WHERE estacion = '".$estacion."' AND precHoy NOT LIKE '0.0' ORDER BY fecha DESC, hora DESC LIMIT 1";
 $result2 = mysqli_query($con,$sql2)or die();
     $ultPrecipFecha = "--";
     $ultPrecipHora = "--";
@@ -33,7 +33,7 @@ while($row = mysqli_fetch_array($result2)) {
 }
 
 
-$sql3="SELECT AVG( precHoy ) AS promedio FROM $estacion WHERE fecha LIKE '$ano%'" ;
+$sql3="SELECT AVG( precHoy ) AS promedio FROM estacion WHERE estacion = '".$estacion."' AND fecha LIKE '$ano%'" ;
 $result3 = mysqli_query($con,$sql3)or die("Error en: " . mysqli_error($con));
 
 while($row = mysqli_fetch_array($result3)) {
@@ -42,7 +42,7 @@ while($row = mysqli_fetch_array($result3)) {
 
 $precipAnio = number_format($promPrecip, 6, '.','');
 
-$sql4="SELECT SUM(precHoy) AS precMensual FROM (SELECT DISTINCT(fecha), precHoy FROM yali WHERE fecha LIKE '%-$mes-%' AND precHoy NOT LIKE '0.0') AS tabla";
+$sql4="SELECT SUM(precHoy) AS precMensual FROM (SELECT DISTINCT(fecha), precHoy FROM estacion WHERE estacion = '".$estacion."' AND fecha LIKE '$ano-$mes-%' AND precHoy NOT LIKE '0.0') AS tabla";
 $result4 = mysqli_query($con,$sql4)or die("Error en: " . mysqli_error($con));
 
 $precMes= "0";
@@ -50,7 +50,7 @@ while($row = mysqli_fetch_array($result4)) {
     $precMes=$row['precMensual'];
 }
 
-$sql5="SELECT * FROM $estacion WHERE fecha LIKE '%-$mes-$dia' AND precHoy NOT LIKE '0.0' ORDER BY fecha DESC, hora DESC LIMIT 1";
+$sql5="SELECT * FROM estacion WHERE estacion = '".$estacion."' AND fecha LIKE '$ano-$mes-$dia' AND precHoy NOT LIKE '0.0' ORDER BY fecha DESC, hora DESC LIMIT 1";
 $result5 = mysqli_query($con,$sql5)or die("Error en: " . mysqli_error($con));
 $precDia="0.0";
 while($row = mysqli_fetch_array($result5)) {
@@ -62,7 +62,7 @@ while($row = mysqli_fetch_array($result5)) {
 
 //Consulta ultimos datos
 
-$sql="SELECT * FROM $estacion ORDER BY fecha DESC, hora DESC LIMIT 1;";
+$sql="SELECT * FROM estacion WHERE estacion = '".$estacion."' ORDER BY fecha DESC, hora DESC LIMIT 1;";
 $result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
 
 while($row = mysqli_fetch_array($result)) {

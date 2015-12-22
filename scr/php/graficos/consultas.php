@@ -115,18 +115,18 @@ class graficos
 	
 	public function anualPrec($grafico)
     {
-		$ene="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-01-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$feb="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-02-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$mar="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-03-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$abr="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-04-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$may="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-05-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$jun="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-06-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$jul="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-07-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$ago="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-08-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$sep="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-09-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$oct="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-10-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$nov="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-11-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$dic="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM $this->estacion WHERE fecha LIKE '%-12-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$ene="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-01-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$feb="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-02-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$mar="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-03-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$abr="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-04-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$may="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-05-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$jun="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-06-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$jul="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-07-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$ago="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-08-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$sep="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-09-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$oct="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-10-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$nov="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-11-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$dic="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-12-%' AND $grafico NOT LIKE '0.0') AS tabla";
 	
 	    $resultado1 = $this->coneccion -> query($ene) or trigger_error($this->coneccion ->error);
         $resultado2 = $this->coneccion -> query($feb) or trigger_error($this->coneccion ->error);
@@ -176,7 +176,7 @@ class graficos
 	public function viento($grafico)
     {
 		
-		$sql="SELECT $grafico,direcViento FROM $this->estacion WHERE hora LIKE '%00:00' ORDER BY fecha DESC, hora DESC limit 360";
+		$sql="SELECT $grafico,direcViento FROM estacion WHERE estacion = '".$this->estacion."' AND hora LIKE '%00:00' ORDER BY fecha DESC, hora DESC limit 360";
 		$resultado = $this->coneccion -> query($sql) or trigger_error($this->coneccion ->error);
 
 		$array1[]=0;
@@ -371,10 +371,12 @@ class graficos
 													<td class='data'>$total</td>
 												</TR>";
 	}
-
+	
+	
+	
     public function json()
     {
-        $consulta="SELECT * FROM $this->estacion ORDER BY fecha DESC, hora DESC LIMIT 1";
+        $consulta="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' ORDER BY fecha DESC, hora DESC LIMIT 1";
         $resultado = $this->coneccion -> query($consulta) or trigger_error($this->coneccion ->error);
 
         while($row = $resultado -> fetch_array() )

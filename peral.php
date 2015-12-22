@@ -82,7 +82,7 @@ $porciones = explode("/", $actual_link);
         </center>
 
         </div>
-		<?php include "prueba.php"?>
+		<?php include "scr/php/prueba.php"?>
         
     </div>
 	
