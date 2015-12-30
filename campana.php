@@ -102,7 +102,7 @@ $porciones = explode("/", $actual_link);
 		</center>
 
         </div>
-
+		<?php include "scr/php/datosMD.php"?>
         
     </div>
 
