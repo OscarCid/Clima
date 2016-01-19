@@ -18,7 +18,7 @@ $datoVDVientoA->datoDom('dVientoActual',$datoA->ano,$datoA->mes,$datoA->dia);
  
    echo "
 <div class='row' style='padding-top:10px'>
-    <div class='col-md-12'>
+    
     <!-- Primer Panel Temperatura-->
             <div class='col-md-12 col-xs-12'>
                                             <div class='panel panel-primary'>
@@ -207,7 +207,7 @@ $datoVDVientoA->datoDom('dVientoActual',$datoA->ano,$datoA->mes,$datoA->dia);
                                             </div>
             </div>
  
-    </div>
+   
 </div>
 
 ";
