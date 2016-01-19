@@ -159,6 +159,13 @@ while($row = mysqli_fetch_array($result)) {
     echo "
 <div class='row'>
     <div class='col-md-10 col-md-offset-1'>
+	
+        <div class='col-md-12 col-xs-12'>
+		
+		<strong><h4>Condiciones para el dia ".date("d-m-Y", strtotime($row['fecha']))." a las ".date("H:i", strtotime($row['hora']))."</h4></strong>
+		
+		</div>
+	
     <!-- Primer Panel Temperatura-->
             <div class='col-md-6 col-xs-12'>
                                             <div class='panel panel-primary'>
