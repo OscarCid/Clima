@@ -44,7 +44,11 @@ class myDBC {
 	public function logueo($usuario, $contrasenia){
 		//El password obtenido se le aplica el crypt
 		//Posteriormente se compara en el query
-		$pass_c = crypt($contrasenia, '_er#.lop');
+		$options = [
+			'cost' => 7,
+			'salt' => 'BCryptRequires22Chrcts',
+		];
+		$pass_c = password_hash($contrasenia, PASSWORD_BCRYPT, $options);
 		$q = "select * from usuarios where correo='$usuario' and password='$pass_c'";
 		
 		$result = $this->mysqli->query($q);
@@ -65,6 +69,7 @@ class myDBC {
 		else{
 			$reg = mysqli_fetch_assoc($result);
 			$_SESSION["session"][] = $reg["id"];
+			$_SESSION["id"] = $reg["id"];
 			$_SESSION["username"]=$reg["nombre"].' '.$reg["apellidos"];
 			header("location:./../../../index");
 		}
@@ -139,6 +144,59 @@ class myDBC {
 				
 			}
 		}
+	}
+	
+	public function actualizarUsuario($nombre, $apellidos, $mail, $contras){
+		
+		
+			//Inserta en la BD 
+			$sup=0;
+			$q = "UPDATE usuarios SET nombre = '$nombre', apellidos = '$apellidos', password = '$contras', sup = '$sup' WHERE correo = '$mail'; ";
+		
+			$result = $this->mysqli->query($q);
+			if($result){ //Si resultado es true, se agregó correctamente
+					echo'<script type="text/javascript">
+						alert("Agregado Exitosamente");
+						window.location="./../../../index"
+						</script>';
+						 
+						/*$destinatario = $mail; 
+						$asunto = "Comprovación del correo - Meteorología UPLA"; 
+						$cuerpo = ' 
+						<html> 
+						<head> 
+						   <title>Comprovación del correo</title> 
+						</head> 
+						<body> 
+						<h1>Hola,</h1> 
+						<p> 
+						<b>Bienvenido '.$nombre.' '.$apellidos.' a la página de Estaciones Meteorológica de la Universidad de Playa Ancha</b>. Gracias por registrarse a la página, este correo es para verificar si este es real. 
+						</p> 
+						</body> 
+						</html> 
+						'; 
+
+						//para el envío en formato HTML 
+						$headers = "MIME-Version: 1.0\r\n"; 
+						$headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+
+						//dirección del remitente 
+						$headers .= "From: Michel Lira <michel.lira8@gmail.com>\r\n"; 
+
+						//dirección de respuesta, si queremos que sea distinta que la del remitente 
+						$headers .= "Reply-To: michel.lira8@gmail.com\r\n"; 
+
+						mail($destinatario,$asunto,$cuerpo,$headers); */
+
+			}
+			else{ //Si hubo error al insertar, se avisa
+				echo'<script type="text/javascript">
+					 alert("Algo fallo");
+					 window.location="./../../../registro"
+					 </script>';
+				
+			}
+		
 	}
 }
 	

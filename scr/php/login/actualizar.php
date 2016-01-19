@@ -17,7 +17,7 @@ $patron1 = ("/^[a-z]+$/i"); //Expresión regular para solo caracteres
 if( $nombre == '' || preg_match(!$patron1, $nombre) || $apellidos == ''  || preg_match(!$patron1, $apellidos) || $correo == '' || !filter_var($correo, FILTER_VALIDATE_EMAIL) || ($pass != $repass) || $pass == "" || $repass == "" ){
 		echo'<script type="text/javascript">
 			 alert("Error: Datos invalidos en el formulario");
-			 window.location="./../../registro.php"
+			 window.location="../../../registro.php"
 			 </script>';
 		
 	}
@@ -31,21 +31,8 @@ if( $nombre == '' || preg_match(!$patron1, $nombre) || $apellidos == ''  || preg
 			'cost' => 7,
 			'salt' => 'BCryptRequires22Chrcts',
 		];
-
 		$pass_oculto = password_hash($pass, PASSWORD_BCRYPT, $options);
-		$mydb->agregaUsuario($nombre, $apellidos, $correo, $pass_oculto);	
+		$mydb->actualizarUsuario($nombre, $apellidos, $correo, $pass_oculto);	
 	}
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-	<title>SERVIDOR</title>
-</head>
-
-<body bgcolor="blue">
-	
-</body>
-
-</html>

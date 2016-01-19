@@ -2,6 +2,8 @@
 <html>
 <?php
 require_once("scr/php/login/myDBC.php");
+if(!isset($_SESSION['session']))
+{
 ?>
 
 <head>
@@ -182,7 +184,11 @@ require_once("scr/php/login/myDBC.php");
 
 
 	</div>
-	<?php include ("scr/php/foot.php")?>
+	<?php include ("scr/php/foot.php");
+	}else
+		echo'<script type="text/javascript">
+		window.location="http://localhost/Clima/index"
+		</script>';?>
 	
 </body>
 

@@ -109,7 +109,7 @@
 	if(isset($_SESSION['session']))
 		{
 			
-		echo '<li style="padding-left:15px; padding-right:15px"><p class="navbar-text"><strong>Bienvenido </strong>'.$_SESSION['username'].'</p></li>
+		echo '<li style="padding-left:15px; padding-right:15px"><p class="navbar-text"><strong>Bienvenido </strong><a href = "opciones">'.$_SESSION['username'].'</a></p></li>
 		<li style="padding-right:15px"><p class="navbar-text"><strong><a href="scr/php/login/salir.php">Logout</a></strong></p></li>';
 		}else{	
 

@@ -10,7 +10,9 @@ if (!$con) {
 
 mysqli_select_db($con,"clima");
 //Consulta datos precipitaciones
-
+$ano='';
+$mes='';
+$dia='';
 $sql0="SELECT * FROM estacion WHERE estacion = '".$estacion."'  ORDER BY fecha DESC, hora DESC LIMIT 1;";
 $result0 = mysqli_query($con,$sql0)or die("Error en: " .  mysqli_error($con));
 
