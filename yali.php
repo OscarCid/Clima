@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- Script ajax -->
     <script src="scr/js/actualizarIndex.js"></script>
+	<script src="scr/js/actualizarMD.js"></script>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <script src="bootstrap/js/jquery.min.js"></script>
     <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
@@ -39,16 +40,14 @@ $porciones = explode("/", $actual_link);
         <div class="col-md-12 col-xs-12" style="padding-bottom: 10px">
             <center>
 
-        <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
-
-		<a href="#div3" class='MO'>
-            <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Otro</button>
-        </a>
-		
-        <a href="#div1" class='MO'>
-            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
-        </a>
-
+			<button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
+			
+			<a href="#div1" class='MO'>
+				<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
+			</a>
+			<a href="#div3" class='MO'>
+				<button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Historico</button>
+			</a>
             </center>
 
         </div>
@@ -61,9 +60,10 @@ $porciones = explode("/", $actual_link);
             </div>
         </div>
     </div>
-        <div id="txtHint">
-        </div>
-
+        
+		<div id="txtHint">
+        </div>	
+		
     </div>
 
     <div id="div1" class="oculto">
@@ -74,12 +74,12 @@ $porciones = explode("/", $actual_link);
             <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
             </a>
 			
-			<a href="#div3" class='MO'>
-            <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Otro</button>
-            </a>
-			
             <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
+			<a href="#div3" class='MO'>
+            <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Historico</button>
+            </a>
         </center>
+			
 
         </div>
 		<?php include "scr/php/prueba.php"?>
@@ -93,22 +93,21 @@ $porciones = explode("/", $actual_link);
             <a href="#div2" class='MO'>
             <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Tablas</button>
             </a>
-					
-            <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Otro</button>
-            
 			<a href="#div1" class='MO'>
             <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-stats left" aria-hidden="true"></span> Graficos</button>
-			</a>
-		</center>
+            </a>
+            <button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Historico</button>
+        </center>
 
         </div>
 		<?php include "scr/php/datosMD.php"?>
         
     </div>
-
-    <script src="highcharts/js/highcharts.js"></script>
+	
+	<script src="highcharts/js/highcharts.js"></script>
     <script src="highcharts/js/modules/exporting.js"></script>
     <script src="highcharts/export-csv.js"></script>
+</div>
 </div>
 
 <?php include ("scr/php/foot.php")?>

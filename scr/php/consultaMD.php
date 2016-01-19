@@ -1,16 +1,17 @@
 <?php
 class datos
 {
-    private $host = "localhost";
+	private $host = "localhost";
     private $user = "root";
     private $password = "";
     private $estacion = "";
     private $coneccion = "";
+	private $base = "clima";
 
     public function __construct($estacion)
     {
         $this->estacion = $estacion;
-        $this->coneccion = new mysqli($this->host, $this->user, $this->password, "clima") or die ("<center>No se puede conectar con la base de datos\n</center>\n");
+        $this->coneccion = new mysqli($this->host, $this->user, $this->password, $this->base) or die ("<center>No se puede conectar con la base de datos\n</center>\n");
         if ($this->coneccion ->connect_errno)
         {
             echo "Fallo al conectar a MySQL: (" . $this->coneccion ->connect_errno . ") " . $this->coneccion ->connect_error;
@@ -36,32 +37,219 @@ class datos
 			list( $this->ano, $this->mes, $dia  ) = split( '[/.-]', $Fecha);
 			$this->dia = $dia-1;
 		}
-	}
+	}	
 	
-	
-	public function minDia($dato,$ano,$mes,$dia)
-    {		
-		$sql="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  ".$dato." = (SELECT MIN(".$dato.") FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+	public function maxminDia($ano,$mes,$dia)
+    {	
+	//Temperatura
+		$sql="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  temp = (SELECT MAX(temp) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
 		$resultado = $this->coneccion -> query($sql) or trigger_error($this->coneccion ->error);
 		while($row = mysqli_fetch_array($resultado)) {
-			$this->minDato = $row[$dato];
-			$this->minDatoHora = date("H:i", strtotime($row['hora']));
+			$this->maxDatoTemp = $row['temp'];
+			$this->maxDatoHoraTemp = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
 		}
-	}
-	
-	public function maxDia($dato,$ano,$mes,$dia)
-    {		
-		$sql="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  ".$dato." = (SELECT MAX(".$dato.") FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
-		$resultado = $this->coneccion -> query($sql) or trigger_error($this->coneccion ->error);
-		while($row = mysqli_fetch_array($resultado)) {
-			$this->maxDato = $row[$dato];
-			$this->maxDatoHora = date("H:i", strtotime($row['hora']));
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->maxDatoDiaTemp = utf8_encode(strftime("%A, %d de %B", $hoyM));
+		
+		$sql2="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  temp = (SELECT MIN(temp) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado2 = $this->coneccion -> query($sql2) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado2)) {
+			$this->minDatoTemp = $row['temp'];
+			$this->minDatoHoraTemp = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
 		}
-	}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->minDatoDiaTemp = utf8_encode(strftime("%A, %d de %B", $hoyM));
+	//Sensacion Termica	
+		$sql3="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  senTermica = (SELECT MAX(senTermica) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado3 = $this->coneccion -> query($sql3) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado3)) {
+			$this->maxDatoSen = $row['senTermica'];
+			$this->maxDatoHoraSen = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->maxDatoDiaSen = utf8_encode(strftime("%A, %d de %B", $hoyM));
+		
+		$sql4="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  senTermica = (SELECT MIN(senTermica) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado4 = $this->coneccion -> query($sql4) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado4)) {
+			$this->minDatoSen = $row['senTermica'];
+			$this->minDatoHoraSen = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->minDatoDiaSen = utf8_encode(strftime("%A, %d de %B", $hoyM));
+	//Humedad
+		$sql5="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  humedad = (SELECT MAX(humedad) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado5 = $this->coneccion -> query($sql5) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado5)) {
+			$this->maxDatoHum = $row['humedad'];
+			$this->maxDatoHoraHum = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->maxDatoDiaHum = utf8_encode(strftime("%A, %d de %B", $hoyM));
+		
+		$sql6="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  humedad = (SELECT MIN(humedad) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado6 = $this->coneccion -> query($sql6) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado6)) {
+			$this->minDatoHum = $row['humedad'];
+			$this->minDatoHoraHum = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->minDatoDiaHum = utf8_encode(strftime("%A, %d de %B", $hoyM));
+	//Temperatura Interior
+		$sql7="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  tempInterior = (SELECT MAX(tempInterior) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado7 = $this->coneccion -> query($sql7) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado7)) {
+			$this->maxDatoTempI = $row['tempInterior'];
+			$this->maxDatoHoraTempI = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->maxDatoDiaTempI = utf8_encode(strftime("%A, %d de %B", $hoyM));
+		
+		$sql8="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  tempInterior = (SELECT MIN(tempInterior) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado8 = $this->coneccion -> query($sql8) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado8)) {
+			$this->minDatoTempI = $row['tempInterior'];
+			$this->minDatoHoraTempI = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->minDatoDiaTempI = utf8_encode(strftime("%A, %d de %B", $hoyM));
+	//Humedad Interior
+		$sql9="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  humInterior = (SELECT MAX(humInterior) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado9 = $this->coneccion -> query($sql9) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado9)) {
+			$this->maxDatoHumI = $row['humInterior'];
+			$this->maxDatoHoraHumI = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->maxDatoDiaHumI = utf8_encode(strftime("%A, %d de %B", $hoyM));
+		
+		$sql10="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  humInterior = (SELECT MIN(humInterior) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado10 = $this->coneccion -> query($sql10) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado10)) {
+			$this->minDatoHumI = $row['humInterior'];
+			$this->minDatoHoraHumI = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->minDatoDiaHumI = utf8_encode(strftime("%A, %d de %B", $hoyM));
+	//Presion
+		$sql11="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  presion = (SELECT MAX(presion) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado11 = $this->coneccion -> query($sql11) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado11)) {
+			$this->maxDatoPres = $row['presion'];
+			$this->maxDatoHoraPres = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->maxDatoDiaPres = utf8_encode(strftime("%A, %d de %B", $hoyM));
+		
+		$sql12="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  presion = (SELECT MIN(presion) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado12 = $this->coneccion -> query($sql12) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado12)) {
+			$this->minDatoPres = $row['presion'];
+			$this->minDatoHoraPres = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->minDatoDiaPres = utf8_encode(strftime("%A, %d de %B", $hoyM));
+	//Intensidad viento
+		$sql13="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  vPromedio = (SELECT MAX(vPromedio) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado13 = $this->coneccion -> query($sql13) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado13)) {
+			$this->maxDatoVi = $row['vPromedio'];
+			$this->maxDatoHoraVi = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->maxDatoDiaVi = utf8_encode(strftime("%A, %d de %B", $hoyM));
+	//Rafaga viento
+		$sql14="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  vRafaga = (SELECT MAX(vRafaga) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado14 = $this->coneccion -> query($sql14) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado14)) {
+			$this->maxDatoViR = $row['vRafaga'];
+			$this->maxDatoHoraViR = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->maxDatoDiaViR = utf8_encode(strftime("%A, %d de %B", $hoyM));	
+	//Precipitacion Hoy
+		$sql15="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  precHoy = (SELECT MAX(precHoy) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado15 = $this->coneccion -> query($sql15) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado15)) {
+			$this->maxDatoPrec = $row['precHoy'];
+			$this->maxDatoHoraPrec = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->maxDatoDiaPrec = utf8_encode(strftime("%A, %d de %B", $hoyM));
+	//Ritmo
+		$sql16="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  precActual = (SELECT MAX(precActual) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado16 = $this->coneccion -> query($sql16) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado16)) {
+			$this->maxDatoPrecA = $row['precActual'];
+			$this->maxDatoHoraPrecA = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->maxDatoDiaPrecA = utf8_encode(strftime("%A, %d de %B", $hoyM));	
+	//Radiacion Solar
+		$sql17="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND  rSolar = (SELECT MAX(rSolar) FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$ano-$mes-$dia') AND fecha LIKE '$ano-$mes-$dia' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$resultado17 = $this->coneccion -> query($sql17) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado17)) {
+			$this->maxDatoRSol = $row['rSolar'];
+			$this->maxDatoHoraRSol = date("H:i", strtotime($row['hora']));
+			$Fecha = $row["fecha"];
+			list( $anoo, $meso, $diao  ) = split( '[/.-]', $Fecha);			
+		}
+		setlocale (LC_TIME,"spanish");
+		$hoyM = mktime(0,0,0,$meso,$diao,$anoo);
+		$this->maxDatoDiaRSol = utf8_encode(strftime("%A, %d de %B", $hoyM));
+	}	
 	
 	public function diaSeco($dato,$ano,$mes,$dia)
     {
-		$sql="SELECT * FROM estacion WHERE ".$dato." LIKE '0.0' ORDER BY fecha DESC, hora DESC LIMIT 1";
+		$sql="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' AND ".$dato." LIKE '0.0' ORDER BY fecha DESC, hora DESC LIMIT 1";
 		$resultado = $this->coneccion -> query($sql) or trigger_error($this->coneccion ->error);
 		while($row = mysqli_fetch_array($resultado)) {
 			$Fecha = $row["fecha"];
@@ -178,65 +366,15 @@ class datos
 			}
 		}		
 	}
+	
+    function __destruct()
+    {
+        mysqli_close($this->coneccion);
+    }
 }
 
-$dato = new datos($estacion);
-$datoA = new datos ($estacion);
-$datoTemp = new datos($estacion);
-$datoHum = new datos($estacion);
-$datoSen = new datos($estacion);
-$datoTempI = new datos($estacion);
-$datoHumI = new datos($estacion);
-$datoTempA = new datos($estacion);
-$datoHumA = new datos($estacion);
-$datoSenA = new datos($estacion);
-$datoTempIA = new datos($estacion);
-$datoHumIA = new datos($estacion);
-$datoPrec = new datos($estacion);
-$datoRitPrec = new datos($estacion);
-$datoViento = new datos($estacion);
-$datoVRafaga = new datos($estacion);
-$datoVDViento = new datos($estacion);
-$datoPresion = new datos($estacion);
-$datoRad = new datos($estacion);
 
-$dato->DiaHoy();
-$datoA->DiaAyer();
 
-$datoTemp->minDia('temp',$dato->ano,$dato->mes,$dato->dia);
-$datoTemp->maxDia('temp',$dato->ano,$dato->mes,$dato->dia);
-$datoHum->minDia('humedad',$dato->ano,$dato->mes,$dato->dia);
-$datoHum->maxDia('humedad',$dato->ano,$dato->mes,$dato->dia);
-$datoSen->minDia('senTermica',$dato->ano,$dato->mes,$dato->dia);
-$datoSen->maxDia('senTermica',$dato->ano,$dato->mes,$dato->dia);
-$datoTempI->minDia('tempInterior',$dato->ano,$dato->mes,$dato->dia);
-$datoTempI->maxDia('tempInterior',$dato->ano,$dato->mes,$dato->dia);
-$datoHumI->minDia('humInterior',$dato->ano,$dato->mes,$dato->dia);
-$datoHumI->maxDia('humInterior',$dato->ano,$dato->mes,$dato->dia);
 
-$datoTempA->minDia('temp',$datoA->ano,$datoA->mes,$datoA->dia);
-$datoTempA->maxDia('temp',$datoA->ano,$datoA->mes,$datoA->dia);
-$datoHumA->minDia('humedad',$datoA->ano,$datoA->mes,$datoA->dia);
-$datoHumA->maxDia('humedad',$datoA->ano,$datoA->mes,$datoA->dia);
-$datoSenA->minDia('senTermica',$datoA->ano,$datoA->mes,$datoA->dia);
-$datoSenA->maxDia('senTermica',$datoA->ano,$datoA->mes,$datoA->dia);
-$datoTempIA->minDia('tempInterior',$datoA->ano,$datoA->mes,$datoA->dia);
-$datoTempIA->maxDia('tempInterior',$datoA->ano,$datoA->mes,$datoA->dia);
-$datoHumIA->minDia('humInterior',$datoA->ano,$datoA->mes,$datoA->dia);
-$datoHumIA->maxDia('humInterior',$datoA->ano,$datoA->mes,$datoA->dia);
-
-$datoPrec->diaSeco('precHoy',$dato->ano,$dato->mes,$dato->dia);
-$datoPrec->diaLluvioso('precHoy',$dato->ano,$dato->mes,$dato->dia);
-$datoPrec->maxDia('precHoy',$dato->ano,$dato->mes,$dato->dia);
-$datoRitPrec->maxDia('precActual',$dato->ano,$dato->mes,$dato->dia);  
-
-$datoVRafaga->maxDia('vRafaga',$dato->ano,$dato->mes,$dato->dia); 
-$datoViento->maxDia('vPromedio',$dato->ano,$dato->mes,$dato->dia);
-$datoVDViento->datoDom('dVientoActual',$dato->ano,$dato->mes,$dato->dia);
-
-$datoPresion->minDia('presion',$dato->ano,$dato->mes,$dato->dia);
-$datoPresion->maxDia('presion',$dato->ano,$dato->mes,$dato->dia);
-
-$datoRad->maxDia('rSolar',$dato->ano,$dato->mes,$dato->dia);
 
 ?>

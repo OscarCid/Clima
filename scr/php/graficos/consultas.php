@@ -1,16 +1,17 @@
 <?php
 class graficos
 {
-    private $host = "localhost";
+	private $host = "localhost";
     private $user = "root";
     private $password = "";
     private $estacion = "";
     private $coneccion = "";
+	private $base = "clima";
 
     public function __construct($estacion)
     {
         $this->estacion = $estacion;
-        $this->coneccion = new mysqli($this->host, $this->user, $this->password, "clima") or die ("<center>No se puede conectar con la base de datos\n</center>\n");
+        $this->coneccion = new mysqli($this->host, $this->user, $this->password, $this->base) or die ("<center>No se puede conectar con la base de datos\n</center>\n");
         if ($this->coneccion ->connect_errno)
         {
             echo "Fallo al conectar a MySQL: (" . $this->coneccion ->connect_errno . ") " . $this->coneccion ->connect_error;
