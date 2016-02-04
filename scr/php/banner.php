@@ -24,37 +24,6 @@
 
 <?php
 
-switch ($pag)
-{
-    case 'inicio':
-        $est=' '                              ;
-
-        break;
-    case 'yali':
-        $est='El Yali'                               ;
-        $lat='-33.7488'                             ;
-        $lon='-71.7021'                             ;
-        $emb= '!1m18!1m12!1m3!1d3317.4558502148225!2d-71.70218868514273!3d-33.74888442027571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDQ0JzU2LjAiUyA3McKwNDInMDAuMCJX!5e0!3m2!1ses!2scl!4v1448075117442"';
-        break;
-    case 'campana':
-        $est='La Campana'                                ;
-        $lat='-32.9912'                             ;
-        $lon='-71.1403'                             ;
-        $emb= '!1m18!1m12!1m3!1d16385.062089666924!2d-71.14036530093792!3d-32.9912300371242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDU5JzE3LjAiUyA3McKwMDgnMzQuMCJX!5e0!3m2!1ses!2scl!4v1448075283755"';
-        break;
-    case 'peral':
-        $est='El Peral'                                ;
-        $lat='-33.5042'                             ;
-        $lon='-71.6104'                             ;
-        $emb= '!1m18!1m12!1m3!1d3326.8909039657547!2d-71.61048165048022!3d-33.50421541725178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDMwJzE0LjAiUyA3McKwMzYnMzcuMCJX!5e0!3m2!1ses!2scl!4v1448074950703"';
-        break;
-
-    default:
-        return 'Error';
-}
-
-
-
 $sun_info = date_sun_info(strtotime("now"),$lat ,$lon );
 date_default_timezone_set('America/Santiago');
 include "moon.php";
@@ -99,7 +68,7 @@ $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
                     <div class="col-md-12">
                         <h4>
                             <strong>
-                                Estación Meteorológica <?php echo $est?>
+                                Estación Meteorológica <?php echo $nombre?>
                             </strong>
                         </h4>
                     </div>
@@ -213,7 +182,7 @@ $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
 
                                                 break;
                                             case 1:
-                                                return 'Luna Nueva Visible';
+                                                return 'Luna Creciente';
 
                                                 break;
                                             case 2:
@@ -254,16 +223,16 @@ $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
                                             $luna='n'                                ;
 
                                             break;
-                                        case 'Luna Nueva Visible':
-                                            $luna='n_v'                                ;
+                                        case 'Luna Creciente':
+                                            $luna='m'                                ;
 
                                             break;
                                         case 'Luna Cuarto Creciente':
-                                            $luna='c_c'                                ;
+                                            $luna='c_m'                                ;
 
                                             break;
                                         case 'Luna Gibosa Creciente':
-                                            $luna='g_c'                                ;
+                                            $luna='g_m'                                ;
 
                                             break;
                                         case 'Luna Llena':
@@ -271,15 +240,15 @@ $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
 
                                             break;
                                         case 'Luna Gibosa Menguante':
-                                            $luna='g_m'                                ;
+                                            $luna='g_c'                                ;
 
                                             break;
                                         case 'Luna Cuarto Menguante':
-                                            $luna='c_m'                                ;
+                                            $luna='c_c'                                ;
 
                                             break;
                                         case 'Luna Menguante':
-                                            $luna='m'                                ;
+                                            $luna='c'                                ;
 
                                             break;
                                         default:
@@ -289,7 +258,7 @@ $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2" style="padding-bottom: 10px">
+                        <div class="col-md-2 col-xs-12" style="padding-bottom: 10px">
                             <img src="scr/img/fase/<?php echo $luna ?>.png" height="100px" class="center-block img-circle"/>
                         </div>
                     </div>
@@ -299,7 +268,7 @@ $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
 </div>
 
         <div class="col-md-4">
-            <iframe src="https://www.google.com/maps/embed?pb=<?php echo $emb?>
+            <iframe src="https://www.google.com/maps/embed?pb=<?php echo $emb?>"
                     iframe width="100%" height="265px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  style="border:0" allowfullscreen></iframe>
         </div>
 

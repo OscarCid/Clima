@@ -26,13 +26,16 @@ if( $nombre == '' || preg_match(!$patron1, $nombre) || $apellidos == ''  || preg
 	//Usamos el método de agregar usuario con lo parámetros 
 	//Correspondientes
 	else{
-		$mydb = new myDBC();
-		$options = [
-			'cost' => 7,
-			'salt' => 'BCryptRequires22Chrcts',
-		];
-		$pass_oculto = password_hash($pass, PASSWORD_BCRYPT, $options);
-		$mydb->actualizarUsuario($nombre, $apellidos, $correo, $pass_oculto);	
+		if ($pass == $_SESSION["pass"])
+		{
+			$pass_oculto = $pass;
+		}else
+		{
+			$pass_oculto = crypt($pass,"$1$rasmusle$");
+		}
+			$mydb = new myDBC();
+			$mydb->actualizarUsuario($nombre, $apellidos, $correo, $pass_oculto);
+			
 	}
 ?>
 

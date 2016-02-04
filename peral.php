@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html >
+<?php include_once "scr/conexion.php";
+$actual_link = "$_SERVER[REQUEST_URI]";
+$porciones = explode("/", $actual_link);
+$sql="SELECT * FROM estacioneshab WHERE estacion = '".$porciones[2]."'";
+$result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
+while ($row = mysqli_fetch_array ($result)) {
+    $nombre = $row['nombreEstacion'];
+	$lon = $row['lon'];
+	$lat = $row['lat'];
+	$emb = $row['emb'];
+	if ($row['estado'] == 0){
+		echo'<script type="text/javascript">
+		alert("Estación Deshabilitada");
+		window.location="index"
+		</script>';
+	}
+}
+?>
 <head>
 
-    <title>Estación El Peral - Meteorologia UPLA</title>
+    <title>Estación <?php echo $nombre?> - Meteorologia UPLA</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <!-- Script ajax -->
+    <link rel="icon" type="image/png" href="favicon.ico">
+	<!-- Script ajax -->
     <script src="scr/js/actualizarIndex.js"></script>
+	<script src="scr/js/actualizarMD.js"></script>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <script src="bootstrap/js/jquery.min.js"></script>
     <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
@@ -18,9 +38,6 @@
     <!-- Script botones grafico tablas -->
     <script src="scr/js/cambioDiv.js"></script>
 </head>
-<?php $actual_link = "$_SERVER[REQUEST_URI]";
-$porciones = explode("/", $actual_link);
-?>
 <body onload="actualizarIndex('<?php echo $porciones[2]; ?>'); setInterval(actualizarIndex.bind(null,'<?php echo $porciones[2]; ?>'),60000)">
 
 <div class="container-fluid">
@@ -112,4 +129,5 @@ $porciones = explode("/", $actual_link);
 <?php include ("scr/php/foot.php")?>
 
 </body>
+
 </html>

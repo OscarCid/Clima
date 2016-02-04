@@ -19,6 +19,6 @@ if(isset($_SESSION['session']))
 }else
 echo'<script type="text/javascript">
 	  alert("Registrarse para ver este contenido");
-	  window.location="http://localhost/Clima/index"
+	   window.location="../../../index.php"
 </script>';
 ?>

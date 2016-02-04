@@ -4,23 +4,26 @@
 require_once("scr/php/login/myDBC.php");
 if(isset($_SESSION['session']))
 {
-	$con = mysqli_connect('localhost','root','','clima');
-	if (!$con) {
-		die('Could not connect: ' . mysqli_error($con));
-	}
+	include_once "scr/conexion.php";
+	
 ?>
 
 <head>
-    <title>Formulario</title>
+    <title>Formulario - Meteorología UPLA</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="scr/js/actualizarIndex.js"></script>
-    <link rel="icon" type="image/png" href="favicon.ico">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-	<script src="bootstrap/js/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<script type="text/javascript" src="scr/js/jquery.Rut.js" ></script>
+    <link rel="icon" type="image/png" href="favicon.ico">
+	<!-- Script ajax -->
+    <script src="scr/js/actualizarIndex.js"></script>
+	<script src="scr/js/actualizarMD.js"></script>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.js"></script>
 	<script type="text/javascript" src="scr/js/validator.js" ></script>
 
 	<script>
@@ -39,7 +42,7 @@ if(isset($_SESSION['session']))
 		include "scr/php/menu.php";
 		include "scr/php/banner2.php";
 		
-		$sql0="select * from usuarios where id = ".$_SESSION['id']."";
+		$sql0="select * from usuarios where id = ".$_SESSION["id"]."";
 		$result0 = mysqli_query($con,$sql0)or die("Error en: " .  mysqli_error($con));
 
 		while($row = mysqli_fetch_array($result0)) {
@@ -118,12 +121,23 @@ if(isset($_SESSION['session']))
                             </div>
 								
                                 <div class="form-group">                                       
-                                    <div class="col-md-offset-3 col-md-9">
+                                    <div class="col-md-9 col-md-offset-3">
                                         <input type="submit" class="btn btn-info" name="sign" value="Actualizar">  
-                                    </div>
-                                </div>
+                                    
+                            <?php if($_SESSION['user'] == 'admin'){
+							
+							echo'	                                       
+                                    
+                                        <a href="4" class="btn btn-default" role="button">Menú Admin</a>  
+                                    
+                                ';
+							}?>
+									</div>
+								</div>
 							
                             </form>
+							
+							
                          </div>
                     </div>
 				</div>
@@ -137,7 +151,7 @@ if(isset($_SESSION['session']))
 	}else
 	echo'<script type="text/javascript">
 	  alert("Registrarse para ver este contenido");
-	  window.location="http://localhost/Clima/index"
+	  window.location="index"
 	</script>'; 
 	?>
 	

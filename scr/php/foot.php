@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
@@ -183,31 +183,30 @@
 
     <div class="footer-left" style="padding-top: 20px">
 
-<div style="height: 30px">
-    <div style="float: left; padding-right: 5px">
-        <a href="http://www.upla.cl"  target="_blank"><img src="scr/img/logo_upla_color_fondo_negro.png" height="25px"></a>
-   </div>
-    <div style="float: left; padding-right: 5px">
-        <a href="http://www.upla.cl/facultadingenieria"  target="_blank"><img alt="" src="scr/img/uplafi_negro.png" height="25px"></a>
-    </div>
-    <div style="float: left; padding-right: 5px">
-        <a href="http://meteoarmada.directemar.cl"  target="_blank"><img alt="" src="scr/img/armada_negro.png" height="25px"></a>
-    </div>
-    <div style="float: left; ">
-        <a href="http://www.conaf.cl"  target="_blank"><img alt="" src="scr/img/conaf.png" height="25px"></a>
-    </div>
-    </div>
+	<div style="height: 35px">
+		<div style="float: left; padding-right: 5px; ">
+			<a href="http://www.upla.cl"  target="_blank"><img src="scr/img/logo_upla_color_fondo_negro.png" height="25px"></a>
+	   </div>
+		<div style="float: left; padding-right: 5px">
+			<a href="http://www.upla.cl/facultadingenieria"  target="_blank"><img alt="" src="scr/img/uplafi_negro.png" height="25px"></a>
+		</div>
+		<div style="float: left; padding-right: 5px">
+			<a href="http://meteoarmada.directemar.cl"  target="_blank"><img alt="" src="scr/img/armada_negro.png" height="25px"></a>
+		</div>
+		<div style="float: left; ">
+			<a href="http://www.conaf.cl" target="_blank"><img alt="" src="scr/img/conaf.png" height="25px"></a>
+		</div>
+	</div>
 
         <p class="footer-links">
+		
             <a href="index">Inicio</a>
             ·
-            <a href="yali">El Yali</a>
+            <a href="http://www.upla.cl" target="_blank">UPLA</a>
             ·
-            <a href="campana">La Campana</a>
+			<a href="http://meteoarmada.directemar.cl" target="_blank">Meteorología Armada</a>
             ·
-            <a href="peral">El Peral</a>
-            ·
-            <a href="http://www.upla.cl"target="_blank">UPLA</a>
+			<a href="http://www.conaf.cl" target="_blank">CONAF</a>
             ·
             <a href="http://www.upla.cl/noticias/contactanos/"target="_blank">Contacto</a>
         </p>
@@ -243,10 +242,10 @@
 
         <div class="footer-icons">
 
-            <a href="https://www.facebook.com/uplacomunica"><i class="fa fa-facebook"></i></a>
-            <a href="https://twitter.com/upla_comunica"><i class="fa fa-twitter"></i></a>
-            <a href="http://www.youtube.com/user/comunicacionesupla"><i class="fa fa-youtube"></i></a>
-            <a href="http://uplacomunica.tumblr.com/"><i class="fa fa-tumblr"></i></a>
+            <a href="https://www.facebook.com/uplacomunica" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/upla_comunica" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="http://www.youtube.com/user/comunicacionesupla" target="_blank"><i class="fa fa-youtube"></i></a>
+            <a href="http://uplacomunica.tumblr.com/" target="_blank"><i class="fa fa-tumblr"></i></a>
 
         </div>
 
@@ -254,5 +253,6 @@
 
 </footer>
 
+<?php mysqli_close($con);?>
 
 </body>

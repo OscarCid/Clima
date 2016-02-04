@@ -1,20 +1,20 @@
 <?php
-$datoM = new datos($estacion);
+$datoAn = new datos($estacion);
 
-$datoTMes = new datos($estacion);
+$datoTAn = new datos($estacion);
 
-$datoPrecM = new datos($estacion);
+$datoPrecAn = new datos($estacion);
 
-$datoVDVientoM = new datos($estacion);
+$datoVDVientoAn = new datos($estacion);
 
-$datoM->DiaHoy();
+$datoAn->DiaHoy();
 
-$datoTMes->maxminDia($datoM->ano,'%','%');
+$datoTAn->maxminDia($datoAn->ano,'%','%');
 
-$datoPrecM->diaSeco('precHoy',$datoM->ano,$datoM->mes,$datoM->dia);
-$datoPrecM->diaLluvioso('precHoy',$datoM->ano,$datoM->mes,$datoM->dia);
+$datoPrecAn->diaSeco('precHoy',$datoAn->ano,'%','%');
+$datoPrecAn->diaLluvioso('precHoy',$datoAn->ano,'%','%');
 
-$datoVDVientoM->datoDom('dVientoActual',$datoM->ano,$datoM->mes,$datoM->dia);
+$datoVDVientoAn->datoDom('dVientoActual',$datoAn->ano,'%','%');
  
    echo "
 <div class='row' style='padding-top:10px'>
@@ -34,58 +34,48 @@ $datoVDVientoM->datoDom('dVientoActual',$datoM->ano,$datoM->mes,$datoM->dia);
                                                             <tbody>
                                                             <tr>
                                                                 <td width='50%'><strong>Temperatura Maxima Exterior</strong></td>
-                                                                <td>".$datoTMes->maxDatoTemp." °C</td>
-																<td>a las ".$datoTMes->maxDatoHoraTemp." el ".$datoTMes->maxDatoDiaTemp."</td>
+                                                                <td>".$datoTAn->maxDatoTemp." °C</td>
+																<td>a las ".$datoTAn->maxDatoHoraTemp." el ".$datoTAn->maxDatoDiaTemp."</td>
                                                             </tr>
                                                             <tr>
 																<td><strong>Temperatura Minima Exterior</strong></td>
-                                                                <td>".$datoTMes->minDatoTemp." °C</td> 
-																<td>a las ".$datoTMes->minDatoHoraTemp." el ".$datoTMes->minDatoDiaTemp."</td>
+                                                                <td>".$datoTAn->minDatoTemp." °C</td> 
+																<td>a las ".$datoTAn->minDatoHoraTemp." el ".$datoTAn->minDatoDiaTemp."</td>
                                                             </tr>
 															<tr>
 																<td><strong>Rango de Temperatura</strong></td>
-                                                                <td>".($datoTMes->maxDatoTemp - $datoTMes->minDatoTemp)." °C</td> 
+                                                                <td>".($datoTAn->maxDatoTemp - $datoTAn->minDatoTemp)." °C</td> 
 																<td></td>
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>Maxima Sensacion Termica</strong></td>
-                                                                <td>".$datoTMes->maxDatoSen." °C</td>
-																<td>a las ".$datoTMes->maxDatoHoraSen." el ".$datoTMes->maxDatoDiaSen."</td>
+                                                                <td>".$datoTAn->maxDatoSen." °C</td>
+																<td>a las ".$datoTAn->maxDatoHoraSen." el ".$datoTAn->maxDatoDiaSen."</td>
                                                             </tr>
                                                             <tr>
 																<td><strong>Minima Sensacion Termica</strong></td>
-                                                                <td>".$datoTMes->minDatoSen." °C </td>
-																<td>a las ".$datoTMes->minDatoHoraSen." el ".$datoTMes->minDatoDiaSen."</td>
+                                                                <td>".$datoTAn->minDatoSen." °C </td>
+																<td>a las ".$datoTAn->minDatoHoraSen." el ".$datoTAn->minDatoDiaSen."</td>
+                                                            </tr>
+															<tr>
+                                                                <td><strong>Maximo Punto de Rocío</strong></td>
+                                                                <td>".$datoTAn->maxDatoRocio." °C</td>
+																<td>a las ".$datoTAn->maxDatoHoraRocio." el ".$datoTAn->maxDatoDiaRocio."</td>
+                                                            </tr>
+                                                            <tr>
+																<td><strong>Minimo Punto de Rocío</strong></td>
+                                                                <td>".$datoTAn->minDatoRocio." °C </td>
+																<td>a las ".$datoTAn->minDatoHoraRocio." el ".$datoTAn->minDatoDiaRocio."</td>
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>Maxima Humedad Exterior</strong></td>
-                                                                <td>".$datoTMes->maxDatoHum." % </td>
-																<td>a las ".$datoTMes->maxDatoHoraHum." el ".$datoTMes->maxDatoDiaHum."</td>
-                                                            </tr>
-                                                            <tr>
-																<td><strong>Minima Humedad Exterior</strong></td>
-                                                                <td>".$datoTMes->minDatoHum." % </td>
-																<td>a las ".$datoTMes->minDatoHoraHum." el ".$datoTMes->minDatoDiaHum."</td>
+                                                                <td>".$datoTAn->maxDatoHum." % </td>
+																<td>a las ".$datoTAn->maxDatoHoraHum." el ".$datoTMes->maxDatoDiaHum."</td>
                                                             </tr>
 															<tr>
-                                                                <td width='50%'><strong>Temperatura Maxima Interior</strong></td>
-                                                                <td>".$datoTMes->maxDatoTempI." °C</td>
-																<td>a las ".$datoTMes->maxDatoHoraTempI." el ".$datoTMes->maxDatoDiaTempI."</td>
-                                                            </tr>
-                                                            <tr>
-																<td><strong>Temperatura Minima Interior</strong></td>
-                                                                <td>".$datoTMes->minDatoTempI." °C</td>
-																<td>a las ".$datoTMes->minDatoHoraTempI." el ".$datoTMes->minDatoDiaTempI."</td>
-                                                            </tr>
-															<tr>
-                                                                <td><strong>Maxima Humedad Interior</strong></td>
-                                                                <td>".$datoTMes->maxDatoHumI." % </td>
-																<td>a las ".$datoTMes->maxDatoHoraHumI." el ".$datoTMes->maxDatoDiaHumI."</td>
-                                                            </tr>
-                                                            <tr>
-																<td><strong>Minima Humedad Interior</strong></td>
-                                                                <td>".$datoTMes->minDatoHumI." % </td>
-																<td>a las ".$datoTMes->minDatoHoraHumI." el ".$datoTMes->minDatoDiaHumI."</td>
+                                                                <td><strong>Minima Humedad Exterior</strong></td>
+                                                                <td>".$datoTAn->minDatoHum." % </td>
+																<td>a las ".$datoTAn->minDatoHoraHum." el ".$datoTMes->minDatoDiaHum."</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
@@ -111,13 +101,13 @@ $datoVDVientoM->datoDom('dVientoActual',$datoM->ano,$datoM->mes,$datoM->dia);
                                                             <tbody>
                                                             <tr>
                                                                 <td width='50%'><strong>Maxima Precipitación</strong></td>
-                                                                <td>".$datoTMes->maxDatoPrec." mm</td>
-																<td> el ".$datoTMes->maxDatoDiaPrec."</td>
+                                                                <td>".$datoTAn->maxDatoPrec." mm</td>
+																<td> el ".$datoTAn->maxDatoDiaPrec."</td>
                                                             </tr>
                                                             <tr>
 																<td><strong>Ritmo Maximo</strong></td>
-                                                                <td>".$datoTMes->maxDatoPrecA." mm/hr</td> 
-																<td>a las ".$datoTMes->maxDatoHoraPrecA." el ".$datoTMes->maxDatoDiaPrecA."</td>
+                                                                <td>".$datoTAn->maxDatoPrecA." mm/hr</td> 
+																<td>a las ".$datoTAn->maxDatoHoraPrecA." el ".$datoTAn->maxDatoDiaPrecA."</td>
                                                             </tr>
 															
                                                             
@@ -145,17 +135,17 @@ $datoVDVientoM->datoDom('dVientoActual',$datoM->ano,$datoM->mes,$datoM->dia);
                                                             <tbody>
                                                             <tr>
                                                                 <td width='50%'><strong>Maxima Rafaga de Viento</strong></td>
-                                                                <td>".$datoTMes->maxDatoViR." kts</td>
-																<td>a las ".$datoTMes->maxDatoHoraViR." el ".$datoTMes->maxDatoDiaViR."</td>
+                                                                <td>".$datoTAn->maxDatoViR." kts</td>
+																<td>a las ".$datoTAn->maxDatoHoraViR." el ".$datoTAn->maxDatoDiaViR."</td>
                                                             </tr>
                                                             <tr>
 																<td><strong>Maxima Intencidad del Viento</strong></td>
-                                                                <td>".$datoTMes->maxDatoVi." kts</td> 
-																<td>a las ".$datoTMes->maxDatoHoraVi." el ".$datoTMes->maxDatoDiaVi."</td>
+                                                                <td>".$datoTAn->maxDatoVi." kts</td> 
+																<td>a las ".$datoTAn->maxDatoHoraVi." el ".$datoTAn->maxDatoDiaVi."</td>
                                                             </tr>
 															<tr>
 																<td><strong>Dirección del Viento Dominante</strong></td>
-                                                                <td>".$datoVDVientoM->datoDomV."° ".$datoVDViento->letra."</td> 
+                                                                <td>".$datoVDVientoAn->datoDomV."° ".$datoVDVientoAn->letra."</td> 
 																<td></td>
                                                             </tr>
                                                             
@@ -184,18 +174,18 @@ $datoVDVientoM->datoDom('dVientoActual',$datoM->ano,$datoM->mes,$datoM->dia);
                                                             <tbody>
                                                             <tr>
                                                                 <td width='50%'><strong>Presión Maxima</strong></td>
-                                                                <td>".$datoTMes->maxDatoPres." hPa</td>
-																<td>a las ".$datoTMes->maxDatoHoraPres." el ".$datoTMes->maxDatoDiaPres."</td>
+                                                                <td>".$datoTAn->maxDatoPres." hPa</td>
+																<td>a las ".$datoTAn->maxDatoHoraPres." el ".$datoTAn->maxDatoDiaPres."</td>
                                                             </tr>
                                                             <tr>
 																<td><strong>Presión Minima</strong></td>
-                                                                <td>".$datoTMes->minDatoPres." hPa</td> 
-																<td>a las ".$datoTMes->minDatoHoraPres." el ".$datoTMes->minDatoDiaPres."</td>
+                                                                <td>".$datoTAn->minDatoPres." hPa</td> 
+																<td>a las ".$datoTAn->minDatoHoraPres." el ".$datoTAn->minDatoDiaPres."</td>
                                                             </tr>
 															<tr>
 																<td><strong>Radiación Solar Maxima</strong></td>
-                                                                <td>".$datoTMes->maxDatoRSol." W/m²</td> 
-																<td>a las ".$datoTMes->maxDatoHoraRSol." el ".$datoTMes->maxDatoDiaRSol."</td>
+                                                                <td>".$datoTAn->maxDatoRSol." W/m²</td> 
+																<td>a las ".$datoTAn->maxDatoHoraRSol." el ".$datoTAn->maxDatoDiaRSol."</td>
                                                             </tr>
 														  
                                                             </tbody>

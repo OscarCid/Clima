@@ -4,13 +4,12 @@
 <script src="highcharts/js/highcharts.js"></script>
 <script src="highcharts/js/highcharts-more.js"></script>
 <script src="highcharts/js/modules/data.js"></script>
-
 <div class='row'>
     <div class='col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xs-12 col-sm-12'>
         <div class="container">
             <!-- <div class="tabbable" role="tabpanel" data-example-id="togglable-tabs"> -->
             <div class="centered-pills" id="pill">
-                <ul class="nav nav-tabs navbar-inner" id="prueba">
+                <ul class="nav nav-tabs navbar-inner" id="graficos">
                     <li class="active"><a href="#temperatura" data-toggle="pill">Temperatura</a></li>
                     <li><a href="#presion" data-toggle="pill">Presión</a></li>
                     <li><a href="#humedad" data-toggle="pill">Humedad</a></li>
@@ -147,8 +146,8 @@
 
                 </div>
             <!-- </div> -->
-            <script>
-                $("#prueba").bootstrapDynamicTabs();
+            <script type="text/javascript">
+                $("#graficos").bootstrapDynamicTabs();
             </script>
         </div>
     </div>

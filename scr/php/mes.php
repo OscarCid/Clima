@@ -57,35 +57,25 @@ $datoVDVientoM->datoDom('dVientoActual',$datoM->ano,$datoM->mes,$datoM->dia);
                                                                 <td>".$datoTMes->minDatoSen." °C </td>
 																<td>a las ".$datoTMes->minDatoHoraSen." el ".$datoTMes->minDatoDiaSen."</td>
                                                             </tr>
+															<tr>
+                                                                <td><strong>Maximo Punto de Rocío</strong></td>
+                                                                <td>".$datoTMes->maxDatoRocio." °C</td>
+																<td>a las ".$datoTMes->maxDatoHoraRocio." el ".$datoTMes->maxDatoDiaRocio."</td>
+                                                            </tr>
                                                             <tr>
+																<td><strong>Minimo Punto de Rocío</strong></td>
+                                                                <td>".$datoTMes->minDatoRocio." °C </td>
+																<td>a las ".$datoTMes->minDatoHoraRocio." el ".$datoTMes->minDatoDiaRocio."</td>
+                                                            </tr>
+															<tr>
                                                                 <td><strong>Maxima Humedad Exterior</strong></td>
                                                                 <td>".$datoTMes->maxDatoHum." % </td>
 																<td>a las ".$datoTMes->maxDatoHoraHum." el ".$datoTMes->maxDatoDiaHum."</td>
                                                             </tr>
-                                                            <tr>
-																<td><strong>Minima Humedad Exterior</strong></td>
+															<tr>
+                                                                <td><strong>Minima Humedad Exterior</strong></td>
                                                                 <td>".$datoTMes->minDatoHum." % </td>
 																<td>a las ".$datoTMes->minDatoHoraHum." el ".$datoTMes->minDatoDiaHum."</td>
-                                                            </tr>
-															<tr>
-                                                                <td width='50%'><strong>Temperatura Maxima Interior</strong></td>
-                                                                <td>".$datoTMes->maxDatoTempI." °C</td>
-																<td>a las ".$datoTMes->maxDatoHoraTempI." el ".$datoTMes->maxDatoDiaTempI."</td>
-                                                            </tr>
-                                                            <tr>
-																<td><strong>Temperatura Minima Interior</strong></td>
-                                                                <td>".$datoTMes->minDatoTempI." °C</td>
-																<td>a las ".$datoTMes->minDatoHoraTempI." el ".$datoTMes->minDatoDiaTempI."</td>
-                                                            </tr>
-															<tr>
-                                                                <td><strong>Maxima Humedad Interior</strong></td>
-                                                                <td>".$datoTMes->maxDatoHumI." % </td>
-																<td>a las ".$datoTMes->maxDatoHoraHumI." el ".$datoTMes->maxDatoDiaHumI."</td>
-                                                            </tr>
-                                                            <tr>
-																<td><strong>Minima Humedad Interior</strong></td>
-                                                                <td>".$datoTMes->minDatoHumI." % </td>
-																<td>a las ".$datoTMes->minDatoHoraHumI." el ".$datoTMes->minDatoDiaHumI."</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
@@ -155,7 +145,7 @@ $datoVDVientoM->datoDom('dVientoActual',$datoM->ano,$datoM->mes,$datoM->dia);
                                                             </tr>
 															<tr>
 																<td><strong>Dirección del Viento Dominante</strong></td>
-                                                                <td>".$datoVDVientoM->datoDomV."° ".$datoVDViento->letra."</td> 
+                                                                <td>".$datoVDVientoM->datoDomV."° ".$datoVDVientoM->letra."</td> 
 																<td></td>
                                                             </tr>
                                                             

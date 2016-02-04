@@ -57,36 +57,26 @@ $datoVDVientoA->datoDom('dVientoActual',$datoA->ano,$datoA->mes,$datoA->dia);
                                                                 <td>".$datoTotalA->minDatoSen." °C </td>
 																<td>a las ".$datoTotalA->minDatoHoraSen."</td>
                                                             </tr>
+															<tr>
+                                                                <td><strong>Maximo Punto de Rocío</strong></td>
+                                                                <td>".$datoTotalA->maxDatoRocio." °C</td>
+																<td>a las ".$datoTotalA->maxDatoHoraRocio."</td>
+                                                            </tr>
+                                                            <tr>
+																<td><strong>Minimo Punto de Rocío</strong></td>
+                                                                <td>".$datoTotalA->minDatoRocio." °C </td>
+																<td>a las ".$datoTotalA->minDatoHoraRocio."</td>
+                                                            </tr>
                                                             <tr>
                                                                 <td><strong>Maxima Humedad Exterior</strong></td>
                                                                 <td>".$datoTotalA->maxDatoHum." % </td>
 																<td>a las ".$datoTotalA->maxDatoHoraHum."</td>
                                                             </tr>
-                                                            <tr>
-																<td><strong>Minima Humedad Exterior</strong></td>
+															<tr>
+                                                                <td><strong>Minima Humedad Exterior</strong></td>
                                                                 <td>".$datoTotalA->minDatoHum." % </td>
 																<td>a las ".$datoTotalA->minDatoHoraHum."</td>
-                                                            </tr>
-															<tr>
-                                                                <td width='50%'><strong>Temperatura Maxima Interior</strong></td>
-                                                                <td>".$datoTotalA->maxDatoTempI." °C</td>
-																<td>a las ".$datoTotalA->maxDatoHoraTempI."</td>
-                                                            </tr>
-                                                            <tr>
-																<td><strong>Temperatura Minima Interior</strong></td>
-                                                                <td>".$datoTotalA->minDatoTempI." °C</td>
-																<td>a las ".$datoTotalA->minDatoHoraTempI."</td>
-                                                            </tr>
-															<tr>
-                                                                <td><strong>Maxima Humedad Interior</strong></td>
-                                                                <td>".$datoTotalA->maxDatoHumI." % </td>
-																<td>a las ".$datoTotalA->maxDatoHoraHumI."</td>
-                                                            </tr>
-                                                            <tr>
-																<td><strong>Minima Humedad Interior</strong></td>
-                                                                <td>".$datoTotalA->minDatoHumI." % </td>
-																<td>a las ".$datoTotalA->minDatoHoraHumI."</td>
-                                                            </tr>
+                                                            </tr> 
                                                             </tbody>
                                                         </table>
                                                   

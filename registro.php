@@ -9,14 +9,19 @@ if(!isset($_SESSION['session']))
 <head>
     <title>Formulario</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="scr/js/actualizarIndex.js"></script>
-    <link rel="icon" type="image/png" href="favicon.ico">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-	<script src="bootstrap/js/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<script type="text/javascript" src="scr/js/jquery.Rut.js" ></script>
+    <link rel="icon" type="image/png" href="favicon.ico">
+	<!-- Script ajax -->
+    <script src="scr/js/actualizarIndex.js"></script>
+	<script src="scr/js/actualizarMD.js"></script>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.js"></script>
 	<script type="text/javascript" src="scr/js/validator.js" ></script>
 
 	<script>
@@ -187,7 +192,7 @@ if(!isset($_SESSION['session']))
 	<?php include ("scr/php/foot.php");
 	}else
 		echo'<script type="text/javascript">
-		window.location="http://localhost/Clima/index"
+		window.location="index"
 		</script>';?>
 	
 </body>

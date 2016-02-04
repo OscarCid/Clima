@@ -8,6 +8,12 @@
 $host="localhost";
 $user="root";
 $password="";
+$base="clima";
 
-$link = mysql_connect ($host, $user, $password) or die ("<center>No se puede conectar con la base de datos\n</center>\n");
+$con = mysqli_connect($host,$user,$password,$base);
+	if (!$con) {
+		die('error: ' . mysqli_error($con));
+	}
+	$acentos = $con->query("SET NAMES 'utf8'");
+
 ?>

@@ -19,7 +19,6 @@ while ($row = mysqli_fetch_array ($result)) {
 }
 ?>
 <head>
-
     <title>Estación <?php echo $nombre?> - Meteorologia UPLA</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -94,8 +93,7 @@ while ($row = mysqli_fetch_array ($result)) {
 			<a href="#div3" class='MO'>
             <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-list-alt left" aria-hidden="true"></span> Historico</button>
             </a>
-        </center>
-			
+        </center>	
 
         </div>
 		<?php include "scr/php/prueba.php"?>

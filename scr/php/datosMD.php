@@ -45,7 +45,7 @@
         <div class='col-md-6 col-xs-12'>
 		<a href='fecha?pag=<?php echo $estacion;?>'>
 			<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-list-alt left' aria-hidden='true'></span>
-				Ver datos historicos.
+				Ver datos historicos
 			</button>			
 		</a>
 		</div>

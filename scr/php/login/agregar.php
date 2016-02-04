@@ -17,7 +17,7 @@ $patron1 = ("/^[a-z]+$/i"); //Expresión regular para solo caracteres
 if( $nombre == '' || preg_match(!$patron1, $nombre) || $apellidos == ''  || preg_match(!$patron1, $apellidos) || $correo == '' || !filter_var($correo, FILTER_VALIDATE_EMAIL) || ($pass != $repass) || $pass == "" || $repass == "" ){
 		echo'<script type="text/javascript">
 			 alert("Error: Datos invalidos en el formulario");
-			 window.location="./../../registro.php"
+			 window.location="../../../registro.php"
 			 </script>';
 		
 	}
@@ -27,13 +27,31 @@ if( $nombre == '' || preg_match(!$patron1, $nombre) || $apellidos == ''  || preg
 	//Correspondientes
 	else{
 		$mydb = new myDBC();
-		$options = [
-			'cost' => 7,
-			'salt' => 'BCryptRequires22Chrcts',
-		];
+		$pass_oculto =  crypt($pass,"$1$rasmusle$");
+		$mydb->agregaUsuario($nombre, $apellidos, $correo, $pass_oculto);
+						$destinatario = $correo; 
+						$asunto = "Comprovación del correo - Meteorología UPLA"; 
+						$cuerpo = ' 
+						<html> 
+						<head> 
+						   <title>Comprovación del correo</title> 
+						</head> 
+						<body> 
+						<h3>Hola '.$nombre.' '.$apellidos.' ,</h3> 
+						<p> 
+						<b>Bienvenido/a a la página de Estaciones Meteorológicas de la Universidad de Playa Ancha</b>. <br>Gracias por registrarte, este mensaje es para verificar tu correo electronico. 
+						<br>Tu contraseña es: <strong>'.$pass.'</strong>
+						</p> 
+						</body> 
+						</html> 
+						'; 
 
-		$pass_oculto = password_hash($pass, PASSWORD_BCRYPT, $options);
-		$mydb->agregaUsuario($nombre, $apellidos, $correo, $pass_oculto);	
+						//para el envío en formato HTML 
+						$headers = "MIME-Version: 1.0\r\n"; 
+						$headers .= "Content-type: text/html; charset=utf-8\r\n"; 
+
+						mail($destinatario,$asunto,$cuerpo,$headers);
+		
 	}
 ?>
 

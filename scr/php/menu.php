@@ -1,4 +1,5 @@
-<?php require_once("scr/php/login/myDBC.php"); ?>
+<?php require_once("scr/php/login/myDBC.php");
+include_once "scr/conexion.php"; ?>
 <script type="text/javascript" src="scr/js/jquery.Rut.js" ></script>
 <script type="text/javascript" src="scr/js/validator.js" ></script>
 <style>body { padding-top: 70px}
@@ -45,7 +46,10 @@
 	$(document).ready(function(){
 		$('#login-nav').validator();
 		$('#rut').Rut();
+
 	});
+	
+
 </script>
 <nav class="navbar navbar-default navbar-fixed-top ">
     <div class="container-fluid">
@@ -56,7 +60,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index" target="_blank"><img alt="" src="scr/img/logo_met.png" height="25px"></a>
+            <a class="navbar-brand" href="index" target=""><img alt="" src="scr/img/logo_met.png" height="25px"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,40 +68,13 @@
             <ul class="nav navbar-nav">
 
 <?php
-                switch ($pag)
-                {
-                case 'inicio':
-                echo  '<li class="active"><a href="index">Inicio</a></li>
-                <li><a href="yali">Estación El Yali </a></li>
-                <li><a href="campana">Estación La Campana</a></li>
-                <li><a href="peral">Estación El Peral</a></li>'                              ;
+                echo  '<li><a href="index">Inicio</a></li>'                              ;
+				$sql="SELECT * FROM estacioneshab WHERE estado = '1'";
+				$result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
+				while ($row = mysqli_fetch_array ($result)) {				
+					echo '<li><a href="'.$row['estacion'].'">'.$row['nombreEstacion'].'</a></li>';
+				}
 
-                break;
-                case 'yali':
-                echo '<li><a href="index">Inicio</a></li>
-                <li class="active"><a href="yali">Estación El Yali</a></li>
-                <li><a href="campana">Estación La Campana</a></li>
-                <li><a href="peral">Estación El Peral</a></li>'                               ;
-
-                break;
-                case 'campana':
-                echo '<li><a href="index">Inicio</a></li>
-                <li><a href="yali">Estación El Yali </a></li>
-                <li class="active"><a href="#">Estación La Campana</a></li>
-                <li><a href="peral">Estación El Peral</a></li>'                                ;
-
-                break;
-                case 'peral':
-                    echo '<li><a href="index">Inicio</a></li>
-                <li><a href="yali">Estación El Yali </a></li>
-                <li><a href="campana">Estación La Campana</a></li>
-                <li class="active"><a href="peral">Estación El Peral</a></li>'                                ;
-
-                break;
-
-                default:
-                return 'Error';
-                }
 
 ?>
 
@@ -110,7 +87,7 @@
 		{
 			
 		echo '<li style="padding-left:15px; padding-right:15px"><p class="navbar-text"><strong>Bienvenido </strong><a href = "opciones">'.$_SESSION['username'].'</a></p></li>
-		<li style="padding-right:15px"><p class="navbar-text"><strong><a href="scr/php/login/salir.php">Logout</a></strong></p></li>';
+		<li style="padding-right:15px;padding-left:16px"><p class="navbar-text"><strong><a href="scr/php/login/salir.php">Logout</a></strong></p></li>';
 		}else{	
 
 	
@@ -125,7 +102,7 @@ echo'	<li style="padding-left:15px"><p class="navbar-text">Ya estas registrado?<
 								 <form class="form" role="form" method="post" action="scr/php/login/login.php" accept-charset="UTF-8" id="login-nav">
 										<div class="form-group">
 											 <label class="sr-only" >usuario</label>
-											 <input type="email" class="form-control" name="correo" id="correo" placeholder="correo o Email" required="" autofocus="" value="" > 
+											 <input type="email" class="form-control" name="correo" id="correo" placeholder="correo o Email" required="" value="" > 
 										</div>
 										<div class="form-group">
 											 <label class="sr-only">contraseña</label>
