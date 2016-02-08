@@ -14,9 +14,10 @@ if($_POST){
 	$emb = $por2[1];
 	//Guardar imagen en la carpeta img
 	$cad = ucwords($archivo);
+
 	$tamano = $_FILES [ 'file' ][ 'size' ]; // Leemos el tamaño del fichero 
-	$tamaño_max="50000000000"; // Tamaño maximo permitido 
-	if( $tamano < $tamaño_max){ // Comprobamos el tamaño  
+	$tamaño_max="50000000000000000"; // Tamaño maximo permitido 
+	if( $tamano <= $tamaño_max){ // Comprobamos el tamaño  
 		$destino = '../img/' ; // Carpeta donde se guardata 
 		$sep=explode('image/',$_FILES["file"]["type"]); // Separamos image/ 
 		$tipo=$sep[1]; // Obtenemos el tipo de imagen que es 
@@ -28,7 +29,7 @@ if($_POST){
 		$result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
 
 		echo "<strong>".$nombre."</strong><br><strong>".$archivo."</strong><br><strong>".$latitud."</strong><br><strong>".$longitud."</strong><br><strong>".$emb."</strong>";
-		echo '<img src="scr/img/'.$cad.'.jpg" class="img-thumbnail" width="304" height="236">'; 
+		echo '<img src="../img/'.$cad.'.jpg" class="img-thumbnail" width="304" height="236">'; 
 		?>
 		<iframe src='https://www.google.com/maps/embed?pb=<?php echo $emb?>' iframe width='100%' height='265px' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'  style='border:0' allowfullscreen></iframe>
 		<?php
@@ -39,10 +40,12 @@ if($_POST){
 		} 
 		else echo'<script type="text/javascript">
 				  alert("El tipo de archivo no es permitido.");
+				  window.location="../../4"
 				</script>';// Si no es el tipo permitido
 	} 
 	else echo'<script type="text/javascript">
 				  alert("El archivo supera el tamaño permitido.");
+				  window.location="../../4"
 				</script>';// Si supera el tamaño de permitido
 }	
 ?>

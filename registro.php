@@ -66,7 +66,8 @@ if(!isset($_SESSION['session']))
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                     <input id="login-password" type="password" class="form-control" name="password" required="" placeholder="contraseña">
 								</div>
-									<span class="glyphicon form-control-feedback" aria-hidden="true"></span>	
+									<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+									<a href="lostPass" >Has perdido tu contraseña?</a>
 						</div>
 						
 

@@ -116,6 +116,9 @@ echo'	<li style="padding-left:15px"><p class="navbar-text">Ya estas registrado?<
 								 </form>
 							</div>
 							<div class="bottom text-center">
+								<a href="lostPass" ><b>Has perdido tu contraseña?</b></a>
+							</div>
+							<div class="bottom text-center">
 								No tienes cuenta <a href="registro" ><b>Registrate</b></a>
 							</div>
 					 </div>

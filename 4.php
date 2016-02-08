@@ -36,11 +36,12 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 		$('#loginform').validator();
 		$('#signupform').validator();
 	});
-	$(function () {
-		var image = '<img src="scr/img/imglat.png"">';
-		$('[data-toggle="popover"]').popover({content: image, html: true, })
-	});
-	</script>
+	
+	function ver(image){
+	document.getElementById('image').innerHTML = "<img src='"+image+"'>" 
+	}
+	</script>	
+
 </head>
 <body>
 
@@ -135,7 +136,7 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 							<div class="form-group has-feedback">		
                                     <label for="file" class="col-md-3 control-label">Imagen:</label>
                                     <div class="col-md-8">
-                                        <input type="file" data-show-upload="false" class="file" name="file[]" id="file" required="" onChange="ver(form.file.value)">
+                                        <input type="file" data-show-upload="false" class="file" name="file" id="file" required="" onChange="ver(form.file.value)">
 										<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     </div>
                                 <div class="col-md-offset-3 col-md-9">
@@ -146,7 +147,9 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 								
                                 <div class="form-group">                                       
                                     <div class="col-md-offset-3 col-md-9">
-                                        <input type="submit" class="btn btn-info" name="submit" value="Crear"> 
+                                        <button type="submit" class="btn btn-info" name="submit">
+											<span class="glyphicon glyphicon-upload left" aria-hidden="true"></span> Crear
+										</button>
 										<a href="opciones" class="btn btn-default" role="button">Volver</a>
                                     </div>
                                 </div>
@@ -188,16 +191,16 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 		
 							<tr>
 							<form method="POST"><input type="hidden" name="id" value="'.$row["id"].'">
-                                <td>'. $row['nombreEstacion'] . '</td>
-                                <td>'. $row['estacion'] . '</td>
-                                <td>'. $row['lat'] . '</td>
-								<td>'. $row['lon'] . '</td>
+                                <td style="vertical-align: middle;">'. $row['nombreEstacion'] . '</td>
+                                <td style="vertical-align: middle;">'. $row['estacion'] . '</td>
+                                <td style="vertical-align: middle;">'. $row['lat'] . '</td>
+								<td style="vertical-align: middle;">'. $row['lon'] . '</td>
                                 <td width=250>';
 								
                                 if ($row["estado"]==1){
-									echo '<input class="btn btn-danger" type="submit" name="submitD" value="Deshabilitar estación" >';
+									echo '<button class="btn btn-danger" type="submit" name="submitD"  ><span class="glyphicon glyphicon-remove left" aria-hidden="true"></span> Deshabilitar estación</button>';
 								}else if ($row["estado"]==0){
-									echo '<input class="btn btn-success" type="submit" name="submitH" value="Habilitar estación" >';
+									echo '<button class="btn btn-success" type="submit" name="submitH" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Habilitar estación</button>';
 								}
 						        
 								
@@ -228,7 +231,9 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 					</table>
 				</div><div class="row" style="padding-left:15px"><a href="opciones" class="btn btn-default" role="button">Volver</a></div>
 				</div>
-				
+				<div class="col-md-8 col-md-offset-3">
+					<div style="height:15px"></div>
+				</div>
 			</div>
 		</div><!-- menu1 -->
 		
@@ -260,16 +265,20 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 		
 							<tr>
 							<form method="POST"><input type="hidden" name="id" value="'.$row["id"].'">
-                                <td>'. $row['nombre'] . '</td>
-                                <td>'. $row['apellidos'] . '</td>
-                                <td>'. $row['correo'] . '</td>
-								<td>'. $row['tipo'] . '</td>
+                                <td style="vertical-align: middle;">'. $row['nombre'] . '</td>
+                                <td style="vertical-align: middle;">'. $row['apellidos'] . '</td>
+                                <td style="vertical-align: middle;">'. $row['correo'] . '</td>
+								<td style="vertical-align: middle;">'. $row['tipo'] . '</td>
                                 <td width=250>';
 								
                                 if ($row["sup"]==0){
-									echo '<input class="btn btn-danger" type="submit" name="submitD" value="Deshabilitar cuenta" >';
+									if ($row['correo']==$_SESSION['mail']){
+										echo '<button class="btn btn-danger" type="submit" name="submitD" disabled ><span class="glyphicon glyphicon-remove left" aria-hidden="true"></span> Deshabilitar cuenta</button>';
+									}else{
+										echo '<button class="btn btn-danger" type="submit" name="submitD"  ><span class="glyphicon glyphicon-remove left" aria-hidden="true"></span> Deshabilitar cuenta</button>';
+									}
 								}else if ($row["sup"]==1){
-									echo '<input class="btn btn-success" type="submit" name="submitH" value="Habilitar cuenta" >';
+									echo '<button class="btn btn-success" type="submit" name="submitH" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Habilitar cuenta</button>';
 								}
 						        
 								
@@ -298,6 +307,9 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 						</tbody>
 					</table>
 				</div><div class="row" style="padding-left:15px"><a href="opciones" class="btn btn-default" role="button">Volver</a></div>
+				</div>
+				<div class="col-md-8 col-md-offset-3">
+					<div style="height:45px"></div>
 				</div>
 			</div> <!-- /container -->
 		</div><!-- menu2 -->

@@ -27,30 +27,9 @@ if( $nombre == '' || preg_match(!$patron1, $nombre) || $apellidos == ''  || preg
 	//Correspondientes
 	else{
 		$mydb = new myDBC();
-		$pass_oculto =  crypt($pass,"$1$rasmusle$");
-		$mydb->agregaUsuario($nombre, $apellidos, $correo, $pass_oculto);
-						$destinatario = $correo; 
-						$asunto = "Comprovación del correo - Meteorología UPLA"; 
-						$cuerpo = ' 
-						<html> 
-						<head> 
-						   <title>Comprovación del correo</title> 
-						</head> 
-						<body> 
-						<h3>Hola '.$nombre.' '.$apellidos.' ,</h3> 
-						<p> 
-						<b>Bienvenido/a a la página de Estaciones Meteorológicas de la Universidad de Playa Ancha</b>. <br>Gracias por registrarte, este mensaje es para verificar tu correo electronico. 
-						<br>Tu contraseña es: <strong>'.$pass.'</strong>
-						</p> 
-						</body> 
-						</html> 
-						'; 
-
-						//para el envío en formato HTML 
-						$headers = "MIME-Version: 1.0\r\n"; 
-						$headers .= "Content-type: text/html; charset=utf-8\r\n"; 
-
-						mail($destinatario,$asunto,$cuerpo,$headers);
+		
+		$mydb->agregaUsuario($nombre, $apellidos, $correo, $repass);
+						
 		
 	}
 ?>

@@ -45,7 +45,7 @@ class myDBC {
 		//El password obtenido se le aplica el crypt
 		//Posteriormente se compara en el query
 		$pass_c = crypt($contrasenia,"$1$rasmusle$");
-		$q = "select * from usuarios where correo='$usuario' and password='$pass_c'";
+		$q = "select * from usuarios where correo='$usuario' and (password='$pass_c' or password='$contrasenia')";
 		
 		$result = $this->mysqli->query($q);
 		//Si el resultado obtenido no tiene nada 
@@ -72,14 +72,26 @@ class myDBC {
 				window.location="../../../index"
 				</script>';
 			}else{
+				date_default_timezone_set('America/Santiago');
+				
 				$_SESSION["session"][] = $reg["id"];
 				$_SESSION["id"] = $reg["id"];
 				$_SESSION["username"] = $reg["nombre"].' '.$reg["apellidos"];
 				$_SESSION["mail"] = $reg["correo"];
 				$_SESSION["pass"] = $reg["password"];
 				$_SESSION["user"] = $reg["tipo"];
+				$_SESSION['session_time'] = date('Y-m-d H:i:s');
+				
+				$q = "UPDATE usuarios SET ultimoLogeo = '".$_SESSION['session_time']."' WHERE correo = '".$_SESSION['mail']."'";
+			
+				$result = $this->mysqli->query($q);
+				echo'<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+				<script type="text/javascript">
+				alert("Bienvenido '.$_SESSION['username'].'");
+				window.location="../../../index"
+				</script>';
 			}
-			header("location:../../../index");
+			//
 		}
 		
 	}
@@ -106,11 +118,40 @@ class myDBC {
 		else
 		{
 			//Inserta en la BD 
+			date_default_timezone_set('America/Santiago');
+			
 			$sup=0;
+			$pass_oculto =  crypt($contras,"$1$rasmusle$");
+			$fechaIngreso=date('Y-m-d H:i:s');
 			$user="user";
-			$q = "INSERT INTO usuarios (nombre, apellidos, correo, password, sup, tipo) VALUES ('$nombre','$apellidos', '$mail', '$contras', '$sup', '$user' ); ";
+			$q = "INSERT INTO usuarios (nombre, apellidos, correo, password, sup, tipo, fechaIngreso) VALUES ('$nombre','$apellidos', '$mail', '$contras', '$sup', '$user', '$fechaIngreso' ); ";
 		
 			$result = $this->mysqli->query($q);
+			
+			$destinatario = $correo; 
+			$asunto = "Comprovación del correo - Meteorología UPLA"; 
+			$cuerpo = ' 
+			<html> 
+			<head> 
+			<title>Comprovación del correo</title> 
+			</head> 
+			<body> 
+			<h3>Hola '.$nombre.' '.$apellidos.' ,</h3> 
+			<p> 
+			<b>Bienvenido/a a la página de Estaciones Meteorológicas de la Universidad de Playa Ancha</b>. <br>Gracias por registrarte, este mensaje es para verificar tu correo electronico. 
+			<br>Tu contraseña es: <strong>'.$contras.'</strong>
+			</p> 
+			</body> 
+			</html> 
+			'; 
+
+			//para el envío en formato HTML 
+			$headers = "MIME-Version: 1.0\r\n"; 
+			$headers .= "Content-type: text/html; charset=utf-8\r\n"; 
+
+			mail($destinatario,$asunto,$cuerpo,$headers);
+			
+			
 			if($result){ //Si resultado es true, se agregó correctamente
 					echo'<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 						<script type="text/javascript">
