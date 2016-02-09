@@ -31,6 +31,15 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
     <script src="scr/js/fileinput_locale_es.js" type="text/javascript"></script>
 	
 	<script type="text/javascript" src="scr/js/validator.js" ></script>
+	
+	<style>
+	.custom {
+		width: 224px !important;
+	}
+	.custom2 {
+		width: 40px !important;
+	}
+	</style>	
 	<script>
 	$(document).ready(function(){
 		$('#loginform').validator();
@@ -40,10 +49,36 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 	function ver(image){
 	document.getElementById('image').innerHTML = "<img src='"+image+"'>" 
 	}
-	</script>	
-
+	//borrar cuando este lista la parte de eliminar
+	$(function(){
+	  //$("button.custom2").attr("disabled", true);
+	});
+	</script>
 </head>
 <body>
+
+	<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">¿Estas seguro?</h4>
+                </div>
+            
+                <div class="modal-body">
+                    <p>Estas a punto de eliminar, este procedimiento es irreversible.</p>
+                    <p>¿Quieres continuar?</p>
+                    <p class="debug-url"></p>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-danger btn-ok">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>	
 
 <div class="container-fluid">   
 
@@ -52,7 +87,7 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 		include "scr/php/menu.php";
 		include "scr/php/banner2.php";
 		
-		$titulolat = "Donde encontrar la latitud en Maps";
+		//$titulolat = "Donde encontrar la latitud en Maps";
 		//$textolat = "Haciendo click en cualquier parte del mapa, aparecera una caja en la parte inferior con el nombre de la ciudad, el primer numero que aparece es la latitud.";
 		?>
 		<br>
@@ -123,7 +158,7 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 								</div>
 							</div>
 							<div class="form-group has-feedback">	
-                                    <label for="mapa" class="col-md-3 control-label">Mapa:</label>
+                                    <label for="mapa" class="col-md-3 control-label">Mapa <a href="http://maps.google.cl" target="_self">(Google Maps)</a>:</label>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" name="mapa" id="mapa" required="" placeholder="Mapa" >
                             		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -162,7 +197,7 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 		</div><!-- home -->
 		
 		<div id="menu1" class="tab-pane fade">
-			
+	
 			<div class="container">
             <div class="col-md-10 col-md-offset-1 col-xs-12">
 			<p style="padding-top:5px"><strong><h4>Deshabilitar Estación</h4></strong></p>
@@ -195,18 +230,22 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
                                 <td style="vertical-align: middle;">'. $row['estacion'] . '</td>
                                 <td style="vertical-align: middle;">'. $row['lat'] . '</td>
 								<td style="vertical-align: middle;">'. $row['lon'] . '</td>
-                                <td width=250>';
+                                <td width=280>
+								<div class="btn-group">';
 								
                                 if ($row["estado"]==1){
-									echo '<button class="btn btn-danger" type="submit" name="submitD"  ><span class="glyphicon glyphicon-remove left" aria-hidden="true"></span> Deshabilitar estación</button>';
+									echo '<button class="btn btn-warning custom" type="submit" name="submitD"  ><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Deshabilitar estación</button></form>';
+									echo '<button class="btn btn-danger custom2" data-href="scr/php/deleteE.php?id='.$row['id'].'"  name="eliminar" data-toggle="modal" data-target="#confirm-delete" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
 								}else if ($row["estado"]==0){
-									echo '<button class="btn btn-success" type="submit" name="submitH" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Habilitar estación</button>';
+									echo '<button class="btn btn-success custom" type="submit" name="submitH" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Habilitar estación</button></form>';
+									echo '<button class="btn btn-danger custom2" data-href="scr/php/deleteE.php?id='.$row['id'].'"  name="eliminar" data-toggle="modal" data-target="#confirm-delete" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
 								}
 						        
 								
-						echo    '               
+						echo    ' 
+								</div>
                                 </td>
-								</form>
+								
                             </tr>
                        
                       
@@ -238,6 +277,7 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 		</div><!-- menu1 -->
 		
 		<div id="menu2" class="tab-pane fade">
+					
 			<div class="container">
             <div class="col-md-10 col-md-offset-1 col-xs-12">
 			<p style="padding-top:5px"><strong><h4>Control de usuarios</h4></strong></p>
@@ -269,22 +309,26 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
                                 <td style="vertical-align: middle;">'. $row['apellidos'] . '</td>
                                 <td style="vertical-align: middle;">'. $row['correo'] . '</td>
 								<td style="vertical-align: middle;">'. $row['tipo'] . '</td>
-                                <td width=250>';
+                                <td width=280>
+								<div class="btn-group">';
 								
                                 if ($row["sup"]==0){
 									if ($row['correo']==$_SESSION['mail']){
-										echo '<button class="btn btn-danger" type="submit" name="submitD" disabled ><span class="glyphicon glyphicon-remove left" aria-hidden="true"></span> Deshabilitar cuenta</button>';
+										echo '<button class="btn btn-warning custom" type="submit" name="submitD" disabled ><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Deshabilitar cuenta</button></form>';
+										echo '<button class="btn btn-danger custom2" data-href="scr/php/delete.php?id='.$row['id'].'" name="eliminar" data-toggle="modal" data-target="#confirm-delete" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
 									}else{
-										echo '<button class="btn btn-danger" type="submit" name="submitD"  ><span class="glyphicon glyphicon-remove left" aria-hidden="true"></span> Deshabilitar cuenta</button>';
+										echo '<button class="btn btn-warning custom" type="submit" name="submitD"  ><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Deshabilitar cuenta</button></form>';
+										echo '<button class="btn btn-danger custom2" data-href="scr/php/delete.php?id='.$row['id'].'" name="eliminar" data-toggle="modal" data-target="#confirm-delete" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
 									}
 								}else if ($row["sup"]==1){
-									echo '<button class="btn btn-success" type="submit" name="submitH" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Habilitar cuenta</button>';
+									echo '<button class="btn btn-success custom" type="submit" name="submitH" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Habilitar cuenta</button></form>';
+									echo '<button class="btn btn-danger custom2" data-href="scr/php/delete.php?id='.$row['id'].'" name="eliminar" data-toggle="modal" data-target="#confirm-delete" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
 								}
 						        
 								
-        echo    '               
+        echo    '               </div>
                                 </td>
-								</form>
+								
                             </tr>
                        
                       
@@ -292,7 +336,7 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 	}	
 	
 	$id = $_POST['id'];
-	if (isset($_POST['submitD'])){
+	if(isset($_POST['submitD'])){
 		echo "adios<br>";
 		$sql1 = "UPDATE usuarios SET sup = '1' WHERE id = '".$id."'";
 		$result1 = mysqli_query($con,$sql1)or die("Error en: " .  mysqli_error($con));
@@ -323,6 +367,10 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
         language: 'es',
         allowedFileExtensions : ['jpg', 'png','gif'],
     });
+	$('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));    
+        $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+    });
 </script>
 
 	<?php 
@@ -336,5 +384,3 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 	?>
 	
 </body>
-
-</html>

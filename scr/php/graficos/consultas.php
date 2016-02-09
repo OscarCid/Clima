@@ -22,12 +22,12 @@ class graficos
     {
         
                 if ($this->estacion == "campana") {
-                    $primero = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:50:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+                    $primero = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:50:00' ORDER BY fecha DESC, hora DESC LIMIT 12 OFFSET 1;;";
                     $segundo = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:00:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
                     $tercero = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:10:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
                 }
                 else{
-					$primero = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:55:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
+					$primero = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:55:00' ORDER BY fecha DESC, hora DESC LIMIT 12 OFFSET 1;";
 					$segundo = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:00:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
 					$tercero = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:05:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
 				}
@@ -114,20 +114,27 @@ class graficos
 
     }
 	
+	
 	public function anualPrec($grafico)
     {
-		$ene="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-01-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$feb="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-02-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$mar="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-03-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$abr="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-04-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$may="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-05-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$jun="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-06-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$jul="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-07-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$ago="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-08-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$sep="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-09-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$oct="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-10-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$nov="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-11-%' AND $grafico NOT LIKE '0.0') AS tabla";
-		$dic="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '%-12-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$sql="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' ORDER BY fecha DESC, hora DESC LIMIT 1;";
+		$resultado = $this->coneccion -> query($sql) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado)) {
+			$Fecha = $row["fecha"];
+			list( $ano, $mes, $dia  ) = split( '[/.-]', $Fecha);
+		}
+		$ene="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-01-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$feb="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-02-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$mar="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-03-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$abr="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-04-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$may="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-05-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$jun="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-06-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$jul="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-07-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$ago="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-08-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$sep="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-09-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$oct="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-10-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$nov="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-11-%' AND $grafico NOT LIKE '0.0') AS tabla";
+		$dic="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '".$ano."-12-%' AND $grafico NOT LIKE '0.0') AS tabla";
 	
 	    $resultado1 = $this->coneccion -> query($ene) or trigger_error($this->coneccion ->error);
         $resultado2 = $this->coneccion -> query($feb) or trigger_error($this->coneccion ->error);
@@ -166,13 +173,77 @@ class graficos
 			$datoJul = $fila7['precMensual'];			
 			$datoAgo = $fila8['precMensual'];			
 			$datoSep = $fila9['precMensual'];			
-			$datoNov = $fila10['precMensual'];			
+			$datoOct = $fila10['precMensual'];			
 			$datoNov = $fila11['precMensual'];			
 			$datoDic = $fila12['precMensual'];
 		}
 		
 		echo $datoEne.", ".$datoFeb.", ".$datoMar.", ".$datoAbr.", ".$datoMay.", ".$datoJun.", ".$datoJul.", ".$datoAgo.", ".$datoSep.", ".$datoOct.", ".$datoNov.", ".$datoDic;
 	}
+	
+	public function semanalPrec($grafico)
+    {
+		$sql="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' ORDER BY fecha DESC, hora DESC LIMIT 1;";
+		$resultado = $this->coneccion -> query($sql) or trigger_error($this->coneccion ->error);
+		while($row = mysqli_fetch_array($resultado)) {
+			$fecha = $row["fecha"];
+			$fecha1 = strtotime ( '-1 day' , strtotime ( $fecha ) ) ;
+			$fecha1 = date ( 'Y-m-d' , $fecha1 );
+			$fecha2 = strtotime ( '-2 day' , strtotime ( $fecha ) ) ;
+			$fecha2 = date ( 'Y-m-d' , $fecha2 );			
+			$fecha3 = strtotime ( '-3 day' , strtotime ( $fecha ) ) ;
+			$fecha3 = date ( 'Y-m-d' , $fecha3 );			
+			$fecha4 = strtotime ( '-4 day' , strtotime ( $fecha ) ) ;
+			$fecha4 = date ( 'Y-m-d' , $fecha4 );			
+			$fecha5 = strtotime ( '-5 day' , strtotime ( $fecha ) ) ;
+			$fecha5 = date ( 'Y-m-d' , $fecha5 );			
+			$fecha6 = strtotime ( '-6 day' , strtotime ( $fecha ) ) ;
+			$fecha6 = date ( 'Y-m-d' , $fecha6 );			
+		}
+		$dia1="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha' AND $grafico NOT LIKE '0.0') AS tabla";
+		$dia2="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha1' AND $grafico NOT LIKE '0.0') AS tabla";
+		$dia3="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha2' AND $grafico NOT LIKE '0.0') AS tabla";
+		$dia4="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha3' AND $grafico NOT LIKE '0.0') AS tabla";
+		$dia5="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha4' AND $grafico NOT LIKE '0.0') AS tabla";
+		$dia6="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha5' AND $grafico NOT LIKE '0.0') AS tabla";
+		$dia7="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha6' AND $grafico NOT LIKE '0.0') AS tabla";
+		
+	
+	    $resultado1 = $this->coneccion -> query($dia1) or trigger_error($this->coneccion ->error);
+        $resultado2 = $this->coneccion -> query($dia2) or trigger_error($this->coneccion ->error);
+        $resultado3 = $this->coneccion -> query($dia3) or trigger_error($this->coneccion ->error);
+        $resultado4 = $this->coneccion -> query($dia4) or trigger_error($this->coneccion ->error);
+        $resultado5 = $this->coneccion -> query($dia5) or trigger_error($this->coneccion ->error);
+        $resultado6 = $this->coneccion -> query($dia6) or trigger_error($this->coneccion ->error);
+        $resultado7 = $this->coneccion -> query($dia7) or trigger_error($this->coneccion ->error);
+        
+			
+
+			
+		while($fila1 = $resultado1 -> fetch_array() and $fila2 = $resultado2 -> fetch_array() and $fila3 = $resultado3 -> fetch_array() and $fila4 = $resultado4 -> fetch_array() and $fila5 = $resultado5 -> fetch_array() and $fila6 = $resultado6 -> fetch_array() and $fila7 = $resultado7 -> fetch_array() )
+        {	
+			$datoEne = $fila1['precMensual'];
+			$datoFeb = $fila2['precMensual'];			
+			$datoMar = $fila3['precMensual'];			
+			$datoAbr = $fila4['precMensual'];			
+			$datoMay = $fila5['precMensual'];			
+			$datoJun = $fila6['precMensual'];			
+			$datoJul = $fila7['precMensual'];			
+
+		}
+		setlocale (LC_TIME,"spanish");
+		$diaFecha = utf8_encode(strftime('%A',strtotime("$fecha")));
+		$diaFecha1 = utf8_encode(strftime('%A',strtotime("$fecha1")));
+		$diaFecha2 = utf8_encode(strftime('%A',strtotime("$fecha2")));
+		$diaFecha3 = utf8_encode(strftime('%A',strtotime("$fecha3")));
+		$diaFecha4 = utf8_encode(strftime('%A',strtotime("$fecha4")));
+		$diaFecha5 = utf8_encode(strftime('%A',strtotime("$fecha5")));
+		$diaFecha6 = utf8_encode(strftime('%A',strtotime("$fecha6")));
+	
+		$this->Dias = "'$diaFecha', '$diaFecha1', '$diaFecha2', '$diaFecha3', '$diaFecha4', '$diaFecha5', '$diaFecha6'";
+		$this->DatosSem = $datoEne.", ".$datoFeb.", ".$datoMar.", ".$datoAbr.", ".$datoMay.", ".$datoJun.", ".$datoJul;
+	}
+	
 	
 	public function viento($grafico)
     {

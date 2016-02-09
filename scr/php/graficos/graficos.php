@@ -9,25 +9,6 @@
         $graficosYali = new graficos($porciones[2]);
 		
 		$pag=$porciones[2];
-
-		switch ($pag)
-                {
-				case 'yali':
-                $tituloViento = 'Estación Meteorológica El Yali'                               ;
-
-                break;
-                case 'campana':
-                $tituloViento = 'Estación Meteorológica La Campana'                                ;
-
-                break;
-                case 'peral':
-                $tituloViento = 'Estación Meteorológica El Peral'                                ;
-
-                break;
-
-                default:
-                return 'Error';
-				}
 			
 ?>
    
@@ -687,7 +668,7 @@ $(function () {
         },
 
         title: {
-            text: 'Rosa de los Vientos, <?php echo $tituloViento ?>'
+            text: 'Rosa de los Vientos'
         },
 
         subtitle: {
@@ -818,3 +799,66 @@ $(function () {
     });
 });
 		</script>		
+<script>
+setInterval(function () {
+        $('#GraficoPrecipitacionSemana').highcharts().reflow();
+    }, 10);		
+$(function () {
+    $('#GraficoPrecipitacionSemana').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Precipitaciones Semanales'
+        },
+        subtitle: {
+            text: 'De los ultimos 7 días'
+        },
+        xAxis: {
+            categories: [
+                <?php
+                    $graficosYali->semanalPrec("precHoy");
+					echo $graficosYali->Dias;
+                ?>
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Precipitaciones (mm)'
+            }
+        },
+		exporting: {
+                buttons: {
+                    contextButton: {
+                        symbol: 'url(scr/img/save.gif)'
+                }
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'mm',
+            data: [
+					<?php
+                        echo $graficosYali->DatosSem;
+                    ?>
+				]
+
+        }]
+    });
+});
+		</script>	

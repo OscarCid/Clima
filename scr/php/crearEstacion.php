@@ -14,7 +14,7 @@ if($_POST){
 	$emb = $por2[1];
 	//Guardar imagen en la carpeta img
 	$cad = ucwords($archivo);
-
+	$arc = strtolower($archivo);
 	$tamano = $_FILES [ 'file' ][ 'size' ]; // Leemos el tamaño del fichero 
 	$tamaño_max="50000000000000000"; // Tamaño maximo permitido 
 	if( $tamano <= $tamaño_max){ // Comprobamos el tamaño  
@@ -25,7 +25,7 @@ if($_POST){
 			move_uploaded_file ( $_FILES [ 'file' ][ 'tmp_name' ], $destino . '/' .$cad.'.jpg'); 
 	 
 		//Insertar a la tabla estacioneshab
-		$sql="INSERT INTO estacioneshab (estacion, nombreEstacion, estado, lat, lon, emb) VALUES ('".$archivo."', '".$nombre."', '1', '".$latitud."', '".$longitud."', '".$emb."')";
+		$sql="INSERT INTO estacioneshab (estacion, nombreEstacion, estado, lat, lon, emb) VALUES ('".$arc."', '".$nombre."', '1', '".$latitud."', '".$longitud."', '".$emb."')";
 		$result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
 
 		echo "<strong>".$nombre."</strong><br><strong>".$archivo."</strong><br><strong>".$latitud."</strong><br><strong>".$longitud."</strong><br><strong>".$emb."</strong>";

@@ -30,7 +30,7 @@
     /* Footer left */
 
     .footer-distributed .footer-left{
-        width: 40%;
+        width: 47%;
     }
 
     /* The company logo */
@@ -114,7 +114,7 @@
     /* Footer Right */
 
     .footer-distributed .footer-right{
-        width: 20%;
+        width: 15%;
     }
 
     .footer-distributed .footer-company-about{
@@ -156,7 +156,7 @@
 
     /* If you don't want the footer to be responsive, remove these media queries */
 
-    @media (max-width: 880px) {
+    @media (max-width: 1031px) {
 
         .footer-distributed{
             font: bold 14px sans-serif;
@@ -170,6 +170,11 @@
             margin-bottom: 40px;
             text-align: center;
         }
+		.footer-distributed .footer-links{
+			color:  #ffffff;
+			margin: 35px 0 12px;
+			padding: 0;
+		}
 
         .footer-distributed .footer-center i{
             margin-left: 0;
@@ -183,23 +188,19 @@
 
     <div class="footer-left" style="padding-top: 20px">
 
-	<div style="height: 35px">
-		<div style="float: left; padding-right: 5px; ">
-			<a href="http://www.upla.cl"  target="_blank"><img src="scr/img/logo_upla_color_fondo_negro.png" height="25px"></a>
-	   </div>
-		<div style="float: left; padding-right: 5px">
-			<a href="http://www.upla.cl/facultadingenieria"  target="_blank"><img alt="" src="scr/img/uplafi_negro.png" height="25px"></a>
-		</div>
-		<div style="float: left; padding-right: 5px">
-			<a href="http://meteoarmada.directemar.cl"  target="_blank"><img alt="" src="scr/img/armada_negro.png" height="25px"></a>
-		</div>
-		<div style="float: left; ">
-			<a href="http://www.conaf.cl" target="_blank"><img alt="" src="scr/img/conaf.png" height="25px"></a>
-		</div>
-	</div>
-
-        <p class="footer-links">
+	<div style="height: auto">
 		
+	
+			<a href="http://www.upla.cl/facultadingenieria" target="_blank"><img style="margin-right:5px"  alt="" src="scr/img/uplafi_negro.png" height="45px" class="img-center"></a>
+		
+			<a href="http://meteoarmada.directemar.cl" target="_blank"><img style="margin-right:5px" alt="" src="scr/img/armada_negro.png" height="45px" class="img-center"></a>
+		
+			<a href="http://www.conaf.cl" target="_blank"><img style="margin-right:5px" alt="" src="scr/img/conaf.png" height="45px" class="img-center"></a>
+		
+
+	</div>
+        
+		<p class="footer-links">		
             <a href="index">Inicio</a>
             ·
             <a href="http://www.upla.cl" target="_blank">UPLA</a>

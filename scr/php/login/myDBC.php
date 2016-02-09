@@ -124,7 +124,7 @@ class myDBC {
 			$pass_oculto =  crypt($contras,"$1$rasmusle$");
 			$fechaIngreso=date('Y-m-d H:i:s');
 			$user="user";
-			$q = "INSERT INTO usuarios (nombre, apellidos, correo, password, sup, tipo, fechaIngreso) VALUES ('$nombre','$apellidos', '$mail', '$contras', '$sup', '$user', '$fechaIngreso' ); ";
+			$q = "INSERT INTO usuarios (nombre, apellidos, correo, password, sup, tipo, fechaIngreso) VALUES ('$nombre','$apellidos', '$mail', '$pass_oculto', '$sup', '$user', '$fechaIngreso' ); ";
 		
 			$result = $this->mysqli->query($q);
 			

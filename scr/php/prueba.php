@@ -95,12 +95,20 @@
 					
 					<div class="tab-pane" id="prec">
                         <div class="span8">
-                            
+                            <div class="tabbable">
+                                <ul class="nav nav-pills">
+                                    <li class="active"><a href="#prec1" data-toggle="pill">Semanal</a></li>
+                                    <li><a href="#prec2" data-toggle="pill">Mensual</a></li>
+                                </ul>
+                                <div class="tab-content">
                                     <div class="tab-pane fade in active" id="prec1">
+                                        <div id="GraficoPrecipitacionSemana" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
+                                    </div>
+                                    <div class="tab-pane" id="prec2">
                                         <div id="GraficoPrecipitacion" style="min-width: 300px; height: 500px; margin: 0 auto"></div>
                                     </div>
-                                    
-                             
+                                </div>
+                            </div>
                         </div>
                     </div>
 					
