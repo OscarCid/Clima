@@ -41,11 +41,11 @@ class graficos
                     $hora = $fila2['hora'];
                     $fecha = $fila2['fecha'];
                     list($hora, $minuto, $segundos) = split('[/:.-]', $hora);
-                    list($año, $mes, $dia) = split('[/:.-]', $fecha);
+                    list($ano, $mes, $dia) = split('[/:.-]', $fecha);
                     $mes=$mes-1;
                     $temperatura = (($fila1[$grafico])+($fila2[$grafico])+($fila3[$grafico]))/3;
                     $temperatura = number_format($temperatura, 2, '.', '');
-                    echo "[Date.UTC(".$año.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$temperatura."],";
+                    echo "[Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.", ".$minuto."), ".$temperatura."],";
                 }
                
         
@@ -79,7 +79,7 @@ class graficos
             $hora1 = $fila2['hora'];
             $fecha1 = $fila2['fecha'];
             list($hora1, $minuto1) = split('[/:.-]', $hora1);
-            list($año1, $mes1, $dia1) = split('[/:.-]', $fecha1);
+            list($anno1, $mes1, $dia1) = split('[/:.-]', $fecha1);
             $mes1=$mes1-1;
             
                 $temperatura1 = (($fila1[$grafico])+($fila2[$grafico])+($fila3[$grafico]))/3;
@@ -89,7 +89,7 @@ class graficos
             $hora2 = $fila5['hora'];
             $fecha2 = $fila5['fecha'];
             list($hora2, $minuto2) = split('[/:.-]', $hora2);
-            list($año2, $mes2, $dia2) = split('[/:.-]', $fecha2);
+            list($anno2, $mes2, $dia2) = split('[/:.-]', $fecha2);
             $mes2=$mes2-1;
 
                 $temperatura2 = (($fila4[$grafico])+($fila5[$grafico])+($fila6[$grafico]))/3;
@@ -99,16 +99,16 @@ class graficos
             $hora3 = $fila8['hora'];
             $fecha3 = $fila8['fecha'];
             list($hora3, $minuto3) = split('[/:.-]', $hora3);
-            list($año3, $mes3, $dia3) = split('[/:.-]', $fecha3);
+            list($anno3, $mes3, $dia3) = split('[/:.-]', $fecha3);
             $mes3=$mes3-1;
 
                 $temperatura3 = (($fila7[$grafico])+($fila8[$grafico])+($fila9[$grafico]))/3;
             
             $temperatura3 = number_format($temperatura3, 2, '.', '');
 
-            echo "[Date.UTC(".$año3.", ".$mes3.", ".$dia3.", ".$hora3.", ".$minuto3."), ".$temperatura3."],";
-			echo "[Date.UTC(".$año2.", ".$mes2.", ".$dia2.", ".$hora2.", ".$minuto2."), ".$temperatura2."],";
-			echo "[Date.UTC(".$año1.", ".$mes1.", ".$dia1.", ".$hora1.", ".$minuto1."), ".$temperatura1."],";
+            echo "[Date.UTC(".$anno3.", ".$mes3.", ".$dia3.", ".$hora3.", ".$minuto3."), ".$temperatura3."],";
+			echo "[Date.UTC(".$anno2.", ".$mes2.", ".$dia2.", ".$hora2.", ".$minuto2."), ".$temperatura2."],";
+			echo "[Date.UTC(".$anno1.", ".$mes1.", ".$dia1.", ".$hora1.", ".$minuto1."), ".$temperatura1."],";
 
         }
 
@@ -457,6 +457,7 @@ class graficos
         }
         print(json_encode($json_output));
     }
+
 
     function __destruct()
     {
