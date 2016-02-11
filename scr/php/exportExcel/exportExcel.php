@@ -9,7 +9,7 @@ header("Content-Disposition: attachment; filename=estacion.xls");
 include 'db.php';
 $excel = new graficos();
 echo'
-<table>
+<table border="1">
     <tr>
         <th>Fecha</th>
         <th>Hora</th>
