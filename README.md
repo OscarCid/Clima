@@ -1,7 +1,6 @@
 # MeteorologiaUPLA-WEB
 
-Meteorología UPLA - WEB es un proyecto desarrollado para
-sistemas operativos android que entrega la información de las diferentes estaciones meteorológicas que 
+Meteorología UPLA - WEB es un proyecto desarrollado que entrega la información de las diferentes estaciones meteorológicas que 
 se encuentran instaladas en distintas zonas de la V Región y que han sido habilitadas por la Facultad de 
 Ingeniería de la Universidad de Playa Ancha en colaboración con la Dirección de Meteorología de la Armada 
 de Chile y la Corporación Nacional Forestal (CONAF)
