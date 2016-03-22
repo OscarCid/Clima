@@ -7,7 +7,16 @@
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap-theme.min.css">
 </head>
 <body>
-
+<?php
+include_once "scr/conexion.php";
+$sql1="SELECT * FROM afiliado WHERE afiliado = '".$afiliado."'";
+$result1 = mysqli_query($con,$sql1)or die("Error en: " .  mysqli_error($con));
+while ($row = mysqli_fetch_array ($result1)) {
+	$imagenE = $row['imagen'];
+	$enunciadoE = $row['enunciado'];
+	$linkE = $row['link'];
+}
+?>
 <div class="row hidden-xs" style="padding-bottom: 10px;">
     <div class="col-md-10 col-md-offset-1 col-sm-12 " style=" padding-bottom: 7px; border-bottom: 1px solid #eee ">
         <div class="col-md-4 col-sm-4">
@@ -17,7 +26,7 @@
             <a href="http://meteoarmada.directemar.cl"  target="_blank"><img src="scr/img/armada.png"/></a>
         </div>
         <div class="col-md-4 col-sm-4">
-            <a href="http://www.conaf.cl"  target="_blank"><img src="scr/img/conaf.png" /></a>
+            <a href="<?php echo $linkE ?>"  target="_blank"><img src="scr/img/<?php echo $imagenE ?>" /></a>
         </div>
     </div>
 </div>
@@ -77,7 +86,7 @@ $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
                 <div class='row' >
                     <div class="col-md-12">
                         <p class="text-justify">
-                            La facultad de Ingeniería de la Universidad de Playa Ancha en colaboración con la Dirección de Meteorologia de la Armada de Chile y la Corporación Nacional Forestal (CONAF) se encuentra habilitando estaciones meteorológicas Davis en diferentes áreas protegidas de la Región de Valparaiso. </br>
+                            La facultad de Ingeniería de la Universidad de Playa Ancha en colaboración con la Dirección de Meteorologia de la Armada de Chile y <?php echo $enunciadoE ?> se encuentra habilitando estaciones meteorológicas Davis en diferentes áreas protegidas de la Región de Valparaiso. </br>
                             La estación meteorológica en uso es el Davis Vantage Pro2, y estas paginas se actualizan cada 5 minutos. El dia meteorológico utilizado en esta estación termina a la medianoche.</p><br>
                     </div>
                 </div>

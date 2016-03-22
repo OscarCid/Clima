@@ -100,7 +100,7 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-danger btn-ok">Eliminar</a>
+                    <a class="btn btn-danger btn-ok"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar</a>
                 </div>
             </div>
         </div>
@@ -121,9 +121,11 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 		<div class = "col-md-10 col-md-offset-1 col-xs-12">
 		<ul class="nav nav-tabs" id="cosa">
 			<li class="active"><a data-toggle="tab" href="#home">Crear Estación</a></li>
+			
 			<li><a data-toggle="tab" href="#menu1">Deshabilitar Estación</a></li>
 			<li><a data-toggle="tab" href="#menu2">Control de Usuarios</a></li>
-			
+			<li><a data-toggle="tab" href="#menu3">Subir datos de emergencia</a></li>
+			<li><a data-toggle="tab" href="#menu4">Nuevo Afiliado</a></li>
 		</ul>
 		</div>
 	</div>	
@@ -164,7 +166,7 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 							<div class="form-group has-feedback">									
                                     <label for="latitud" class="col-md-3 control-label" >Latitud:</label>
                                     <div class="col-md-8">										
-                                        <input type="text" class="form-control" name="latitud" id="latitud" placeholder="Latitud" required="" >	
+                                        <input type="text" class="form-control" pattern="^-?\d*\.{0,1}\d+$" name="latitud" id="latitud" placeholder="Latitud" required="" >	
                             		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     </div>
                                 <div class="col-md-offset-3 col-md-9">
@@ -175,7 +177,7 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 							<div class="form-group has-feedback">	
                                     <label for="longitud" class="col-md-3 control-label">Longitud:</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="longitud" id="longitud" required="" placeholder="Longitud" >
+                                        <input type="text" class="form-control" pattern="^-?\d*\.{0,1}\d+$" name="longitud" id="longitud" required="" placeholder="Longitud" >
                             		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     </div>
                                 <div class="col-md-offset-3 col-md-9">
@@ -186,13 +188,31 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 							<div class="form-group has-feedback">	
                                     <label for="mapa" class="col-md-3 control-label">Mapa <a href="http://maps.google.cl" target="_self">(Google Maps)</a>:</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="mapa" id="mapa" required="" placeholder="Mapa" >
+                                        <input type="text" pattern='<iframe src="https://www.google.com/maps.+' class="form-control" name="mapa" id="mapa" required="" placeholder="Mapa" >
                             		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     </div>
                                 <div class="col-md-offset-3 col-md-9">
 								
 								<span class="help-block with-errors"></span>
 								</div>
+							</div>
+							<div class="form-group has-feedback">		                                
+                                    <label for="nombre" class="col-md-3 control-label">Afiliado:</label>
+                                    <div class="col-md-8">
+                                        <select name="afiliado" class="form-control">
+											
+											<?php
+											$sql="select * from afiliado";
+											$result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
+
+											while($row = mysqli_fetch_array($result)) {
+												echo '<option value="'.$row['afiliado'].'">'.$row['enunciado'].'</option>'; 
+											}
+											?>
+											
+										</select>	
+                                		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
 							</div>
 							<div class="form-group has-feedback">		
                                     <label for="file" class="col-md-3 control-label">Imagen:</label>
@@ -409,12 +429,153 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 			</div> <!-- /container -->
 		</div><!-- menu2 -->
 		
+		<div id="menu3" class="tab-pane fade">
+	
+			<div class="row">
+                       
+			<div id="signupbox" style=" margin-top:10px" class="mainbox col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title"><strong>Subir datos de emergencia</strong></div>
+                        </div> 
+			<div class="panel-body" >						
+							<form id="signupform" class="form-horizontal" enctype="multipart/form-data" action="scr/php/exportExcel/subirTxt" role="form" method="post">
+                                <div class="form-group has-feedback">		                                
+                                    <label for="nombre" class="col-md-3 control-label">Estación</label>
+                                    <div class="col-md-8">
+                                        <select name="estacionSelect" class="form-control">
+											
+											<?php
+											$sql="select * from estacioneshab where estado = 1 ";
+											$result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
+
+											while($row = mysqli_fetch_array($result)) {
+												echo '<option value="'.$row['estacion'].'">'.$row['nombreEstacion'].'</option>'; 
+											}
+											?>
+											
+										</select>	
+                                		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+								</div>
+								<div class="form-group has-feedback">		
+                                    <label for="file2" class="col-md-3 control-label">Archivo:</label>
+                                    <div class="col-md-8">
+                                        <input type="file" data-show-upload="false" class="file" name="file2" id="file2" required="" >
+										<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+								<div class="col-md-offset-3 col-md-9">
+									
+									<span class="help-block with-errors"></span>
+									</div>
+								</div>
+								<div class="form-group">                                       
+                                    <div class="col-md-9 col-md-offset-3">
+                                        <button class="btn btn-default" type="submit" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Subir</button> 
+										<a href="opciones" class="btn btn-default" role="button">Volver</a>
+									</div>
+								</div>
+								
+							</form>
+							
+                         </div>
+			
+            
+				</div>
+				<div class="col-md-8 col-md-offset-3">
+					<div style="height:15px"></div>
+				</div>
+			</div>
+			</div>
+		</div><!-- menu3 -->
+		
+		<div id="menu4" class="tab-pane fade">
+			<div class="row">
+				<div id="signupbox" style=" margin-top:10px" class="mainbox col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title"><strong>Nuevo Afiliado</strong></div>
+                        </div>  
+                        <div class="panel-body" >
+                            <form id="signupform" class="form-horizontal" enctype="multipart/form-data" action="scr/php/crearAfiliado" role="form" method="post">
+                                <div class="form-group has-feedback">		                                
+                                    <label for="nombre" class="col-md-3 control-label">Nombre Afiliado:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id ="afiliado" class="form-control" name="afiliado" required="" placeholder="Nombre" >	
+                                		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                <div class="col-md-offset-3 col-md-9">
+								
+								<span class="help-block with-errors"></span>
+								</div>
+							</div>	
+							<div class="form-group has-feedback">	                                
+                                    <label for="archivo" class="col-md-3 control-label">Enunciado del Afiliado:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="enunciado" name="enunciado" required="" placeholder="Enunciado" >
+										
+                            		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                <div class="col-md-offset-3 col-md-9">
+								
+								<span class="help-block with-errors"></span>
+								</div>
+							</div>
+							<div class="form-group has-feedback">	                                
+                                    <label for="archivo" class="col-md-3 control-label">Link del Afiliado:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="link" name="link" required="" placeholder="Link http://" >
+										
+                            		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                <div class="col-md-offset-3 col-md-9">
+								
+								<span class="help-block with-errors"></span>
+								</div>
+							</div>	
+							<div class="form-group has-feedback">		
+                                    <label for="file" class="col-md-3 control-label">Imagen:</label>
+                                    <div class="col-md-8">
+                                        <input type="file" data-show-upload="false" class="file" name="file" id="file3" required="" onChange="ver(form.file.value)">
+										<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                <div class="col-md-offset-3 col-md-9">
+								
+								<span class="help-block with-errors"></span>
+								</div>
+                            </div>
+								
+                                <div class="form-group">                                       
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button type="submit" class="btn btn-info" name="submit">
+											<span class="glyphicon glyphicon-upload left" aria-hidden="true"></span> Crear
+										</button>
+										<a href="opciones" class="btn btn-default" role="button">Volver</a>
+                                    </div>
+                                </div>
+							
+                            </form>
+                         </div>
+                    </div>
+				</div>
+			</div>
+		</div><!-- menu4 -->
+		
+		</div>
 	</div>
 </div>
 
 <script type="text/javascript">
     $("#cosa").bootstrapDynamicTabs();
 	$('#file').fileinput({
+        language: 'es',
+        allowedFileExtensions : ['jpg', 'png','gif'],
+    });
+	$('#file2').fileinput({
+        language: 'es',
+		allowedFileExtensions : ['txt'],
+    });
+	$('#file3').fileinput({
         language: 'es',
         allowedFileExtensions : ['jpg', 'png','gif'],
     });

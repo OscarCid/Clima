@@ -6,6 +6,7 @@ if($_POST){
 	$archivo = $_POST['archivo'];
 	$latitud = $_POST['latitud'];
 	$longitud = $_POST['longitud'];
+	$afiliado = $_POST['afiliado'];
 	//Sacar el embed del iframe
 	$actual_link = $_POST['mapa'];
 	$por = explode('<iframe', $actual_link);
@@ -25,7 +26,7 @@ if($_POST){
 			move_uploaded_file ( $_FILES [ 'file' ][ 'tmp_name' ], $destino . '/' .$cad.'.jpg'); 
 	 
 		//Insertar a la tabla estacioneshab
-		$sql="INSERT INTO estacioneshab (estacion, nombreEstacion, estado, lat, lon, emb) VALUES ('".$arc."', '".$nombre."', '1', '".$latitud."', '".$longitud."', '".$emb."')";
+		$sql="INSERT INTO estacioneshab (estacion, nombreEstacion, estado, lat, lon, emb, afiliado) VALUES ('".$arc."', '".$nombre."', '1', '".$latitud."', '".$longitud."', '".$emb."', '".$afiliado."')";
 		$result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
 
 		echo "<strong>".$nombre."</strong><br><strong>".$archivo."</strong><br><strong>".$latitud."</strong><br><strong>".$longitud."</strong><br><strong>".$emb."</strong>";

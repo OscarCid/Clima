@@ -10,12 +10,20 @@ while ($row = mysqli_fetch_array ($result)) {
 	$lon = $row['lon'];
 	$lat = $row['lat'];
 	$emb = $row['emb'];
+	$afiliado = $row['afiliado'];
 	if ($row['estado'] == 0){
 		echo'<script type="text/javascript">
 		alert("Estación Deshabilitada");
 		window.location="index"
 		</script>';
 	}
+}
+$sql1="SELECT * FROM afiliado WHERE afiliado = '".$afiliado."'";
+$result1 = mysqli_query($con,$sql1)or die("Error en: " .  mysqli_error($con));
+while ($row = mysqli_fetch_array ($result)) {
+	$imagenE = $row['imagen'];
+	$enunciadoE = $row['enunciado'];
+	$linkE = $row['link'];
 }
 ?>
 <head>

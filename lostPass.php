@@ -126,6 +126,7 @@ if( $result0->num_rows == 0)
 				//para el envío en formato HTML 
 			$headers = "MIME-Version: 1.0\r\n"; 
 			$headers .= "Content-type: text/html; charset=utf-8\r\n"; 
+			$headers .= "From: No Reply <noreply@meteorologiaupla.cl>\r\n";
 
 			mail($destinatario,$asunto,$cuerpo,$headers);
 			}

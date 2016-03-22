@@ -54,9 +54,62 @@ if(isset($_SESSION['session']))
 		
 		?>
 		
-		
-	
 				<div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Guardar datos estación</div>
+                        </div>  
+                        <div class="panel-body" >						
+							<form class="form-horizontal" action="scr/php/exportExcel/exportExcel.php" role="form" method="post">
+                                <div class="form-group has-feedback">		                                
+                                    <label for="nombre" class="col-md-3 control-label">Estación</label>
+                                    <div class="col-md-8">
+                                        <select name="estacionSelect" class="form-control">
+											
+											<?php
+											$sql="select * from estacioneshab where estado = 1 ";
+											$result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
+
+											while($row = mysqli_fetch_array($result)) {
+												echo '<option value="'.$row['estacion'].'">'.$row['nombreEstacion'].'</option>'; 
+											}
+											?>
+											
+										</select>	
+                                		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+								</div>
+								 <div class="form-group has-feedback">		                                
+                                    <label for="nombre" class="col-md-3 control-label">Año</label>
+                                    <div class="col-md-8">
+                                        <select name="anio" class="form-control">
+											
+											<?php
+											$sql1="SELECT DISTINCT YEAR(fecha) AS anio FROM estacion ORDER BY anio DESC";
+											$result1 = mysqli_query($con,$sql1)or die("Error en: " .  mysqli_error($con));
+
+											while($row = mysqli_fetch_array($result1)) {
+												echo '<option value="'.$row['anio'].'">'.$row['anio'].'</option>'; 
+											}
+											?>
+											
+										</select>	
+                                		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+								</div>
+								<div class="form-group">                                       
+                                    <div class="col-md-9 col-md-offset-3">
+                                        <button class="btn btn-default" type="submit" name="submitTipo" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button> 
+									</div>
+								</div>
+								
+							</form>
+							
+                         </div>
+                    </div>
+				</div>
+	
+				<div id="signupbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <div class="panel-title">Editar</div>

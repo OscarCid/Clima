@@ -50,8 +50,10 @@ class myDBC {
 		$result = $this->mysqli->query($q);
 		//Si el resultado obtenido no tiene nada 
 		//Muestra el error y redirige al index
+		
 		if( $result->num_rows == 0)
 		{
+			
 			echo'<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 				<script type="text/javascript">
 				alert("Usuario o Contraseña Incorrecta");
@@ -65,33 +67,41 @@ class myDBC {
 		//Redirige a página logueada 
 		else{
 			$reg = mysqli_fetch_assoc($result);
-			if($reg["sup"] == 1 ){
+			if($reg["correo"] == $usuario && $reg["password"] == $pass_c || $reg["password"] == $contrasenia  ){
+				if($reg["sup"] == 1 ){
+					echo'<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+					<script type="text/javascript">
+					alert("Tu cuenta ha sido deshabilitada");
+					window.location="../../../index"
+					</script>';
+				}else{
+					date_default_timezone_set('America/Santiago');
+					
+					$_SESSION["session"][] = $reg["id"];
+					$_SESSION["id"] = $reg["id"];
+					$_SESSION["username"] = $reg["nombre"].' '.$reg["apellidos"];
+					$_SESSION["mail"] = $reg["correo"];
+					$_SESSION["pass"] = $reg["password"];
+					$_SESSION["user"] = $reg["tipo"];
+					$_SESSION['session_time'] = date('Y-m-d H:i:s');
+					
+					$q = "UPDATE usuarios SET ultimoLogeo = '".$_SESSION['session_time']."' WHERE correo = '".$_SESSION['mail']."'";
+				
+					$result = $this->mysqli->query($q);
+					echo'<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+					<script type="text/javascript">
+					alert("Bienvenido '.$_SESSION['username'].'");
+					window.location="../../../index"
+					</script>';
+				}
+			}else
+			{
 				echo'<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 				<script type="text/javascript">
-				alert("Tu cuenta ha sido deshabilitada");
-				window.location="../../../index"
-				</script>';
-			}else{
-				date_default_timezone_set('America/Santiago');
-				
-				$_SESSION["session"][] = $reg["id"];
-				$_SESSION["id"] = $reg["id"];
-				$_SESSION["username"] = $reg["nombre"].' '.$reg["apellidos"];
-				$_SESSION["mail"] = $reg["correo"];
-				$_SESSION["pass"] = $reg["password"];
-				$_SESSION["user"] = $reg["tipo"];
-				$_SESSION['session_time'] = date('Y-m-d H:i:s');
-				
-				$q = "UPDATE usuarios SET ultimoLogeo = '".$_SESSION['session_time']."' WHERE correo = '".$_SESSION['mail']."'";
-			
-				$result = $this->mysqli->query($q);
-				echo'<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-				<script type="text/javascript">
-				alert("Bienvenido '.$_SESSION['username'].'");
-				window.location="../../../index"
-				</script>';
+				alert("Usuario o Contraseña Incorrecta");
+				window.location="../../../registro"
+				</script>';	
 			}
-			//
 		}
 		
 	}
@@ -128,8 +138,8 @@ class myDBC {
 		
 			$result = $this->mysqli->query($q);
 			
-			$destinatario = $correo; 
-			$asunto = "Comprovación del correo - Meteorología UPLA"; 
+			$destinatario = $mail; 
+			$asunto = "Comprobación del correo - Meteorología UPLA"; 
 			$cuerpo = ' 
 			<html> 
 			<head> 
@@ -148,7 +158,8 @@ class myDBC {
 			//para el envío en formato HTML 
 			$headers = "MIME-Version: 1.0\r\n"; 
 			$headers .= "Content-type: text/html; charset=utf-8\r\n"; 
-
+			$headers .= "From: No Reply <noreply@meteorologiaupla.cl>\r\n";
+			$headers .= "Cc: michel.lira8@gmail.com\r\n";
 			mail($destinatario,$asunto,$cuerpo,$headers);
 			
 			

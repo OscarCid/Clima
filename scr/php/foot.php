@@ -191,9 +191,9 @@
 	<div style="height: auto">
 		
 	
-			<a href="http://www.upla.cl/facultadingenieria" target="_blank"><img style="margin-right:5px"  alt="" src="scr/img/uplafi_negro.png" height="45px" class="img-center"></a>
+			<a href="http://www.upla.cl/facultadingenieria"  target="_blank"><img style="margin-right:5px"  alt="" src="scr/img/uplafi_negro.png" height="45px" class="img-center"></a>
 		
-			<a href="http://meteoarmada.directemar.cl" target="_blank"><img style="margin-right:5px" alt="" src="scr/img/armada_negro.png" height="45px" class="img-center"></a>
+			<a href="http://meteoarmada.directemar.cl"  target="_blank"><img style="margin-right:5px" alt="" src="scr/img/armada_negro.png" height="45px" class="img-center"></a>
 		
 			<a href="http://www.conaf.cl" target="_blank"><img style="margin-right:5px" alt="" src="scr/img/conaf.png" height="45px" class="img-center"></a>
 		

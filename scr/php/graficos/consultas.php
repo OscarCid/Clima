@@ -22,7 +22,7 @@ class graficos
     {
         
                 if ($this->estacion == "campana") {
-                    $primero = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:50:00' ORDER BY fecha DESC, hora DESC LIMIT 12 OFFSET 1;;";
+                    $primero = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:50:00' ORDER BY fecha DESC, hora DESC LIMIT 12 OFFSET 1;";
                     $segundo = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:00:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
                     $tercero = "SELECT $grafico,hora,fecha,estacion FROM estacion where estacion='".$this->estacion."' AND hora like '%:10:00' ORDER BY fecha DESC, hora DESC LIMIT 12;";
                 }
@@ -86,12 +86,12 @@ class graficos
             
             $temperatura1 = number_format($temperatura1, 2, '.', '');
             /*segundo dato */
-            $hora2 = $fila5['hora'];
+			$hora2 = $fila5['hora'];
             $fecha2 = $fila5['fecha'];
             list($hora2, $minuto2) = split('[/:.-]', $hora2);
             list($año2, $mes2, $dia2) = split('[/:.-]', $fecha2);
             $mes2=$mes2-1;
-
+            
                 $temperatura2 = (($fila4[$grafico])+($fila5[$grafico])+($fila6[$grafico]))/3;
             
             $temperatura2 = number_format($temperatura2, 2, '.', '');
@@ -200,13 +200,13 @@ class graficos
 			$fecha6 = strtotime ( '-6 day' , strtotime ( $fecha ) ) ;
 			$fecha6 = date ( 'Y-m-d' , $fecha6 );			
 		}
-		$dia1="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha' AND $grafico NOT LIKE '0.0') AS tabla";
-		$dia2="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha1' AND $grafico NOT LIKE '0.0') AS tabla";
-		$dia3="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha2' AND $grafico NOT LIKE '0.0') AS tabla";
-		$dia4="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha3' AND $grafico NOT LIKE '0.0') AS tabla";
-		$dia5="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha4' AND $grafico NOT LIKE '0.0') AS tabla";
-		$dia6="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha5' AND $grafico NOT LIKE '0.0') AS tabla";
-		$dia7="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha6' AND $grafico NOT LIKE '0.0') AS tabla";
+		$dia1="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha' AND $grafico >= '0.0') AS tabla";
+		$dia2="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha1' AND $grafico >= '0.0') AS tabla";
+		$dia3="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha2' AND $grafico >= '0.0') AS tabla";
+		$dia4="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha3' AND $grafico >= '0.0') AS tabla";
+		$dia5="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha4' AND $grafico >= '0.0') AS tabla";
+		$dia6="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha5' AND $grafico >= '0.0') AS tabla";
+		$dia7="SELECT SUM($grafico) AS precMensual FROM (SELECT DISTINCT(fecha), $grafico FROM estacion WHERE estacion = '".$this->estacion."' AND fecha LIKE '$fecha6' AND $grafico >= '0.0') AS tabla";
 		
 	
 	    $resultado1 = $this->coneccion -> query($dia1) or trigger_error($this->coneccion ->error);
@@ -216,9 +216,14 @@ class graficos
         $resultado5 = $this->coneccion -> query($dia5) or trigger_error($this->coneccion ->error);
         $resultado6 = $this->coneccion -> query($dia6) or trigger_error($this->coneccion ->error);
         $resultado7 = $this->coneccion -> query($dia7) or trigger_error($this->coneccion ->error);
-        
-			
-
+        	
+			$datoEne = 0;
+			$datoFeb = 0;
+			$datoMar = 0;
+			$datoAbr = 0;
+			$datoMay = 0;
+			$datoJun = 0;
+			$datoJul = 0;
 			
 		while($fila1 = $resultado1 -> fetch_array() and $fila2 = $resultado2 -> fetch_array() and $fila3 = $resultado3 -> fetch_array() and $fila4 = $resultado4 -> fetch_array() and $fila5 = $resultado5 -> fetch_array() and $fila6 = $resultado6 -> fetch_array() and $fila7 = $resultado7 -> fetch_array() )
         {	

@@ -86,12 +86,18 @@ include_once "scr/conexion.php"; ?>
 	if(isset($_SESSION['session']))
 		{
 			
-		echo '<li style="padding-left:15px; padding-right:15px"><p class="navbar-text"><strong>Bienvenido </strong><a href = "opciones">'.$_SESSION['username'].'</a></p></li>
-		<li style="padding-right:15px;padding-left:16px"><p class="navbar-text"><strong><a href="scr/php/login/salir.php">Logout</a></strong></p></li>';
+		echo '
+		
+		<li style="padding-left:15px; padding-right:15px"><p class="navbar-text"><strong>Bienvenido </strong><a href = "opciones">'.$_SESSION['username'].'</a></p></li>';
+		if($_SESSION['user'] == 'admin'){				
+			echo'	                                       
+			<li style="padding-left:15px"><p class="navbar-text"><a href="4">Administración</a></p></li>';
+		}
+		echo '<li style="padding-right:15px;padding-left:16px"><p class="navbar-text"><strong><a href="scr/php/login/salir.php">Logout</a></strong></p></li>';
 		}else{	
 
 	
-echo'	<li style="padding-left:15px"><p class="navbar-text">Ya estas registrado?</p></li>
+echo'	
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
 			<ul id="login-dp" class="dropdown-menu">
