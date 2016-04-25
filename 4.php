@@ -117,7 +117,7 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 		//$textolat = "Haciendo click en cualquier parte del mapa, aparecera una caja en la parte inferior con el nombre de la ciudad, el primer numero que aparece es la latitud.";
 		?>
 		<br>
-	<div class="row" style="margin-top:50px" >	
+	<div class="row" style="margin-top:5px" >	
 		<div class = "col-md-10 col-md-offset-1 col-xs-12">
 		<ul class="nav nav-tabs" id="cosa">
 			<li class="active"><a data-toggle="tab" href="#home">Crear Estación</a></li>
@@ -126,6 +126,7 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 			<li><a data-toggle="tab" href="#menu2">Control de Usuarios</a></li>
 			<li><a data-toggle="tab" href="#menu3">Subir datos de emergencia</a></li>
 			<li><a data-toggle="tab" href="#menu4">Nuevo Afiliado</a></li>
+			<li><a data-toggle="tab" href="#menu5">Descargar datos</a></li>
 		</ul>
 		</div>
 	</div>	
@@ -280,10 +281,10 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 								<div class="btn-group raro">';
 								
                                 if ($row["estado"]==1){
-									echo '<button class="btn btn-warning custom" type="submit" name="submitD"  ><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span><span class="hidden-xs hidden-sm"> Deshabilitar estación</span></button></form>';
+									echo '<button class="btn btn-warning custom" type="submit" name="submitDE"  ><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span><span class="hidden-xs hidden-sm"> Deshabilitar estación</span></button></form>';
 									echo '<button class="btn btn-danger custom2" data-href="scr/php/deleteE.php?id='.$row['id'].'"  name="eliminar" data-toggle="modal" data-target="#confirm-delete" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
 								}else if ($row["estado"]==0){
-									echo '<button class="btn btn-success custom" type="submit" name="submitH" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><span class="hidden-xs"> Habilitar estación</span></button></form>';
+									echo '<button class="btn btn-success custom" type="submit" name="submitHE" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><span class="hidden-xs"> Habilitar estación</span></button></form>';
 									echo '<button class="btn btn-danger custom2" data-href="scr/php/deleteE.php?id='.$row['id'].'"  name="eliminar" data-toggle="modal" data-target="#confirm-delete" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
 								}
 						        
@@ -299,12 +300,12 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 					}
 					
 					$id = $_POST['id'];
-					if (isset($_POST['submitD'])){
+					if (isset($_POST['submitDE'])){
 						echo "adios<br>";
 						$sql1 = "UPDATE estacioneshab SET estado = '0' WHERE id = '".$id."'";
 						$result1 = mysqli_query($con,$sql1)or die("Error en: " .  mysqli_error($con));
 						echo "<meta http-equiv='refresh' content='0'>";
-					}else if(isset($_POST['submitH'])){
+					}else if(isset($_POST['submitHE'])){
 						echo "hola<br>";
 						$sql1 = "UPDATE estacioneshab SET estado = '1' WHERE id = '".$id."'";
 						$result1 = mysqli_query($con,$sql1)or die("Error en: " .  mysqli_error($con));
@@ -560,6 +561,68 @@ if(isset($_SESSION['session']) && $_SESSION['user'] == 'admin')
 				</div>
 			</div>
 		</div><!-- menu4 -->
+		
+		<div id="menu5" class="tab-pane fade">
+			<div class="row">
+				<div id="signupbox" style=" margin-top:10px" class="mainbox col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Guardar datos estación</div>
+                        </div>  
+                        <div class="panel-body" >						
+							<form class="form-horizontal" action="scr/php/exportExcel/exportExcel.php" role="form" method="post">
+                                <div class="form-group has-feedback">		                                
+                                    <label for="nombre" class="col-md-3 control-label">Estación</label>
+                                    <div class="col-md-8">
+                                        <select name="estacionSelect" class="form-control">
+											
+											<?php
+											$sql="select * from estacioneshab where estado = 1 ";
+											$result = mysqli_query($con,$sql)or die("Error en: " .  mysqli_error($con));
+
+											while($row = mysqli_fetch_array($result)) {
+												echo '<option value="'.$row['estacion'].'">'.$row['nombreEstacion'].'</option>'; 
+											}
+											?>
+											
+										</select>	
+                                		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+								</div>
+								 <div class="form-group has-feedback">		                                
+                                    <label for="nombre" class="col-md-3 control-label">Año</label>
+                                    <div class="col-md-8">
+                                        <select name="anio" class="form-control">
+											
+											<?php
+											$sql1="SELECT DISTINCT YEAR(fecha) AS anio FROM estacion ORDER BY anio DESC";
+											$result1 = mysqli_query($con,$sql1)or die("Error en: " .  mysqli_error($con));
+
+											while($row = mysqli_fetch_array($result1)) {
+												echo '<option value="'.$row['anio'].'">'.$row['anio'].'</option>'; 
+											}
+											?>
+											
+										</select>	
+                                		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+								</div>
+								<div class="form-group">                                       
+                                    <div class="col-md-9 col-md-offset-3">
+                                        <button class="btn btn-default" type="submit" name="submitTipo" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Descargar</button> 
+									</div>
+								</div>
+								
+							</form>
+							
+                         </div>
+                    </div>
+				</div>
+	
+				
+				</div>
+			</div>
+		</div><!-- menu 5 -->
 		
 		</div>
 	</div>

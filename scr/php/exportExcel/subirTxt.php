@@ -40,7 +40,7 @@ if($_POST){
 
 		}
 
-		if ($con->query($query) === TRUE)
+		if ($con->query($query) == TRUE)
 		{
 			$i++;
 			echo "New record created successfully<br>";
@@ -53,7 +53,7 @@ if($_POST){
 
 	// Unset the file to call __destruct(), closing the file handle.
 	$file = null;
-
+	unlink($archivo);
 	$con->close();
 	}
 ?>

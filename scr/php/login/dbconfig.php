@@ -1,6 +1,6 @@
 <?php
-	define("DB_SERVER", "localhost");
-	define("DB_USER", "root");
-	define("DB_PASS", "");
-	define("DB_NAME", "clima");
+	define("DB_SERVER", "sistema.meteorologiaupla.cl");
+	define("DB_USER", "meteorol_clima");
+	define("DB_PASS", "5@pW(f_E]ExF");
+	define("DB_NAME", "meteorol_clima");
 ?>

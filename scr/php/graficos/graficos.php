@@ -6,9 +6,8 @@
  * Time: 21:41
  */
         include 'scr/php/graficos/consultas.php';
-        $graficosYali = new graficos($porciones[2]);
+        $graficosYali = new graficos($pag);
 		
-		$pag=$porciones[2];
 			
 ?>
    
@@ -149,7 +148,7 @@
                 }]
         });
     });
-</script>
+</script> 
 <!-- Grafico Viento -->
 
 <!-- Grafico Humedad  1 hora-->

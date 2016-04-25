@@ -13,7 +13,6 @@ require_once("scr/php/login/myDBC.php");
     <link rel="icon" type="image/png" href="favicon.ico">
 	<!-- Script ajax -->
     <script src="scr/js/actualizarIndex.js"></script>
-	<script src="scr/js/actualizarMD.js"></script>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <script src="bootstrap/js/jquery.min.js"></script>
     <link rel="stylesheet" href="bootstrap/bootstrap-dynamic-tabs/bootstrap-dynamic-tabs.css">

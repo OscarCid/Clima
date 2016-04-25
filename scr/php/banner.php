@@ -26,7 +26,7 @@ while ($row = mysqli_fetch_array ($result1)) {
             <a href="http://meteoarmada.directemar.cl"  target="_blank"><img src="scr/img/armada.png"/></a>
         </div>
         <div class="col-md-4 col-sm-4">
-            <a href="<?php echo $linkE ?>"  target="_blank"><img src="scr/img/<?php echo $imagenE ?>" /></a>
+            <a href="<?php echo $linkE ?>"  target="_blank"><img src="scr/img/<?php echo $imagenE ?>" height="60px"/></a>
         </div>
     </div>
 </div>
@@ -64,8 +64,19 @@ function resta($inicio, $fin)
 $dur_de_dia=resta($sunrise,$sunset);
 $luz_de_dia=resta($civil_twilight_begin,$civil_twilight_end);
 
+if(isset($_SESSION['session']))
+{
 ?>
 
+<div class="row" style="padding-bottom: 5px">
+<div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 ">
+	<div class="col-md-8 col-xs-4 "></div>
+	<div class="col-md-4 col-xs-8 text-right">
+		<a href="Android/Meteorologia-UPLA.apk" class="btn btn-success" role="button"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> Descarga Android</a>
+	</div>
+</div>
+</div>
+<?php } ?>
 <div class="row" style="padding-top: 5px; padding-bottom: 20px">
 
     <div class="col-md-10 col-md-offset-1">

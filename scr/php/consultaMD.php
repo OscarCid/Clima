@@ -1,12 +1,12 @@
 <?php
 class datos
 {
-	private $host = "localhost";
-    private $user = "root";
-    private $password = "";
+	private $host = "sistema.meteorologiaupla.cl";
+    private $user = "meteorol_clima";
+    private $password = "5@pW(f_E]ExF";
     private $estacion = "";
     private $coneccion = "";
-	private $base = "clima";
+	private $base = "meteorol_clima";
 
     public function __construct($estacion)
     {
@@ -33,9 +33,10 @@ class datos
 		$sql="SELECT * FROM estacion WHERE estacion = '".$this->estacion."' ORDER BY fecha DESC, hora DESC LIMIT 1;";
 		$resultado = $this->coneccion -> query($sql) or trigger_error($this->coneccion ->error);
 		while($row = mysqli_fetch_array($resultado)) {
-			$Fecha = $row["fecha"];
-			list( $this->ano, $this->mes, $dia  ) = split( '[/.-]', $Fecha);
-			$this->dia = $dia-1;
+			$Fecha = date("Y-m-d", strtotime($row['fecha']));
+			$ayer = date( "Y-m-d", strtotime( "-1 day", strtotime( $Fecha ) ) );  
+			list( $this->ano, $this->mes, $this->dia  ) = split( '[/.-]', $ayer);
+			
 		}
 	}	
 	

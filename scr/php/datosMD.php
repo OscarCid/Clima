@@ -16,7 +16,7 @@
                     <div class="tab-pane active" id="hoyD">
                         <div class="span8">
 							<?php
-							$estacion = $porciones[2];
+							$estacion = $pag;
 							include_once "consultaMD.php";
 							include_once "hoy.php";
 							?>

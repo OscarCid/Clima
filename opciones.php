@@ -99,7 +99,7 @@ if(isset($_SESSION['session']))
 								</div>
 								<div class="form-group">                                       
                                     <div class="col-md-9 col-md-offset-3">
-                                        <button class="btn btn-default" type="submit" name="submitTipo" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button> 
+                                        <button class="btn btn-default" type="submit" name="submitTipo" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Descargar</button> 
 									</div>
 								</div>
 								

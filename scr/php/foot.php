@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<?php
+if($imagenE == "" || $linkE == ""){
+	$imagenE = "conaf.png";
+	$linkE = "http://www.conaf.cl";
+	$enunciadoE = "CONAF";
+}
+?>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     
@@ -195,7 +202,7 @@
 		
 			<a href="http://meteoarmada.directemar.cl"  target="_blank"><img style="margin-right:5px" alt="" src="scr/img/armada_negro.png" height="45px" class="img-center"></a>
 		
-			<a href="http://www.conaf.cl" target="_blank"><img style="margin-right:5px" alt="" src="scr/img/conaf.png" height="45px" class="img-center"></a>
+			<a href="<?php echo $linkE?>" target="_blank"><img style="margin-right:5px" alt="" src="scr/img/<?php echo $imagenE ?>" height="45px" class="img-center"></a>
 		
 
 	</div>
@@ -207,7 +214,7 @@
             ·
 			<a href="http://meteoarmada.directemar.cl" target="_blank">Meteorología Armada</a>
             ·
-			<a href="http://www.conaf.cl" target="_blank">CONAF</a>
+			<a href="<?php echo $linkE ?>" target="_blank"><?php echo $enunciadoE ?></a>
             ·
             <a href="http://www.upla.cl/noticias/contactanos/"target="_blank">Contacto</a>
         </p>

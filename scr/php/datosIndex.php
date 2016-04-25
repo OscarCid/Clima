@@ -309,7 +309,7 @@ while($row = mysqli_fetch_array($result)) {
 
                                                             <tbody>
                                                             <tr>
-                                                                <td width='50%'><strong>Precipitacion hoy</strong></td>
+                                                                <td width='50%'><strong>Precipitación hoy</strong></td>
                                                                 <td>$precDia mm</td>
                                                             </tr>
                                                             <tr>
@@ -317,7 +317,7 @@ while($row = mysqli_fetch_array($result)) {
                                                                 <td>$row[precActual] mm/hr</td>
                                                             </tr>
                                                             <tr>
-                                                                <td><strong>Precipitacion este mes</strong></td>
+                                                                <td><strong>Precipitación este mes</strong></td>
                                                                 <td>$precMes mm</td>
                                                             </tr>
                                                             <tr>
@@ -325,11 +325,11 @@ while($row = mysqli_fetch_array($result)) {
                                                                 <td>$precipAnio mm</td>
                                                             </tr>
                                                             <tr>
-                                                                <td><strong>Precipitacion esta hora</strong></td>
+                                                                <td><strong>Precipitación esta hora</strong></td>
                                                                 <td>$row[precHoy] mm</td>
                                                             </tr>
                                                             <tr>
-																<td><strong>Ultima precipitacion</strong></td>
+																<td><strong>Ultima precipitación</strong></td>
                                                                 <td>$ultPrecipFecha $ultPrecipHora</td>
                                                             </tr>
                                                             </tbody>
@@ -360,7 +360,7 @@ while($row = mysqli_fetch_array($result)) {
                                                         
                                                         <tbody>
                                                         <tr>
-                                                            <td width='50%'><strong>Intencidad del Viento</strong></td>
+                                                            <td width='50%'><strong>Intensidad del Viento</strong></td>
                                                             <td>$row[vPromedio] kts 
 
                                                         </tr>
@@ -370,7 +370,7 @@ while($row = mysqli_fetch_array($result)) {
                                                         </tr>
                                                         <tr>
                                                             
-                                                            <td><strong>Direccion del Viento</strong></td>
+                                                            <td><strong>Dirección del Viento</strong></td>
                                                             <td>$row[direcViento]° $letra</td>
 														
                                                         </tr>
@@ -404,7 +404,7 @@ while($row = mysqli_fetch_array($result)) {
                                                         
                                                         <tbody>
                                                         <tr>
-                                                            <td width='50%'><strong>Presion</strong></td>
+                                                            <td width='50%'><strong>Presión</strong></td>
                                                             <td>$row[presion] hPa</td>
                                                         </tr>
 														<tr>
