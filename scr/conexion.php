@@ -5,10 +5,10 @@
  * Date: 27/09/2015
  * Time: 18:55
  */
-$host="sistema.meteorologiaupla.cl";
-$user="meteorol_clima";
-$password="5@pW(f_E]ExF";
-$base="meteorol_clima";
+$host="localhost";
+$user="root";
+$password="";
+$base="clima";
 
 $con = mysqli_connect($host,$user,$password,$base);
 	if (!$con) {
