@@ -1,12 +1,12 @@
 <?php
 class graficos
 {
-    private $host = "sistema.meteorologiaupla.cl";
-    private $user = "meteorol_clima";
-    private $password = "5@pW(f_E]ExF";
+    private $host = "localhost";
+    private $user = "root";
+    private $password = "";
     private $estacion = "";
     private $coneccion = "";
-	private $base = "meteorol_clima";
+	private $base = "clima";
 
     public function __construct()
     {
